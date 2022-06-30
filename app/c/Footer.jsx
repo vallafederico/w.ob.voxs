@@ -39,10 +39,13 @@ export default function Footer() {
 
 function Credits() {
   return (
-    <div className="Credits border2 text-xs">
-      <LogoGala className="fill-white md:w-[15vw] w-1/2 pb-9" />
-      <div className="py-5">© Gala Labs. All rights reserved.</div>
-      <a href="/"> Terms and Conditions </a> | <a href="/"> Privacy Policy </a>
+    <div className="Credits border2 text-xs ">
+      <LogoGala className="fill-white md:w-[15vw] w-[50vw] pb-9" />
+      <div>
+        <div className="py-5">© Gala Labs. All rights reserved.</div>
+        <a href="/"> Terms and Conditions </a> |{" "}
+        <a href="/"> Privacy Policy </a>
+      </div>
     </div>
   );
 }

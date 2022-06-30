@@ -7,7 +7,7 @@ export function Newsletter({ link = "/" }) {
           placeholder="Enter your email"
           className="bg-transparent border block md:inline border-red rounded-md p-5 mr-3 md:w-[25vw] w-full"
         />
-        <button className="bg-white text-red p-5 mr-3 rounded-md uppercase">
+        <button className="bg-white text-red p-5 md:mr-3 md:mt-0 mt-5 w-full md:w-auto  rounded-md uppercase">
           Subscribe ->
         </button>
       </div>

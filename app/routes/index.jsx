@@ -67,31 +67,42 @@ function Slider({ children }) {
     <div className="Slider h-[100vh] sticky top-0 flex flex-col">
       <div className="SliderMain grow"></div>
       <div className="SliderCtrl min-h-[10vw] mx-auto mb-[5vh] min-w-[50vw] p-5 rounded-md bg-light flex items-center">
-        <button>
+        <button className="md:block hidden">
           <Arrow isBack="true" />
         </button>
 
         {/*  */}
-        <div className="grow flex justify-center px-9">
-          <MaverickSvg className="min-w-[7vw] m-9 py-5" />
+        <div>
+          <div className="grow flex justify-center px-9">
+            <MaverickSvg className="md:min-w-[7vw] min-w-[25vw] md:m-9 m-2 py-5 " />
 
-          <div className="m-9">
-            <h2 className="font-display text-[4vw] leading-[1em] uppercase">
-              <span className="block text-[18px] leading-[1em]">The</span>
-              Maverick
-            </h2>
+            <div className="m-9">
+              <h2 className="font-display md:text-[4vw] text-[24px] leading-[1em] uppercase">
+                <span className="block md:text-[18px] text-[12px] leading-[1em]">
+                  The
+                </span>
+                Maverick
+              </h2>
 
-            <h3 className=" uppercase text-red text-xs">
-              Free Spirit who lives by their own code
-            </h3>
+              <h3 className=" uppercase text-red text-xs mt-2 md:mt-2">
+                Free Spirit who lives by their own code
+              </h3>
+              <button className="hidden md:block bg-black px-4 py-1 rounded-md uppercase text-white text-xs mt-5">
+                More info
+              </button>
+            </div>
+          </div>
+          <div className="md:hidden flex justify-between mt-5">
+            <Arrow isBack="true" />
             <button className="bg-black px-4 py-1 rounded-md uppercase text-white text-xs mt-5">
               More info
             </button>
+            <Arrow />
           </div>
         </div>
         {/*  */}
 
-        <button>
+        <button className="md:block hidden">
           <Arrow />
         </button>
       </div>

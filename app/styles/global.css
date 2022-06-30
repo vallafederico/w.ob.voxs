@@ -5,3 +5,17 @@
 }
 
 /* ------- PAGE */
+
+.Nav > * {
+  flex-grow: 1;
+}
+
+/* ------- WebGl */
+#c  {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}

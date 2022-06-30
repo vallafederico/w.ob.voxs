@@ -12,7 +12,7 @@ import globalcss from "./styles/global.css";
 
 export const meta = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "Vox Souls",
   viewport: "width=device-width,initial-scale=1",
 });
 

@@ -1,3 +1,7 @@
-export default function Main({ children }) {
-  return <main className="w min-h-screen">{children}</main>;
+export default function Main({ children, canScroll = false }) {
+  return (
+    <main className={`w ${canScroll ? "" : "max-h-screen overflow-hidden"}`}>
+      {children}
+    </main>
+  );
 }

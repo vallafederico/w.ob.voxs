@@ -2,7 +2,7 @@ import { Group } from "three";
 import Skin from "./skin";
 
 export default class extends Group {
-  constructor(data) {
+  constructor(data, textures) {
     super();
     this.data = data;
 

@@ -4,7 +4,8 @@ import gsap from "gsap";
 
 import loadModel from "./util/model-loader";
 import loadTexture from "./util/texture-loader";
-import { LIB } from "./assets/lib.js";
+
+import { LIB, TX } from "./assets/lib.js";
 
 import Camera from "./_camera";
 import Scene from "./_scene";
@@ -64,6 +65,29 @@ export default class extends Emitter {
     // Loading Ops
     this.loaded.model = await loadModel(LIB.model);
 
+    const tx_wormh = await loadTexture(TX.tx_wormh);
+    const tx_clouds2 = await loadTexture(TX.tx_clouds2);
+    const tx_clouds4 = await loadTexture(TX.tx_clouds4);
+    const tx_clouds9 = await loadTexture(TX.tx_clouds9);
+    const tx_conv = await loadTexture(TX.tx_conv);
+    const tx_dragon = await loadTexture(TX.tx_dragon);
+    const tx_shelf = await loadTexture(TX.tx_shelf);
+    const tx_capitan = await loadTexture(TX.tx_capitan);
+
+    this.textures = {
+      tx_wormh,
+      tx_clouds2,
+      tx_clouds4,
+      tx_clouds9,
+      tx_conv,
+      tx_dragon,
+      tx_shelf,
+      tx_capitan,
+    };
+
+    // flipY
+    for (const tx in this.textures) this.textures[tx].flipY = false;
+
     this.create();
     this.emit("loaded");
     this.playIntro();
@@ -73,6 +97,7 @@ export default class extends Emitter {
     this.scene = new Scene({
       camera: this.camera,
       model: this.loaded.model,
+      textures: this.textures,
     });
 
     this.initEvents();
@@ -147,7 +172,7 @@ export default class extends Emitter {
   playIntro() {
     gsap.to(this.sceneAnimation, {
       intro: 1,
-      duration: 8,
+      duration: 0.5,
       delay: 0.2,
       ease: "power2.out",
       onUpdate: () => {

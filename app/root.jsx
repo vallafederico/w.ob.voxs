@@ -30,7 +30,7 @@ export default function App() {
       </head>
       <body className="bg-white">
         <Outlet />
-        <ScrollRestoration />
+        {/* <ScrollRestoration /> */}
         <Scripts />
         <LiveReload />
       </body>

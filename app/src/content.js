@@ -3,6 +3,7 @@
  */
 import cta_vox_img_1 from "./img/vox-img-1.png";
 import cta_vox_img_2 from "./img/vox-img-2.png";
+import { SLIDER_CONTENT } from "./souls.js";
 
 /**
  * Section 2 -- TextBoxes
@@ -33,3 +34,8 @@ export const CTACONTENT = {
     { src: cta_vox_img_2, alt: "The Wanderer Vox" },
   ],
 };
+
+/**
+ * Section 3 -- Slider
+ */
+export { SLIDER_CONTENT };

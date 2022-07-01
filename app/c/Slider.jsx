@@ -2,199 +2,147 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import gsap from "gsap";
 
 import { Arrow } from "./sh/Svg";
-import { MaverickSvg } from "./sh/SoulsLogo";
+// import { MaverickSvg } from "./sh/SoulsLogo";
+
+import { SLIDER_CONTENT } from "~/src/content.js";
+// console.log(SLIDER_CONTENT.SOULS);
 
 export default function Slider() {
-  // slider State Handler
+  const sliderUiRef = useRef(null);
+  const slideContentRef = useRef(null);
+
+  // -- **** Slider State
   const [isIn, setIsIn] = useState(false);
-  const sliderUi = useRef(null);
-  const sliderOverlay = useRef(null);
-  const handleClick = () => {
-    setIsIn(!isIn);
-    animateSlide(sliderOverlay.current, isIn);
-    animateUi(sliderUi.current, isIn);
+  const handleIsIn = () => setIsIn(!isIn);
+  useEffect(() => {
+    animateSliderIn(sliderUiRef, slideContentRef, isIn);
+  }, [isIn]);
+  // -- **** Slider Index
+  const [slideIndex, setSlideIndex] = useState(0);
+  const handleSlideIndex = (isForward) => {
+    const newIndex = getNewIndex(slideIndex, isForward);
+    setSlideIndex(newIndex);
   };
-
-  // slider Index Handler
-  const [index, setIndex] = useState(0);
-  const handleIndex = (isForward = true) => {
-    let nextIndex = isForward ? index + 1 : index - 1;
-    if (nextIndex > 11) {
-      nextIndex = 0;
-    } else if (nextIndex < 0) {
-      nextIndex = 11;
-    }
-
-    setIndex(nextIndex);
-    // console.log(nextIndex);
-  };
+  // -- **** Current Content
+  const currentSoul = SLIDER_CONTENT.SOULS[slideIndex];
+  // console.log(currentSoul);
 
   return (
     <div className="Slider h-[100vh] sticky top-0 flex flex-col overflow-hidden">
-      <div className="SliderMain relative grow flex flex-col justify-center pt-[20vh] pb-[10vh]">
-        <Slide refChild={sliderOverlay} handleClick={handleClick} />
-      </div>
-      <SlideUi
-        handleIndex={handleIndex}
-        handleClick={handleClick}
-        sliderUi={sliderUi}
+      <Slides
+        currentContent={currentSoul}
+        childRef={slideContentRef}
+        slideIndex={slideIndex}
+        handleIsIn={handleIsIn}
+      />
+      <SliderUi
+        currentContent={currentSoul}
+        childRef={sliderUiRef}
+        slideIndex={slideIndex}
+        handleSlideIndex={handleSlideIndex}
+        handleIsIn={handleIsIn}
       />
     </div>
   );
 }
 
 /**
- * Slide Content
+ * Slides
  */
-function Slide({ refChild, handleClick }) {
+function Slides({ childRef, slideIndex, handleIsIn, currentContent }) {
   return (
-    // <div className="">
     <div
-      ref={refChild}
-      className="Slide h-auto max-h-[70vh] w-[30vw] bg-light rounded-xl p-9 absolute top-[20vh] right-8 translate-x-[200%] "
+      ref={childRef}
+      className="Slides absolute w-2/5 bottom-0 h-[60vh] mb-[20vh] right-9 translate-x-[100%]"
     >
-      {/* Soul Header UI -- START */}
-      <div className="grow flex justify-center px-9">
-        <MaverickSvg className="md:min-w-[5vw] min-w-[25vw] md:m-5 m-2 py-5 " />
+      <Slide
+        handleIsIn={handleIsIn}
+        slideIndex={slideIndex}
+        currentContent={currentContent}
+      />
+    </div>
+  );
+}
 
-        <div className="m-5">
-          <h2 className="font-display md:text-[3vw] text-[24px] leading-[1em] uppercase">
-            <span className="block md:text-[18px] text-[12px] leading-[1em]">
-              The
-            </span>
-            Maverick
-          </h2>
+function Slide({ handleIsIn, currentContent }) {
+  // console.log("slide", currentContent);
 
-          <h3 className=" uppercase text-red text-xs mt-2 md:mt-2">
-            Free Spirit who lives by their own code
-          </h3>
-          <button
-            onClick={handleClick}
-            className="hidden md:block bg-black px-4 py-1 rounded-md uppercase text-white text-xs mt-5"
-          >
-            Close
-          </button>
-        </div>
-      </div>
-      {/* Soul Header UI -- END */}
-      {/* SOul Content -- START */}
-      <div className="text-xs max-h-[30vh] overflow-scroll">
-        <div className="mt-2">
-          <h4 className="text-red uppercase font-display mb-2">Strenghts</h4>
-          <p>
-            The fiery Maverick Soul is always center stage. They zig when the
-            world zags, are honest to a fault, and exude self-confidence.
-            Telling a Maverick something can't be done is a sure way to fire
-            them up to prove otherwise. They are an ambitious Soul, with big
-            dreams and the determination to realize them—no matter whom they rub
-            the wrong way.
-          </p>
-        </div>
-        <div className="mt-2">
-          <h4 className="text-red uppercase font-display mb-2">Weaknesses</h4>
-          <p>
-            The Maverick’s drive and self-assuredness means they can find it
-            difficult to admit when they are wrong or hasty. When backed into a
-            corner, The Maverick doubles down on a “it’s my way or the highway”
-            mentality and can come across as:
-          </p>
-        </div>
-        <div className="mt-2">
-          <h4 className="text-red uppercase font-display mb-2">Quirks</h4>
-          <p>
-            Smirks a thousand times a day just for the exercise. Is the reason
-            why certain laws were made. Overuses the word,
-            “antiestablishmentarianism”. Will ask for suggestions just to do the
-            opposite. Always has a leather jacket and a pair of sunglasses on
-            standby. Has a superpower for starting catchphrases.
-          </p>
-        </div>
-      </div>
-      {/* SOul Content -- End */}
+  return (
+    <div className="h-full w-full bg-light rounded-2xl p-8">
+      <h3>{currentContent.title}</h3>
+      <button onClick={handleIsIn}>In and out</button>
     </div>
   );
 }
 
 /**
- * Slide UI
+ * Slider UI
  */
-function SlideUi({ sliderUi, handleClick, handleIndex }) {
-  const arrowClicked = (isForward) => {
-    handleIndex(isForward);
-  };
+function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
+  // console.log("ui", currentContent);
 
   return (
     <div
-      ref={sliderUi}
-      className="SliderCtrl min-h-[10vw] mx-auto md:mb-[5vh] pb-9 md:pb-0 px-9 rounded-md bg-light flex items-center"
+      ref={childRef}
+      className="SlideUi absolute w-full h-[10vh] bottom-0 flex justify-center"
     >
-      <button className="md:block hidden" onClick={() => arrowClicked(false)}>
-        <Arrow isBack="true" />
-      </button>
-
-      <div>
-        {/* Soul Header UI -- START */}
-        <div className="grow flex justify-center px-9">
-          <MaverickSvg className="md:min-w-[5vw] min-w-[25vw] md:m-5 m-2 py-5 " />
-
-          <div className="m-5">
-            <h2 className="font-display md:text-[3vw] text-[24px] leading-[1em] uppercase">
-              <span className="block md:text-[18px] text-[12px] leading-[1em]">
-                The
-              </span>
-              Maverick
-            </h2>
-
-            <h3 className=" uppercase text-red text-xs mt-2 md:mt-2">
-              Free Spirit who lives by their own code
-            </h3>
-            <button
-              onClick={handleClick}
-              className="hidden md:block bg-black px-4 py-1 rounded-md uppercase text-white text-xs mt-5"
-            >
-              More info
-            </button>
-          </div>
+      <div className="md:w-1/2 w-full bg-light rounded-2xl flex items-center justify-between p-8">
+        <SliderArrow onClick={() => handleSlideIndex(false)} isBack="true" />
+        {/* Info - START */}
+        <div>
+          <h3>{currentContent.title}</h3>
+          <button onClick={() => handleIsIn()}>Set In</button>
         </div>
-        {/* Soul Header UI -- END */}
-
-        {/* Mobile UI */}
-        <div className="md:hidden flex justify-between mt-5">
-          <Arrow isBack="true" />
-          <button
-            onClick={handleClick}
-            className="bg-black px-4 py-1 rounded-md uppercase text-white text-xs mt-5"
-          >
-            More info
-          </button>
-          <Arrow />
-        </div>
+        {/* Info - END */}
+        <SliderArrow onClick={() => handleSlideIndex(true)} />
       </div>
-
-      <button className="md:block hidden" onClick={() => arrowClicked(true)}>
-        <Arrow />
-      </button>
     </div>
   );
 }
 
-/**
- * Animation
- */
-function animateSlide(item, isIn = false) {
-  const mvmt = isIn ? "200%" : "0%";
-  gsap.to(item, {
-    x: mvmt,
-    duration: 0.8,
-    ease: "expo.out",
-  });
+/*** Utils */
+function SliderArrow({ isBack = false, onClick = false }) {
+  return (
+    <button onClick={onClick}>
+      <Arrow isBack={isBack} />
+    </button>
+  );
 }
 
-function animateUi(item, isIn = false) {
-  const mvmt = isIn ? "0%" : "200%";
-  gsap.to(item, {
-    y: mvmt,
-    duration: 0.8,
-    ease: "expo.out",
-  });
+// Handle Slide Index
+function getNewIndex(currentI, isForward) {
+  let nextIndex = isForward ? currentI + 1 : currentI - 1;
+  if (nextIndex > 11) {
+    nextIndex = 0;
+  } else if (nextIndex < 0) {
+    nextIndex = 11;
+  }
+  return nextIndex;
+}
+
+/*** Animation */
+function animateSliderIn(itemUi, itemSlide, goIn = false) {
+  if (!goIn) {
+    gsap.to(itemUi.current, {
+      duration: 0.5,
+      ease: "expo.out",
+      y: "0%",
+    });
+    gsap.to(itemSlide.current, {
+      duration: 0.5,
+      ease: "expo.out",
+      x: "120%",
+    });
+  } else {
+    gsap.to(itemUi.current, {
+      duration: 0.5,
+      ease: "expo.out",
+      y: "100%",
+    });
+    gsap.to(itemSlide.current, {
+      duration: 0.5,
+      ease: "expo.out",
+      x: "0%",
+    });
+  }
 }

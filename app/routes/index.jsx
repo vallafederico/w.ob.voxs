@@ -1,5 +1,5 @@
 import indexcss from "../styles/index.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 
 import Nav from "~/c/Nav";
 import Main from "~/c/sh/Main";
@@ -26,6 +26,12 @@ export default function Index() {
   const scrollRef = useRef(null);
   const sliderRef = useRef(null);
   const ctaRef = useRef(null);
+  // THREEEJS Refs
+  const [soulIndex, setSoulIndex] = useState(0);
+  const TSoulIndex = useMemo(
+    () => ({ soulIndex, setSoulIndex }),
+    [soulIndex, setSoulIndex]
+  );
 
   // THREE - handling
   return (
@@ -35,6 +41,7 @@ export default function Index() {
         sliderRef={sliderRef}
         ctaRef={ctaRef}
         setCanScroll={setCanScroll}
+        soulIndex={TSoulIndex}
       />
       <Wrapper>
         <Nav />
@@ -66,17 +73,19 @@ export default function Index() {
             id="slider"
             className="Slider relative h-[300vh]"
           >
-            <Slider />
+            <Slider soulIndex={soulIndex} setSoulIndex={setSoulIndex} />
             <Cont></Cont>
           </Section>
-          <Section childRef={ctaRef} id="info" className="Info ">
-            <Cont>
-              <LaunchCta>
-                <MintButton />
-              </LaunchCta>
-            </Cont>
-          </Section>
-          <Footer />
+          <div ref={ctaRef}>
+            <Section id="info" className="Info ">
+              <Cont>
+                <LaunchCta>
+                  <MintButton />
+                </LaunchCta>
+              </Cont>
+            </Section>
+            <Footer />
+          </div>
         </Main>
       </Wrapper>
     </>

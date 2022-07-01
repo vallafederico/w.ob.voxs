@@ -1,8 +1,10 @@
 import gsap from "gsap";
+import Emitter from "tiny-emitter";
 const { ScrollTrigger } = require("gsap/dist/ScrollTrigger");
 
-export default class {
+export default class extends Emitter {
   constructor(scrollEl, ctaEl, sliderEl) {
+    super();
     this.scrollEl = scrollEl;
     this.ctaEl = ctaEl;
     this.sliderEl = sliderEl;
@@ -12,6 +14,8 @@ export default class {
       step: 0,
       cta: 0,
       slider: 0,
+      sliderActive: false,
+      ctaActive: false,
     };
 
     this.init();
@@ -35,13 +39,13 @@ export default class {
     // create SLIDER SCROLL CONTROL
     ScrollTrigger.create({
       trigger: this.sliderEl,
-      start: "top bottom",
+      start: "top center",
       end: "bottom bottom",
-      // onToggle: (self) => console.log("slider", self.isActive),
-      onUpdate: (self) => {
-        this.scroller.slider = self.progress;
-        // console.log(this.scroller.slider);
-      },
+      onToggle: (self) => this.toggleSliderZoom(self.isActive),
+      // onUpdate: (self) => {
+      //   this.scroller.slider = self.progress;
+      //   // console.log(this.scroller.slider);
+      // },
     });
 
     // create CTA SCROLL CONTROL
@@ -49,11 +53,20 @@ export default class {
       trigger: this.ctaEl,
       start: "top bottom",
       end: "bottom bottom",
-      // onToggle: (self) => console.log("cta", self.isActive),
-      onUpdate: (self) => {
-        this.scroller.cta = self.progress;
-        // console.log(this.scroller.cta);
-      },
+      onToggle: (self) => this.toggleCtaZoom(self.isActive),
+      // onUpdate: (self) => {
+      //   this.scroller.cta = self.progress;
+      //   // console.log(this.scroller.cta);
+      // },
     });
+  }
+
+  toggleSliderZoom(bool) {
+    // console.log(bool);
+    this.emit("sliderIn", bool);
+  }
+
+  toggleCtaZoom(bool) {
+    this.emit("ctaIn", bool);
   }
 }

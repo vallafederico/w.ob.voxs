@@ -1,13 +1,12 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
 import { Arrow } from "./sh/Svg";
 // import { MaverickSvg } from "./sh/SoulsLogo";
 
 import { SLIDER_CONTENT } from "~/src/content.js";
-// console.log(SLIDER_CONTENT.SOULS);
 
-export default function Slider() {
+export default function Slider({ soulIndex, setSoulIndex }) {
   const sliderUiRef = useRef(null);
   const slideContentRef = useRef(null);
 
@@ -17,12 +16,15 @@ export default function Slider() {
   useEffect(() => {
     animateSliderIn(sliderUiRef, slideContentRef, isIn);
   }, [isIn]);
+
   // -- **** Slider Index
   const [slideIndex, setSlideIndex] = useState(0);
   const handleSlideIndex = (isForward) => {
     const newIndex = getNewIndex(slideIndex, isForward);
     setSlideIndex(newIndex);
+    setSoulIndex(newIndex);
   };
+
   // -- **** Current Content
   const currentSoul = SLIDER_CONTENT.SOULS[slideIndex];
   // console.log(currentSoul);

@@ -16,6 +16,7 @@ export default class extends Emitter {
   constructor() {
     super();
     this.time = 0;
+    this.isActive = false;
     this.sceneAnimation = { intro: 0 };
   }
 
@@ -88,9 +89,26 @@ export default class extends Emitter {
     // flipY
     for (const tx in this.textures) this.textures[tx].flipY = false;
 
+    this.camera.placements = this.findCamPlacements(this.loaded.model.model);
+    this.camera.computePlacements();
+
     this.create();
     this.emit("loaded");
     this.playIntro();
+
+    this.isActive = true;
+  }
+
+  findCamPlacements(model) {
+    const camPlacements = [];
+    model.traverse((o) => {
+      if (!o.isMesh && o.name.substring(0, 6) === "place_") {
+        camPlacements.push(o.position);
+        // console.log(o.name);
+      }
+    });
+
+    return camPlacements;
   }
 
   create() {
@@ -109,6 +127,8 @@ export default class extends Emitter {
       this.ctaElement,
       this.sliderElement
     );
+
+    this.setupEvents();
   }
 
   /**
@@ -158,21 +178,27 @@ export default class extends Emitter {
     new ResizeObserver((entry) => this.resize(entry[0].contentRect)).observe(
       this.vp.container
     );
-
     // tab
     document.addEventListener("visibilitychange", () => {
       document.hidden ? (this.paused = true) : (this.paused = false);
     });
+
+    // slider events
   }
 
   /**
    * Animations
    */
 
+  setupEvents() {
+    this.scroll.on("sliderIn", (bool) => this.camera.punchZoom(bool));
+    this.scroll.on("ctaIn", (bool) => this.camera.fadeOut(bool));
+  }
+
   playIntro() {
     gsap.to(this.sceneAnimation, {
       intro: 1,
-      duration: 0.5,
+      duration: 8,
       delay: 0.2,
       ease: "power2.out",
       onUpdate: () => {
@@ -181,5 +207,14 @@ export default class extends Emitter {
       },
       onComplete: () => this.emit("canScroll"),
     });
+  }
+
+  /**
+   * DOM Events
+   */
+
+  soulIndexChanged({ soulIndex }) {
+    // console.log("gl, soulIndex", soulIndex);
+    this.camera.toSliderPosition(soulIndex);
   }
 }

@@ -17,9 +17,6 @@ export default class extends Scene {
     this.textures = textures;
     this.model = this.loop(model);
 
-    // console.log(this.textures);
-
-    // this.anim = { sc: 0.1 };
     this.create();
   }
 
@@ -38,6 +35,7 @@ export default class extends Scene {
    */
 
   loop(model) {
+    this.sliderPlacements = [];
     // matrials
     const whMat = new WormholeMaterial({
       u_t1: this.textures.tx_wormh,
@@ -71,7 +69,6 @@ export default class extends Scene {
         o.frustumCulled = false;
 
         if (o.name === "m_wormh_pcs" || o.name === "m_wormh") {
-          console.log(o.name);
           o.material = whMat;
         }
 
@@ -96,7 +93,13 @@ export default class extends Scene {
         }
       }
 
-      if (!o.isMesh && o.name === "Camera_Orientation") o.add(this.camera);
+      if (!o.isMesh) {
+        if (o.name === "Camera_Orientation") o.add(this.camera);
+        // if (o.name.substring(0, 6) === "place_") {
+        //   this.sliderPlacements.push(o.position);
+        //   // console.log(o.name);
+        // }
+      }
     });
 
     return model;

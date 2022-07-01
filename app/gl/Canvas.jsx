@@ -1,7 +1,13 @@
 import Gl from "./gl";
 import { useEffect, useRef, useMemo } from "react";
 
-export default function Canvas({ scrollRef, sliderRef, ctaRef, setCanScroll }) {
+export default function Canvas({
+  scrollRef,
+  sliderRef,
+  ctaRef,
+  setCanScroll,
+  soulIndex,
+}) {
   // console.log("rendering GL COMPONENT");
 
   // ------- Gl - Setup
@@ -31,6 +37,13 @@ export default function Canvas({ scrollRef, sliderRef, ctaRef, setCanScroll }) {
         sliderElement: sliderRef.current,
       });
   }, [gl, ref, scrollRef]);
+
+  // Events from DOM
+  useEffect(() => {
+    if (gl && gl.isActive) {
+      gl.soulIndexChanged(soulIndex);
+    }
+  }, [soulIndex, gl]);
 
   return <div ref={ref} className="Canvas" />;
 }

@@ -33,14 +33,16 @@ uniform float u_time;
 uniform sampler2D u_t1;
 
 varying vec2 v_uv;
-// varying vec3 vPosition;
+
+const vec4 col_black = vec4(0., 0., 0., 1.);
 
 
 void main() {
  vec4 img = texture2D(u_t1, v_uv);
 
+  img = mix(col_black, img, 1.);
+
   gl_FragColor.rgb = img.rgb;
-  // gl_FragColor.rgb = vec3(v_uv, 0.);
   gl_FragColor.a = 1.;
 }
 `;
@@ -56,6 +58,7 @@ export default class extends ShaderMaterial {
       u_time: { value: options?.u_time || 0 },
       u_t1: { value: options?.u_t1 || null },
       u_t2: { value: options?.u_t2 || null },
+      u_daylight: { value: 0 },
     };
 
     // this.side = DoubleSide;
@@ -65,5 +68,9 @@ export default class extends ShaderMaterial {
 
   set time(t) {
     this.uniforms.u_time.value = t;
+  }
+
+  set daylight(val) {
+    this.uniforms.u_daylight.value = val;
   }
 }

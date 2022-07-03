@@ -19,24 +19,31 @@ const fragmentShader = `
 uniform float u_time;
 uniform sampler2D u_t1;
 uniform sampler2D u_t2;
+uniform sampler2D u_tm0;
 uniform float u_daylight;
-
 varying vec2 v_uv;
 
 
 void main() {
-  vec4 img = texture2D(u_t1, v_uv);
-  vec4 img_night = texture2D(u_t2, v_uv);
+  vec3 img1 = texture2D(u_t1, v_uv).rgb;
+  vec3 img2 = texture2D(u_t2, v_uv).rgb;
+  vec3 img3 = texture2D(u_tm0, v_uv).rgb;
+  float alpha = texture2D(u_t1, v_uv).a;
 
-  // fade to transparent 
-  // float bot_grad = distance(0.0, v_uv.y);
-  // bot_grad = smoothstep(1.0, 0.2, bot_grad);
+  // masking OPS
+  float mask = distance(img1.r, img2.r);
+  float finishController = smoothstep(.0, 1., u_daylight);
+  float finalMask = smoothstep(0., 1., mask * u_daylight + finishController);
 
-  img = mix(img, img_night, u_daylight);
+  // mixing OPS
+  float step1 = smoothstep(0., .5, finalMask);
+  float step2 = smoothstep(.5, 1., finalMask);
 
-  gl_FragColor.rgb = img.rgb;
-  // gl_FragColor.rgb = vec3(bot_grad);
-  gl_FragColor.a = img.a;
+  vec3 final = mix(img1, img3, step1); 
+  final = mix(final, img2, step2);
+
+  gl_FragColor.rgb = final;
+  gl_FragColor.a = alpha;
 }
 `;
 
@@ -52,7 +59,7 @@ export default class extends ShaderMaterial {
       u_t1: { value: options?.u_t1 || null },
       u_tm0: { value: options?.u_tm0 || null },
       u_t2: { value: options?.u_t2 || null },
-      u_daylight: { value: 1 },
+      u_daylight: { value: 0 },
     };
 
     this.side = DoubleSide;

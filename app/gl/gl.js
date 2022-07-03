@@ -294,14 +294,20 @@ export default class extends Emitter {
   }
 
   playIntro() {
+    // animation time
     gsap.to(this.sceneAnimation, {
       intro: 1,
-      duration: 0.6,
+      duration: 8,
       delay: 0.2,
       ease: "power2.out",
       onUpdate: () => {
+        // animation playhead
         this.scene.rig.skin.time.intro =
           this.sceneAnimation.intro * 7.83565614415884;
+        // sky shader
+        this.scene.cloudMat.daylight = this.sceneAnimation.intro;
+        this.scene.dragonMat.daylight = this.sceneAnimation.intro;
+        this.scene.beltMat.daylight = this.sceneAnimation.intro;
       },
       onComplete: () => this.emit("canScroll"),
     });

@@ -28,12 +28,15 @@ uniform float u_daylight;
 varying vec2 v_uv;
 // varying vec3 vPosition;
 
+const vec4 col_black = vec4(0., 0., 0., 1.);
+
 
 void main() {
   vec4 img = texture2D(u_t1, v_uv);
-  vec4 img_night = texture2D(u_t2, v_uv);
+  // vec4 img_night = texture2D(u_t2, v_uv);
 
-  img = mix(img, img_night, u_daylight);
+
+  img = mix(col_black, img, u_daylight);
 
   gl_FragColor.rgb = img.rgb;
   gl_FragColor.a = img.a;

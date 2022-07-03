@@ -16,6 +16,7 @@ export default class extends Scene {
     super();
     this.camera = camera;
     this.textures = textures;
+    this.createMaterials();
     this.model = this.loop(model);
     // console.log(this.souls, this.introSouls);
 
@@ -40,50 +41,54 @@ export default class extends Scene {
    * Utils - LOOP THROUGH
    */
 
-  loop(model) {
-    // EXPORTS
-    this.souls = {};
-    this.introSouls = {};
-
-    // materials * BASE
-    const whMat = new WormholeMaterial({
-      u_t1: this.textures.tx_wormh,
-    });
-
-    const cloudMat = new CloudMaterial({
+  createMaterials() {
+    // intro
+    this.cloudMat = new CloudMaterial({
       u_t1: this.textures.tx_clouds2,
       u_tm0: this.textures.tx_clouds4,
       u_t2: this.textures.tx_clouds9,
     });
 
-    const beltMat = new BeltMaterial({
+    this.beltMat = new BeltMaterial({
       u_t1: this.textures.tx_conv,
     });
 
-    const dragonMat = new DragonMaterial({
+    this.dragonMat = new DragonMaterial({
       u_t1: this.textures.tx_dragon,
     });
 
-    const shelfMat = new ShelfMaterial({
+    this.shelfMat = new ShelfMaterial({
       u_t1: this.textures.tx_shelf,
     });
 
-    const CapMat = new CaptainMaterial({
+    this.capMat = new CaptainMaterial({
       u_t1: this.textures.tx_capitan,
     });
+
+    // GP
+    this.whMat = new WormholeMaterial({
+      u_t1: this.textures.tx_wormh,
+    });
+  }
+
+  loop(model) {
+    // EXPORTS
+    this.souls = {};
+    this.introSouls = {};
 
     model.model.traverse((o) => {
       if (o.isMesh) {
         o.material = new MeshNormalMaterial();
         o.frustumCulled = false;
 
-        // prettier-ignore
-        if (o.name === "m_wormh_pcs" || o.name === "m_wormh")o.material = whMat;
-        if (o.name === "m_cloud" || o.name === "m_sky") o.material = cloudMat;
-        if (o.name === "m_conv") o.material = beltMat;
-        if (o.name === "m_dragon") o.material = dragonMat;
-        if (o.name === "m_shelf") o.material = shelfMat;
-        if (o.name === "Captain") o.material = CapMat;
+        if (o.name === "m_wormh_pcs" || o.name === "m_wormh")
+          o.material = this.whMat;
+        if (o.name === "m_cloud" || o.name === "m_sky")
+          o.material = this.cloudMat;
+        if (o.name === "m_conv") o.material = this.beltMat;
+        if (o.name === "m_dragon") o.material = this.dragonMat;
+        if (o.name === "m_shelf") o.material = this.shelfMat;
+        if (o.name === "Captain") o.material = this.capMat;
 
         // souls
         if (o.name.substring(0, 3) === "The") {

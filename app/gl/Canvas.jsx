@@ -19,7 +19,7 @@ export default function Canvas({
     if (gl)
       gl.once("loaded", () => {
         // loaded.setLoaded(true);
-        console.log("loaded!!! - in gl emitted");
+        // console.log("loaded!!! - in gl emitted");
       });
     gl.once("canScroll", () => {
       setCanScroll(true);

@@ -38,23 +38,7 @@ export default class extends PerspectiveCamera {
   }
 
   fadeOut(bool) {
-    if (bool) {
-      if (this.fadeOutAnim) this.fadeOutAnim.kill();
-      this.fadeOutAnim = gsap.to(this.position, {
-        y: -4,
-        z: 10,
-        ease: "expo.out",
-        duration: 1,
-      });
-    } else {
-      if (this.fadeOutAnim) this.fadeOutAnim.kill();
-      this.fadeOutAnim = gsap.to(this.position, {
-        y: 0,
-        z: 0,
-        ease: "expo.out",
-        duration: 1,
-      });
-    }
+    console.log("fadeOut");
   }
 
   /**
@@ -71,7 +55,6 @@ export default class extends PerspectiveCamera {
 
   toSliderPosition(index) {
     // console.log(index);
-
     this.sliderCurrent = index;
     if (this.sliderAnim) this.sliderAnim.kill();
     this.sliderAnim = gsap.to(this.position, {

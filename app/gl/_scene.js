@@ -6,6 +6,7 @@ import BeltMaterial from "./mat/belt";
 import DragonMaterial from "./mat/dragon";
 import ShelfMaterial from "./mat/shelf";
 import CaptainMaterial from "./mat/dragon";
+import SoulMaterial from "./mat/soul";
 // import gsap from "gsap";
 
 import Rig from "./rig";
@@ -31,12 +32,15 @@ export default class extends Scene {
   }
 
   /**
-   * Utils
+   * Animations
+   */
+
+  /**
+   * Utils - LOOP THROUGH
    */
 
   loop(model) {
-    this.sliderPlacements = [];
-    // matrials
+    // materials * BASE
     const whMat = new WormholeMaterial({
       u_t1: this.textures.tx_wormh,
     });
@@ -68,38 +72,100 @@ export default class extends Scene {
         o.material = new MeshNormalMaterial();
         o.frustumCulled = false;
 
-        if (o.name === "m_wormh_pcs" || o.name === "m_wormh") {
-          o.material = whMat;
-        }
+        // prettier-ignore
+        if (o.name === "m_wormh_pcs" || o.name === "m_wormh")o.material = whMat;
+        if (o.name === "m_cloud" || o.name === "m_sky") o.material = cloudMat;
+        if (o.name === "m_conv") o.material = beltMat;
+        if (o.name === "m_dragon") o.material = dragonMat;
+        if (o.name === "m_shelf") o.material = shelfMat;
+        if (o.name === "Captain") o.material = CapMat;
 
-        if (o.name === "m_cloud" || o.name === "m_sky") {
-          o.material = cloudMat;
-        }
+        // souls
+        if (o.name.substring(0, 3) === "The") {
+          // console.log(o.name);
 
-        if (o.name === "m_conv") {
-          o.material = beltMat;
-        }
-
-        if (o.name === "m_dragon") {
-          o.material = dragonMat;
-        }
-
-        if (o.name === "m_shelf") {
-          o.material = shelfMat;
-        }
-
-        if (o.name === "Captain") {
-          o.material = CapMat;
+          if (o.name === "The_Artisan") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_artisan_d,
+              u_t2: this.textures.tx_artisan_n,
+            });
+          }
+          if (o.name === "The_Healer4-0") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_healer_d,
+              u_t2: this.textures.tx_healer_n,
+            });
+          }
+          if (o.name === "The_Hermit001") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_hermit_d,
+              u_t2: this.textures.tx_hermit_n,
+            });
+          }
+          if (o.name === "The_Hermit") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_hermit_d,
+              u_t2: this.textures.tx_hermit_n,
+            });
+          }
+          if (o.name === "The_Hunter") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_hunter_d,
+              u_t2: this.textures.tx_hunter_n,
+            });
+          }
+          if (o.name === "The_Maverick") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_maverick_d,
+              u_t2: this.textures.tx_maverick_n,
+            });
+          }
+          if (o.name === "The_Sage001") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_sage_d,
+              u_t2: this.textures.tx_sage_n,
+            });
+          }
+          if (o.name === "The_Scholar") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_scholar_d,
+              u_t2: this.textures.tx_scholar_n,
+            });
+          }
+          if (o.name === "The_New_Star") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_star_d,
+              u_t2: this.textures.tx_star_n,
+            });
+          }
+          if (o.name === "The_Trickster") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_trickster_d,
+              u_t2: this.textures.tx_trickster_n,
+            });
+          }
+          if (o.name === "The_Wanderer") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_wanderer_d,
+              u_t2: this.textures.tx_wanderer_n,
+            });
+          }
+          if (o.name === "The_Warrior-1") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_warrior_d,
+              u_t2: this.textures.tx_warrior_n,
+            });
+          }
+          if (o.name === "The_Leader001") {
+            o.material = new SoulMaterial({
+              u_t1: this.textures.tx_leader_d,
+              u_t2: this.textures.tx_leader_n,
+            });
+          }
         }
       }
 
-      if (!o.isMesh) {
-        if (o.name === "Camera_Orientation") o.add(this.camera);
-        // if (o.name.substring(0, 6) === "place_") {
-        //   this.sliderPlacements.push(o.position);
-        //   // console.log(o.name);
-        // }
-      }
+      if (!o.isMesh && o.name === "Camera_Orientation") o.add(this.camera);
     });
 
     return model;

@@ -60,7 +60,7 @@ export default class extends ShaderMaterial {
       u_time: { value: options?.u_time || 0 },
       u_t1: { value: options?.u_t1 || null },
       u_t2: { value: options?.u_t2 || null },
-      u_daylight: { value: 1 },
+      u_daylight: { value: 0 },
     };
 
     // this.side = DoubleSide;

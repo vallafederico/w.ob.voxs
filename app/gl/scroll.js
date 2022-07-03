@@ -54,10 +54,10 @@ export default class extends Emitter {
       start: "top bottom",
       end: "bottom bottom",
       onToggle: (self) => this.toggleCtaZoom(self.isActive),
-      // onUpdate: (self) => {
-      //   this.scroller.cta = self.progress;
-      //   // console.log(this.scroller.cta);
-      // },
+      onUpdate: (self) => {
+        this.scroller.cta = self.progress;
+        // console.log(this.scroller.cta);
+      },
     });
   }
 

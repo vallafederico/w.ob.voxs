@@ -21,5 +21,10 @@ export default class extends Group {
 
   render(t) {
     if (this.skin) this.skin.goToTime(this.scroll);
+    // this.position.x = Math.sin(t);
+    // console.log(this.ctaProgress);
+    // if (this.ctaProgress !== 0) {
+
+    // }
   }
 }

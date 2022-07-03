@@ -5,7 +5,7 @@ import gsap from "gsap";
 import loadModel from "./util/model-loader";
 import loadTexture from "./util/texture-loader";
 
-import { LIB, TX } from "./assets/lib.js";
+import { LIB, TX, STX } from "./assets/lib.js";
 
 import Camera from "./_camera";
 import Scene from "./_scene";
@@ -61,21 +61,12 @@ export default class extends Emitter {
    * Loading & Init Ops
    */
   async load() {
+    console.time("loading");
     this.loaded = {};
 
-    // Loading Ops
-    this.loaded.model = await loadModel(LIB.model);
-
-    const tx_wormh = await loadTexture(TX.tx_wormh);
-    const tx_clouds2 = await loadTexture(TX.tx_clouds2);
-    const tx_clouds4 = await loadTexture(TX.tx_clouds4);
-    const tx_clouds9 = await loadTexture(TX.tx_clouds9);
-    const tx_conv = await loadTexture(TX.tx_conv);
-    const tx_dragon = await loadTexture(TX.tx_dragon);
-    const tx_shelf = await loadTexture(TX.tx_shelf);
-    const tx_capitan = await loadTexture(TX.tx_capitan);
-
-    this.textures = {
+    console.time("MODEL load");
+    const [
+      model,
       tx_wormh,
       tx_clouds2,
       tx_clouds4,
@@ -84,16 +75,124 @@ export default class extends Emitter {
       tx_dragon,
       tx_shelf,
       tx_capitan,
+    ] = await Promise.all([
+      loadModel(LIB.model),
+      loadTexture(TX.tx_wormh),
+      loadTexture(TX.tx_clouds2),
+      loadTexture(TX.tx_clouds4),
+      loadTexture(TX.tx_clouds9),
+      loadTexture(TX.tx_conv),
+      loadTexture(TX.tx_dragon),
+      loadTexture(TX.tx_shelf),
+      loadTexture(TX.tx_capitan),
+    ]);
+    console.timeEnd("MODEL load");
+    this.emit("loading", 0.8); // >>>>>>>>>>>> Emitting first loading Event (80%)
+
+    // * Souls Loading
+    console.time("SOULS load");
+    const [
+      tx_artisan_d,
+      tx_artisan_n,
+      tx_healer_d,
+      tx_healer_n,
+      tx_hermit_d,
+      tx_hermit_n,
+      tx_hunter_d,
+      tx_hunter_n,
+      tx_leader_d,
+      tx_leader_n,
+      tx_maverick_d,
+      tx_maverick_n,
+      tx_sage_d,
+      tx_sage_n,
+      tx_scholar_d,
+      tx_scholar_n,
+      tx_star_d,
+      tx_star_n,
+      tx_trickster_d,
+      tx_trickster_n,
+      tx_wanderer_d,
+      tx_wanderer_n,
+      tx_warrior_d,
+      tx_warrior_n,
+    ] = await Promise.all([
+      loadTexture(STX.tx_artisan_d),
+      loadTexture(STX.tx_artisan_n),
+      loadTexture(STX.tx_healer_d),
+      loadTexture(STX.tx_healer_n),
+      loadTexture(STX.tx_hermit_d),
+      loadTexture(STX.tx_hermit_n),
+      loadTexture(STX.tx_hunter_d),
+      loadTexture(STX.tx_hunter_n),
+      loadTexture(STX.tx_leader_d),
+      loadTexture(STX.tx_leader_n),
+      loadTexture(STX.tx_maverick_d),
+      loadTexture(STX.tx_maverick_n),
+      loadTexture(STX.tx_sage_d),
+      loadTexture(STX.tx_sage_n),
+      loadTexture(STX.tx_scholar_d),
+      loadTexture(STX.tx_scholar_n),
+      loadTexture(STX.tx_star_d),
+      loadTexture(STX.tx_star_n),
+      loadTexture(STX.tx_trickster_d),
+      loadTexture(STX.tx_trickster_n),
+      loadTexture(STX.tx_wanderer_d),
+      loadTexture(STX.tx_wanderer_n),
+      loadTexture(STX.tx_warrior_d),
+      loadTexture(STX.tx_warrior_n),
+    ]);
+    console.timeEnd("SOULS load");
+
+    this.loaded.model = model;
+    this.textures = {
+      // basic
+      tx_wormh,
+      tx_clouds2,
+      tx_clouds4,
+      tx_clouds9,
+      tx_conv,
+      tx_dragon,
+      tx_shelf,
+      tx_capitan,
+      // souls
+      tx_artisan_d,
+      tx_artisan_n,
+      tx_healer_d,
+      tx_healer_n,
+      tx_hermit_d,
+      tx_hermit_n,
+      tx_hunter_d,
+      tx_hunter_n,
+      tx_leader_d,
+      tx_leader_n,
+      tx_maverick_d,
+      tx_maverick_n,
+      tx_sage_d,
+      tx_sage_n,
+      tx_scholar_d,
+      tx_scholar_n,
+      tx_star_d,
+      tx_star_n,
+      tx_trickster_d,
+      tx_trickster_n,
+      tx_wanderer_d,
+      tx_wanderer_n,
+      tx_warrior_d,
+      tx_warrior_n,
     };
 
-    // flipY
+    // -------- *** POST LOAD ops
+    console.time("POST LOAD");
     for (const tx in this.textures) this.textures[tx].flipY = false;
 
     this.camera.placements = this.findCamPlacements(this.loaded.model.model);
     this.camera.computePlacements();
 
     this.create();
-    this.emit("loaded");
+    this.emit("loaded"); // >>>>>>>>>>>> Emitting last loading Event (100%)
+    console.timeEnd("POST LOAD");
+    console.timeEnd("loading");
     this.playIntro();
 
     this.isActive = true;
@@ -104,7 +203,6 @@ export default class extends Emitter {
     model.traverse((o) => {
       if (!o.isMesh && o.name.substring(0, 6) === "place_") {
         camPlacements.push(o.position);
-        // console.log(o.name);
       }
     });
 
@@ -192,13 +290,13 @@ export default class extends Emitter {
 
   setupEvents() {
     this.scroll.on("sliderIn", (bool) => this.camera.punchZoom(bool));
-    this.scroll.on("ctaIn", (bool) => this.camera.fadeOut(bool));
+    // this.scroll.on("ctaIn", (bool) => this.camera.fadeOut(bool));
   }
 
   playIntro() {
     gsap.to(this.sceneAnimation, {
       intro: 1,
-      duration: 8,
+      duration: 0.6,
       delay: 0.2,
       ease: "power2.out",
       onUpdate: () => {

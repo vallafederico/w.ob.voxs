@@ -14,7 +14,8 @@ import { Cta, LaunchCta } from "../c/Cta";
 
 import Canvas from "../gl/Canvas";
 
-import { SoundIcon } from "../c/sh/Svg";
+// import { SoundIcon } from "../c/sh/Svg";
+import Sound from "../c/Sound";
 
 import { MintButton } from "~/c/sh/Button";
 
@@ -46,9 +47,7 @@ export default function Index() {
       <Wrapper>
         <Nav />
         {/*  */}
-        <div className="UiCtrl fixed right-2 bottom-2">
-          <SoundIcon className="md:min-w-[50px] min-w-[40px]" />
-        </div>
+        <Sound />
 
         <Main canScroll={canScroll}>
           <Section className="Hero h-screen flex flex-col justify-between content-center">

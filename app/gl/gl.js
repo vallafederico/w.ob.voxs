@@ -183,7 +183,7 @@ export default class extends Emitter {
     };
 
     // -------- *** POST LOAD ops
-    console.time("POST LOAD");
+    console.time("POST load");
     for (const tx in this.textures) this.textures[tx].flipY = false;
 
     this.camera.placements = this.findCamPlacements(this.loaded.model.model);
@@ -191,7 +191,7 @@ export default class extends Emitter {
 
     this.create();
     this.emit("loaded"); // >>>>>>>>>>>> Emitting last loading Event (100%)
-    console.timeEnd("POST LOAD");
+    console.timeEnd("POST load");
     console.timeEnd("loading");
     this.playIntro();
 

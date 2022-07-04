@@ -43,11 +43,40 @@ export default function Preloader({ isLoading = 0, isFinished = false }) {
   return (
     <div
       ref={wrapper}
-      className="Preloader fixed top-0 left-0 w-full h-full flex justify-center bg-black z-12 items-center"
+      className="Preloader fixed top-0 left-0 w-full h-full p-9 flex flex-col justify-between bg-black z-[999] items-center pt-[40vh]"
     >
       <p ref={loadingText} className="font-display text-white text-[10vw]">
         00
       </p>
+      <div className="Scroller overflow-hidden text-white whitespace-nowrap flex justify-start items-start content-start font-light uppercase">
+        <div className="an-scroller inline">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+        <div className="an-scroller inline">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+        <div className="an-scroller inline">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+      </div>
     </div>
   );
 }

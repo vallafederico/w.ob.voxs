@@ -302,16 +302,16 @@ export default class extends Emitter {
 
   setupEvents() {
     this.scroll.on("sliderIn", (bool) => this.camera.punchZoom(bool));
-    // this.scroll.on("ctaIn", (bool) => this.camera.fadeOut(bool));
+    this.scroll.on("ctaIn", (bool) => this.camera.fadeOut(bool));
   }
 
   playIntro() {
     // animation time
     gsap.to(this.sceneAnimation, {
       intro: 1,
-      duration: 8,
-      delay: 1,
-      ease: "power3",
+      duration: 6,
+      delay: 1.7,
+      ease: "power1",
       onUpdate: () => this.introTime(this.sceneAnimation.intro),
       onComplete: () => this.emit("canScroll"),
     });

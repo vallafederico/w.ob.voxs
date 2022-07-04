@@ -1,5 +1,5 @@
 import indexcss from "../styles/index.css";
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 
 import Nav from "~/c/Nav";
 import Main from "~/c/sh/Main";
@@ -12,10 +12,7 @@ import TextBoxes from "../c/TextBox";
 import Footer from "../c/Footer";
 import { LaunchCta } from "../c/Cta";
 import Preloader from "../c/Preloader";
-
 import Canvas from "../gl/Canvas";
-
-// import { SoundIcon } from "../c/sh/Svg";
 import Sound from "../c/Sound";
 
 import { MintButton } from "~/c/sh/Button";
@@ -43,6 +40,14 @@ export default function Index() {
     [soulIn, setSoulIndex]
   );
 
+  // state for hero
+  const [heroIn, setHeroIn] = useState(false);
+  useEffect(() => {
+    if (preloaderOut) {
+      setHeroIn(true);
+    }
+  }, [preloaderOut]);
+
   // THREE - handling
   return (
     <>
@@ -62,7 +67,7 @@ export default function Index() {
 
         <Main canScroll={canScroll}>
           <Section className="Hero h-screen flex flex-col justify-between content-center">
-            <Cont className="pt-5">
+            <Cont isIn={heroIn} className="pt-5">
               <h1 className="text-5xl text-center font-display">
                 <span className="block md:text-[10vw] text-8xl">SOULS</span>
                 <span className="block">ARE COMING</span>
@@ -89,7 +94,7 @@ export default function Index() {
           <div ref={ctaRef}>
             <Section
               id="info"
-              className="Info bg-gradient-to-t from-white to-transparent via-white"
+              className="Info bg-gradient-to-t from-white to-transparent via-white py-[10vh]"
             >
               <Cont>
                 <LaunchCta>

@@ -42,3 +42,17 @@ h4 {
   display: inline;
   margin-right: 1em;
 }
+
+/* ------- Animation */
+.an-scroller {
+  animation: scroller 20s linear infinite;
+}
+
+@keyframes scroller {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}

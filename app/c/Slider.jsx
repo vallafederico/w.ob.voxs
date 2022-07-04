@@ -55,7 +55,7 @@ function Slides({ childRef, slideIndex, handleIsIn, currentContent }) {
   return (
     <div
       ref={childRef}
-      className="Slides absolute md:w-2/5 bottom-0 h-[60vh] md:mb-[20vh] mb-[5vh] md:right-9 translate-x-[100%]"
+      className="Slides absolute lg:w-1/3 md:w-2/5 bottom-0 h-[70vh] md:mb-[20vh] mb-[5vh] md:right-9 translate-x-[100%]"
     >
       <Slide
         handleIsIn={handleIsIn}
@@ -73,7 +73,6 @@ function Slide({ handleIsIn, currentContent }) {
     <div className="h-full w-full bg-light rounded-2xl p-8 flex flex-col">
       {/* Heading */}
       <div className="flex justify-between grow gap-9 items-center">
-        <MaverickSvg className="md:h-[5vw] md:w-[5vw] h-[8vw] w-[8vw]" />
         <div>
           <h3 className="font-display leading-9">
             <span className="block">THE</span>
@@ -83,8 +82,9 @@ function Slide({ handleIsIn, currentContent }) {
           </h3>
           <h4 className="text-red uppercase text-xs">Soul short tagline </h4>
         </div>
+        <MaverickSvg className="md:h-[5vw] md:w-[5vw] h-[8vw] w-[8vw]" />
         <button
-          className="bg-black text-white rounded-full  leading-0 p-6 uppercase text-xs"
+          className="bg-black text-white rounded-[100%] leading-[0px] w-9 h-9 flex justify-center items-center uppercase text-xs"
           onClick={() => handleIsIn()}
         >
           X
@@ -94,7 +94,7 @@ function Slide({ handleIsIn, currentContent }) {
       {/* Content */}
       <div className="mt-9 h-full flex flex-col">
         {/*  Tabs Heading */}
-        <div className="flex justify-between text-[0.8em] mb-5">
+        <div className="flex justify-between gap-8 text-[0.8em] mb-5 border-b-2 border-white pb-5">
           <button
             className={`${
               currentTab === 0 ? "border-b-2 border-red" : "opacity-20"
@@ -129,20 +129,18 @@ function Slide({ handleIsIn, currentContent }) {
             } overflow-scroll`}
           >
             <h5 className="uppercase text-red text-sm py-4">Overview</h5>
-            <p className="md:max-w-[40ch] text-xs">{currentContent.content}</p>
+            <p className=" text-xs">{currentContent.content}</p>
             {/* Text In First Tab */}
             <h5 className="uppercase text-red text-sm py-4">Great at</h5>
-            <p className="md:max-w-[40ch] text-xs py-2">
-              {currentContent.adds.great}
-            </p>
+            <p className=" text-xs">{currentContent.adds.great}</p>
             <h5 className="uppercase text-red text-sm py-4">Stats</h5>
-            <div className="text-xs py-2">
+            <div className="text-xs py-2 flex gap-3">
               {currentContent.stats.map((it, i) => (
                 <p
-                  className="text-red py-2 px-4 m-2 border-2 border-red rounded-[3em] inline-block uppercase font-display"
+                  className="text-red py-2 px-4 border-red border bg-[#F9EEDE] rounded-md inline-block"
                   key={i}
                 >
-                  {it.title} {it.value}
+                  + {it.value} {it.title}
                 </p>
               ))}
             </div>
@@ -156,23 +154,19 @@ function Slide({ handleIsIn, currentContent }) {
           >
             {/* Stren */}
             <h5 className="uppercase text-red text-sm py-4">Strenghts</h5>
-            <p className="md:max-w-[40ch] text-xs">
-              {currentContent.adds.strengths.content}
-            </p>
-            <p className="md:max-w-[40ch] text-xs py-2">
+            <p className=" text-xs">{currentContent.adds.strengths.content}</p>
+            <p className=" text-xs py-2">
               {currentContent.adds.strengths.list}
             </p>
             {/* Weak */}
             <h5 className="uppercase text-red text-sm py-4">Weaknesses</h5>
-            <p className="md:max-w-[40ch] text-xs">
-              {currentContent.adds.weaknesses.content}
-            </p>
-            <p className="md:max-w-[40ch] text-xs py-2">
+            <p className=" text-xs">{currentContent.adds.weaknesses.content}</p>
+            <p className=" text-xs py-2">
               {currentContent.adds.weaknesses.list}
             </p>
             {/* Quirks */}
             <h5 className="uppercase text-red text-sm py-4">Quirks</h5>
-            <div className="md:max-w-[40ch] text-xs">
+            <div className=" text-xs">
               {currentContent.adds.quirks.map((cont, i) => (
                 <p key={i}>{cont}</p>
               ))}
@@ -187,14 +181,10 @@ function Slide({ handleIsIn, currentContent }) {
           >
             {/* Freinds */}
             <h5 className="uppercase text-red text-sm py-4">Friends With</h5>
-            <p className="md:max-w-[40ch] text-xs">
-              {currentContent.adds.friend}
-            </p>
+            <p className=" text-xs">{currentContent.adds.friend}</p>
             {/* Enemies */}
             <h5 className="uppercase text-red text-sm py-4">Clashes With</h5>
-            <p className="md:max-w-[40ch] text-xs">
-              {currentContent.adds.clashes}
-            </p>
+            <p className=" text-xs">{currentContent.adds.clashes}</p>
           </div>
         </div>
       </div>

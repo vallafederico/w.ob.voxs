@@ -76,7 +76,10 @@ export default function Index() {
             <Cont></Cont>
           </Section>
           <div ref={ctaRef}>
-            <Section id="info" className="Info ">
+            <Section
+              id="info"
+              className="Info bg-gradient-to-t from-white to-transparent via-white"
+            >
               <Cont>
                 <LaunchCta>
                   <MintButton />

@@ -243,6 +243,7 @@ export default class extends Emitter {
       this.scene.rig.scroll = this.scroll.scroller.step;
       this.scene.rig.sliderProgress = this.scroll.scroller.slider;
       this.scene.rig.ctaProgress = this.scroll.scroller.cta;
+      this.scene.sky.position.y = this.scroll.scroller.step * 200;
     }
 
     this.renderer.render(this.scene, this.camera);
@@ -297,20 +298,24 @@ export default class extends Emitter {
     // animation time
     gsap.to(this.sceneAnimation, {
       intro: 1,
-      duration: 8,
+      duration: 5,
       delay: 0.2,
-      ease: "power2.out",
-      onUpdate: () => {
-        // animation playhead
-        this.scene.rig.skin.time.intro =
-          this.sceneAnimation.intro * 7.83565614415884;
-        // sky shader
-        this.scene.cloudMat.daylight = this.sceneAnimation.intro;
-        this.scene.dragonMat.daylight = this.sceneAnimation.intro;
-        this.scene.beltMat.daylight = this.sceneAnimation.intro;
-      },
+      ease: "power3",
+      onUpdate: () => this.introTime(this.sceneAnimation.intro),
       onComplete: () => this.emit("canScroll"),
     });
+  }
+
+  introTime(t) {
+    // Playhead
+    this.scene.rig.skin.time.intro = t * 7.83565614415884;
+    // Clouds Shader
+    this.scene.cloudMat.daylight = t;
+    this.scene.dragonMat.daylight = t;
+    this.scene.beltMat.daylight = t;
+    this.scene.introSouls.hermit.material.daylight = 1 - t;
+    // sky Shader
+    this.scene.sky.material.daylight = t;
   }
 
   /**

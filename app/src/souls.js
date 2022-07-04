@@ -29,6 +29,16 @@ const addons = [
   },
 ];
 
+/*
+Order: 
+
+Artisan
+Hermit
+Hunter
+Leader
+
+*/
+
 export const SLIDER_CONTENT = {
   SOULS: [
     {
@@ -43,12 +53,36 @@ export const SLIDER_CONTENT = {
       adds: addons[0],
     },
     {
-      title: "Sage",
+      title: "Hermit",
       content:
-        "The Sage Soul is seeker of the highest whys, protector of the greatest ifs, and bringer of the most incredible don’tchaknows. You hold an intense desire to impart all your sagely wisdom on anyone and anything with ears.",
-      stats: [{ title: "Wit", value: "3" }],
+        "The Hermit Soul is capable, rugged and mysterious. You love the wilderness and you’re always bragging about all the different things you could eat to survive. You’re happy with just the clothes on your back, but you may secretly yearn for a place of your own, where you could rock peacefully on a decadent-yet-simple spruce porch, sipping the last of your morning coffee while yelling at neighbor children to get off your lawn.",
+      stats: [
+        { title: "Might", value: "1" },
+        { title: "Endurance", value: "2" },
+      ],
       adds: addons[0],
     },
+    {
+      title: "Hunter",
+      content:
+        "The resolute and watchful Hunter Soul is always on its toes. You are wild at heart and strange instincts allow you to react quickly to dangerous situations, like being attacked by a snake, but also mundane situations, like avoiding the stream of a lawn sprinkler. You see the clues that everyone else misses. You try to tell them, but they’ve already moved onto something else, and then it’s this whole big thing, so you just give up. Yeah, you’re good.",
+      stats: [
+        { title: "Agility", value: "1" },
+        { title: "Endurance", value: "1" },
+      ],
+      adds: addons[0],
+    },
+    {
+      title: "Leader",
+      content:
+        "The Leader Soul is confident and tenacious, one who seeks total mastery of both inner and outer strength. Known for taking situations by the reins and making things happen (often with extreme results), you have the respect of both friends and foes. If you get a plan of action in your head, chances are you’ll have people following you and shouting (possibly with pitchforks and torches) within the hour.",
+      stats: [
+        { title: "Might", value: "2" },
+        { title: "Swagger", value: "2" },
+      ],
+      adds: addons[0],
+    },
+    // First Row
     {
       title: "Scholar",
       content:
@@ -57,17 +91,17 @@ export const SLIDER_CONTENT = {
       adds: addons[0],
     },
     {
-      title: "Warrior",
-      content:
-        "The Warrior Soul lives by rules of nobility, honor, and honorable nobility so true and righteous that for a non-Warrior Soul to even hear them would mean most certain death. If you are a Warrior Soul, you’ll know the gig. Headstrong, steadfast, and loyal. You’ll probably live and die by your own iron will.",
-      stats: [{ title: "Might", value: "3" }],
-      adds: addons[0],
-    },
-    {
       title: "Star",
       content:
         "The Star Soul can walk into a room full of strangers and walk out with new best friends. You are admired, loved and envied by pretty much everyone, which sometimes puts you into awkward situations. One time you were out to slay a dragon and it was so charmed that it wanted to be your friend instead of fight. So you slayed it later when it wasn’t looking.",
       stats: [{ title: "Swagger", value: "3" }],
+      adds: addons[0],
+    },
+    {
+      title: "Sage",
+      content:
+        "The Sage Soul is seeker of the highest whys, protector of the greatest ifs, and bringer of the most incredible don’tchaknows. You hold an intense desire to impart all your sagely wisdom on anyone and anything with ears.",
+      stats: [{ title: "Wit", value: "3" }],
       adds: addons[0],
     },
     {
@@ -80,6 +114,14 @@ export const SLIDER_CONTENT = {
       ],
       adds: addons[0],
     },
+    //  Second Row End
+    {
+      title: "Trickster",
+      content:
+        "The Trickster Soul can writhe, wiggle and weasel outta the worst situations with only their wiles. There are three things you always have up your sleeve: A well-timed joke (both clean and dirty versions), a scrap of juicy gossip, and another card whose details are a secret even to this omniscient narrative description. You’re good at lots of stuff.",
+      stats: [{ title: "All Stats", value: "1" }],
+      adds: addons[0],
+    },
     {
       title: "Healer",
       content:
@@ -87,26 +129,6 @@ export const SLIDER_CONTENT = {
       stats: [
         { title: "Wit", value: "2" },
         { title: "Endurance", value: "1" },
-      ],
-      adds: addons[0],
-    },
-    {
-      title: "Hermit",
-      content:
-        "The Hermit Soul is capable, rugged and mysterious. You love the wilderness and you’re always bragging about all the different things you could eat to survive. You’re happy with just the clothes on your back, but you may secretly yearn for a place of your own, where you could rock peacefully on a decadent-yet-simple spruce porch, sipping the last of your morning coffee while yelling at neighbor children to get off your lawn.",
-      stats: [
-        { title: "Might", value: "1" },
-        { title: "Endurance", value: "2" },
-      ],
-      adds: addons[0],
-    },
-    {
-      title: "Leader",
-      content:
-        "The Leader Soul is confident and tenacious, one who seeks total mastery of both inner and outer strength. Known for taking situations by the reins and making things happen (often with extreme results), you have the respect of both friends and foes. If you get a plan of action in your head, chances are you’ll have people following you and shouting (possibly with pitchforks and torches) within the hour.",
-      stats: [
-        { title: "Might", value: "2" },
-        { title: "Swagger", value: "2" },
       ],
       adds: addons[0],
     },
@@ -122,20 +144,10 @@ export const SLIDER_CONTENT = {
       adds: addons[0],
     },
     {
-      title: "Hunter",
+      title: "Warrior",
       content:
-        "The resolute and watchful Hunter Soul is always on its toes. You are wild at heart and strange instincts allow you to react quickly to dangerous situations, like being attacked by a snake, but also mundane situations, like avoiding the stream of a lawn sprinkler. You see the clues that everyone else misses. You try to tell them, but they’ve already moved onto something else, and then it’s this whole big thing, so you just give up. Yeah, you’re good.",
-      stats: [
-        { title: "Agility", value: "1" },
-        { title: "Endurance", value: "1" },
-      ],
-      adds: addons[0],
-    },
-    {
-      title: "Trickster",
-      content:
-        "The Trickster Soul can writhe, wiggle and weasel outta the worst situations with only their wiles. There are three things you always have up your sleeve: A well-timed joke (both clean and dirty versions), a scrap of juicy gossip, and another card whose details are a secret even to this omniscient narrative description. You’re good at lots of stuff.",
-      stats: [{ title: "All Stats", value: "1" }],
+        "The Warrior Soul lives by rules of nobility, honor, and honorable nobility so true and righteous that for a non-Warrior Soul to even hear them would mean most certain death. If you are a Warrior Soul, you’ll know the gig. Headstrong, steadfast, and loyal. You’ll probably live and die by your own iron will.",
+      stats: [{ title: "Might", value: "3" }],
       adds: addons[0],
     },
   ],

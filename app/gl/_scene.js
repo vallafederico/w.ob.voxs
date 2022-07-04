@@ -10,6 +10,7 @@ import SoulMaterial from "./mat/soul";
 // import gsap from "gsap";
 
 import Rig from "./rig";
+import Sky from "./sky";
 
 export default class extends Scene {
   constructor({ camera, model, textures }) {
@@ -26,6 +27,9 @@ export default class extends Scene {
   create() {
     this.rig = new Rig(this.model);
     this.add(this.rig);
+
+    this.sky = new Sky();
+    this.add(this.sky);
   }
 
   render(t) {

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
 import { Arrow } from "./sh/Svg";
-// import { MaverickSvg } from "./sh/SoulsLogo";
+import { MaverickSvg } from "./sh/SoulsLogo";
 
 import { SLIDER_CONTENT } from "~/src/content.js";
 
@@ -55,7 +55,7 @@ function Slides({ childRef, slideIndex, handleIsIn, currentContent }) {
   return (
     <div
       ref={childRef}
-      className="Slides absolute w-2/5 bottom-0 h-[60vh] mb-[20vh] right-9 translate-x-[100%]"
+      className="Slides absolute md:w-2/5 bottom-0 h-[60vh] md:mb-[20vh] mb-[5vh] md:right-9 translate-x-[100%]"
     >
       <Slide
         handleIsIn={handleIsIn}
@@ -67,12 +67,137 @@ function Slides({ childRef, slideIndex, handleIsIn, currentContent }) {
 }
 
 function Slide({ handleIsIn, currentContent }) {
-  // console.log("slide", currentContent);
+  const [currentTab, setCurrentTab] = useState(0);
 
   return (
-    <div className="h-full w-full bg-light rounded-2xl p-8">
-      <h3>{currentContent.title}</h3>
-      <button onClick={handleIsIn}>In and out</button>
+    <div className="h-full w-full bg-light rounded-2xl p-8 flex flex-col">
+      {/* Heading */}
+      <div className="flex justify-between grow gap-9 items-center">
+        <MaverickSvg className="md:h-[5vw] md:w-[5vw] h-[8vw] w-[8vw]" />
+        <div>
+          <h3 className="font-display leading-5">
+            <span className="block leading-8">THE</span>
+            <span className="md:text-[4vw] text-[8vw]">
+              {currentContent.title}
+            </span>
+          </h3>
+          <h4 className="text-red uppercase text-xs">Soul short tagline </h4>
+        </div>
+        <button
+          className="bg-black text-white rounded-full  leading-0 p-6 uppercase text-xs"
+          onClick={() => handleIsIn()}
+        >
+          X
+        </button>
+      </div>
+
+      {/* Content */}
+      <div className="mt-9 h-full flex flex-col">
+        {/*  Tabs Heading */}
+        <div className="flex justify-between text-[0.8em] mb-5">
+          <button
+            className={`${
+              currentTab === 0 ? "border-b-2 border-red" : "opacity-20"
+            } uppercase`}
+            onClick={() => setCurrentTab(0)}
+          >
+            Overview
+          </button>
+          <button
+            className={`${
+              currentTab === 1 ? "border-b-2 border-red" : "opacity-20"
+            } uppercase`}
+            onClick={() => setCurrentTab(1)}
+          >
+            Personality
+          </button>
+          <button
+            className={`${
+              currentTab === 2 ? "border-b-2 border-red" : "opacity-20"
+            } uppercase`}
+            onClick={() => setCurrentTab(2)}
+          >
+            Strengths & Weaknesses
+          </button>
+        </div>
+
+        <div className="overflow-scroll h-[40vh]">
+          {/*   -------- FIRST TAB */}
+          <div
+            className={`${
+              currentTab === 0 ? "visible" : "hidden"
+            } overflow-scroll`}
+          >
+            <h5 className="uppercase text-red text-sm py-4">Overview</h5>
+            <p className="md:max-w-[40ch] text-xs">{currentContent.content}</p>
+            {/* Text In First Tab */}
+            <h5 className="uppercase text-red text-sm py-4">Great at</h5>
+            <p className="md:max-w-[40ch] text-xs py-2">
+              {currentContent.adds.great}
+            </p>
+            <h5 className="uppercase text-red text-sm py-4">Stats</h5>
+            <div className="text-xs py-2">
+              {currentContent.stats.map((it, i) => (
+                <p
+                  className="text-red py-2 px-4 m-2 border-2 border-red rounded-[3em] inline-block uppercase font-display"
+                  key={i}
+                >
+                  {it.title} {it.value}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          {/*   -------- SECOND TAB */}
+          <div
+            className={`${
+              currentTab === 1 ? "visible" : "hidden"
+            } overflow-scroll`}
+          >
+            {/* Stren */}
+            <h5 className="uppercase text-red text-sm py-4">Strenghts</h5>
+            <p className="md:max-w-[40ch] text-xs">
+              {currentContent.adds.strengths.content}
+            </p>
+            <p className="md:max-w-[40ch] text-xs py-2">
+              {currentContent.adds.strengths.list}
+            </p>
+            {/* Weak */}
+            <h5 className="uppercase text-red text-sm py-4">Weaknesses</h5>
+            <p className="md:max-w-[40ch] text-xs">
+              {currentContent.adds.weaknesses.content}
+            </p>
+            <p className="md:max-w-[40ch] text-xs py-2">
+              {currentContent.adds.weaknesses.list}
+            </p>
+            {/* Quirks */}
+            <h5 className="uppercase text-red text-sm py-4">Quirks</h5>
+            <div className="md:max-w-[40ch] text-xs">
+              {currentContent.adds.quirks.map((cont, i) => (
+                <p key={i}>{cont}</p>
+              ))}
+            </div>
+          </div>
+
+          {/*   -------- THIRD TAB */}
+          <div
+            className={`${
+              currentTab === 2 ? "visible" : "hidden"
+            } overflow-scroll`}
+          >
+            {/* Freinds */}
+            <h5 className="uppercase text-red text-sm py-4">Friends With</h5>
+            <p className="md:max-w-[40ch] text-xs">
+              {currentContent.adds.friend}
+            </p>
+            {/* Enemies */}
+            <h5 className="uppercase text-red text-sm py-4">Clashes With</h5>
+            <p className="md:max-w-[40ch] text-xs">
+              {currentContent.adds.clashes}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -91,9 +216,23 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
       <div className="md:w-1/2 w-full bg-light rounded-2xl flex items-center justify-between p-8">
         <SliderArrow onClick={() => handleSlideIndex(false)} isBack="true" />
         {/* Info - START */}
-        <div>
-          <h3>{currentContent.title}</h3>
-          <button onClick={() => handleIsIn()}>Set In</button>
+        <div className="flex justify-between grow gap-9 px-9 items-center">
+          <MaverickSvg className="h-[5vw] w-[5vw] md:block hidden" />
+          <div>
+            <h3 className="font-display leading-5">
+              <span className="block md:leading-8">THE</span>
+              <span className="md:text-[3vw] text-[5vw]">
+                {currentContent.title}
+              </span>
+            </h3>
+            <h4 className="text-red uppercase text-xs">Soul short tagline </h4>
+          </div>
+          <button
+            className="bg-black text-white rounded-md p-3 uppercase text-xs"
+            onClick={() => handleIsIn()}
+          >
+            Discover
+          </button>
         </div>
         {/* Info - END */}
         <SliderArrow onClick={() => handleSlideIndex(true)} />

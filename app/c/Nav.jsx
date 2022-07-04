@@ -8,7 +8,7 @@ export default function Nav() {
     <nav className="Nav fixed text-black flex justify-between items-center w-screen px-10 pb-5 pt-10 z-[99] backdrop-blur-sm">
       <NavLinks className="max-w-1/3" />
 
-      <Link to="/" className="">
+      <Link to="/" className="mx-auto">
         <LogoVox />
       </Link>
 

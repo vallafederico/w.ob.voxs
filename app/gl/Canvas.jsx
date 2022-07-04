@@ -7,9 +7,9 @@ export default function Canvas({
   ctaRef,
   setCanScroll,
   soulIndex,
+  setPreloaderOut,
+  setIsLoading,
 }) {
-  // console.log("rendering GL COMPONENT");
-
   // ------- Gl - Setup
   const ref = useRef(null);
   const gl = useMemo(() => new Gl(), []);
@@ -18,12 +18,19 @@ export default function Canvas({
   useEffect(() => {
     if (gl)
       gl.once("loaded", () => {
+        setPreloaderOut(true);
         // loaded.setLoaded(true);
         // console.log("loaded!!! - in gl emitted");
       });
+
     gl.once("canScroll", () => {
       setCanScroll(true);
       // console.log("canScroll");
+    });
+
+    gl.on("loading", (progress) => {
+      // console.log("loadingprogress", progress);
+      setIsLoading(progress);
     });
   }, [gl]);
 

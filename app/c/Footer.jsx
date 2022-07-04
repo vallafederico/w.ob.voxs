@@ -1,6 +1,8 @@
 import { Newsletter } from "./sh/Newsletter";
 import { LogoGala } from "./sh/Svg";
 
+import { IconMedium, IconInstagram, IconTwitter, IconDiscord } from "./sh/Icon";
+
 export default function Footer() {
   return (
     <footer className="Footer bg-black p-[5vw] text-white md:flex content-center justify-between items-center">
@@ -10,26 +12,26 @@ export default function Footer() {
         <h4 className="border-b-2 border-b-red text-sm mb-5">Social Vox</h4>
         <li className="py-1">
           <a className="" href="/">
-            <div className="inline mr-5">IMG</div>
-            <span className="">Instagram</span>
+            <IconInstagram className=" fill-white inline max-w-[1em]" />
+            <span className="inline">Instagram</span>
           </a>
         </li>
         <li className="py-1">
           <a className="" href="/">
-            <div className="inline mr-5">IMG</div>
-            <span className="">Twitter</span>
+            <IconTwitter className=" fill-white inline max-w-[1em]" />
+            <span className="inline">Twitter</span>
           </a>
         </li>
         <li className="py-1">
           <a className="" href="/">
-            <div className="inline mr-5">IMG</div>
-            <span className="">Discord</span>
+            <IconDiscord className=" fill-white inline max-w-[1em]" />
+            <span className="inline">Discord</span>
           </a>
         </li>
         <li className="py-1">
           <a className="" href="/">
-            <div className="inline mr-5">IMG</div>
-            <span className="">Medium</span>
+            <IconMedium className=" fill-white  inline" />
+            <span className="inline">Medium</span>
           </a>
         </li>
       </ul>

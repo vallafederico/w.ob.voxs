@@ -7,6 +7,10 @@ export default class extends PerspectiveCamera {
 
     this.isSliderMode = false;
     this.sliderCurrent = 0;
+
+    this.addZ = -1;
+    this.rPosX = 1.1;
+    this.position.z = this.addZ;
   }
 
   /*
@@ -18,8 +22,8 @@ export default class extends PerspectiveCamera {
       this.isSliderMode = true;
       if (this.punchZoomAnim) this.punchZoomAnim.kill();
       this.punchZoomAnim = gsap.to(this.position, {
-        z: -3.7,
-        x: this.placements[this.sliderCurrent].x + 1,
+        z: -4,
+        x: this.placements[this.sliderCurrent].x + this.rPosX,
         y: this.placements[this.sliderCurrent].y - 0.5,
         ease: "expo.out",
         duration: 1,
@@ -28,7 +32,7 @@ export default class extends PerspectiveCamera {
       this.isSliderMode = false;
       if (this.punchZoomAnim) this.punchZoomAnim.kill();
       this.punchZoomAnim = gsap.to(this.position, {
-        z: 0,
+        z: this.addZ,
         x: 0,
         y: 0,
         ease: "expo.out",
@@ -46,6 +50,7 @@ export default class extends PerspectiveCamera {
    */
 
   computePlacements() {
+    console.log(this.placements[1].x - this.placements[11].x);
     this.placements.forEach((placement) => {
       placement.x = placement.x - this.placements[11].x;
       placement.y = placement.y - this.placements[11].y;

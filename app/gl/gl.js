@@ -1,6 +1,7 @@
 import Emitter from "tiny-emitter";
 import { WebGLRenderer } from "three";
 import gsap from "gsap";
+import Post from "./pp";
 
 import loadModel from "./util/model-loader";
 import loadTexture from "./util/texture-loader";
@@ -50,7 +51,7 @@ export default class extends Emitter {
 
     // camera
     this.camera = new Camera(50, this.vp.aspect(), 0.00001, 1000);
-    this.camera.position.set(0, 0, 0);
+    // this.camera.position.set(0, 0, 0);
 
     this.load();
 
@@ -87,7 +88,7 @@ export default class extends Emitter {
       loadTexture(TX.tx_capitan),
     ]);
     console.timeEnd("MODEL load");
-    this.emit("loading", 0.8); // >>>>>>>>>>>> Emitting first loading Event (80%)
+    this.emit("loading", 60); // >>>>>>>>>>>> Emitting first loading Event (80%)
 
     // * Souls Loading
     console.time("SOULS load");
@@ -143,6 +144,7 @@ export default class extends Emitter {
       loadTexture(STX.tx_warrior_n),
     ]);
     console.timeEnd("SOULS load");
+    this.emit("loading", 100); // >>>>>>>>>>>> Emitting first loading Event (80%)
 
     this.loaded.model = model;
     this.textures = {
@@ -227,6 +229,11 @@ export default class extends Emitter {
     );
 
     this.setupEvents();
+    this.initPost();
+  }
+
+  initPost() {
+    this.post = new Post(this.renderer, this.scene, this.camera);
   }
 
   /**
@@ -246,7 +253,11 @@ export default class extends Emitter {
       this.scene.sky.position.y = this.scroll.scroller.step * 200;
     }
 
-    this.renderer.render(this.scene, this.camera);
+    this.post?.isActive
+      ? this.post.render(this.time)
+      : this.renderer.render(this.scene, this.camera);
+    // this.renderer.render(this.scene, this.camera);
+
     window.requestAnimationFrame(this.render.bind(this));
   }
 
@@ -298,8 +309,8 @@ export default class extends Emitter {
     // animation time
     gsap.to(this.sceneAnimation, {
       intro: 1,
-      duration: 5,
-      delay: 0.2,
+      duration: 8,
+      delay: 1,
       ease: "power3",
       onUpdate: () => this.introTime(this.sceneAnimation.intro),
       onComplete: () => this.emit("canScroll"),

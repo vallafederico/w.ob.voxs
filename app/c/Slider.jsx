@@ -75,8 +75,8 @@ function Slide({ handleIsIn, currentContent }) {
       <div className="flex justify-between grow gap-9 items-center">
         <MaverickSvg className="md:h-[5vw] md:w-[5vw] h-[8vw] w-[8vw]" />
         <div>
-          <h3 className="font-display leading-5">
-            <span className="block leading-8">THE</span>
+          <h3 className="font-display leading-9">
+            <span className="block">THE</span>
             <span className="md:text-[4vw] text-[8vw]">
               {currentContent.title}
             </span>
@@ -211,7 +211,7 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
   return (
     <div
       ref={childRef}
-      className="SlideUi absolute w-full h-[10vh] bottom-0 flex justify-center"
+      className="SlideUi absolute w-full h-[15vh] bottom-0 flex justify-center"
     >
       <div className="md:w-1/2 w-full bg-light rounded-2xl flex items-center justify-between p-8">
         <SliderArrow onClick={() => handleSlideIndex(false)} isBack="true" />

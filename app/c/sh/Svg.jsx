@@ -60,7 +60,7 @@ export function Arrow({ className, isBack = false }) {
 export function SoundIcon({ className, isPlaying = true }) {
   return (
     <Svg
-      className={`Icon fill-white bg-black rounded-full p-2 Sound ${className}`}
+      className={`Icon fill-white bg-black rounded-full p-2 Sound z-10 ${className}`}
     >
       <svg
         version="1.1"

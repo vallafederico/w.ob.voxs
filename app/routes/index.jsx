@@ -1,5 +1,5 @@
 import indexcss from "../styles/index.css";
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useMemo } from "react";
 
 import Nav from "~/c/Nav";
 import Main from "~/c/sh/Main";
@@ -10,7 +10,8 @@ import Slider from "~/c/Slider";
 
 import TextBoxes from "../c/TextBox";
 import Footer from "../c/Footer";
-import { Cta, LaunchCta } from "../c/Cta";
+import { LaunchCta } from "../c/Cta";
+import Preloader from "../c/Preloader";
 
 import Canvas from "../gl/Canvas";
 
@@ -24,6 +25,8 @@ export const links = () => [{ rel: "stylesheet", href: indexcss }];
 export default function Index() {
   // scroll bool for preloader
   const [canScroll, setCanScroll] = useState(false);
+  const [preloaderOut, setPreloaderOut] = useState(false);
+  const [isLoading, setIsLoading] = useState(0);
   const scrollRef = useRef(null);
   const sliderRef = useRef(null);
   const ctaRef = useRef(null);
@@ -32,6 +35,12 @@ export default function Index() {
   const TSoulIndex = useMemo(
     () => ({ soulIndex, setSoulIndex }),
     [soulIndex, setSoulIndex]
+  );
+
+  const [soulIn, setSoulIn] = useState(false);
+  const TSoulIn = useMemo(
+    () => ({ soulIn, setSoulIndex }),
+    [soulIn, setSoulIndex]
   );
 
   // THREE - handling
@@ -43,11 +52,13 @@ export default function Index() {
         ctaRef={ctaRef}
         setCanScroll={setCanScroll}
         soulIndex={TSoulIndex}
+        setPreloaderOut={setPreloaderOut}
+        setIsLoading={setIsLoading}
       />
+
       <Wrapper>
         <Nav />
         {/*  */}
-        <Sound />
 
         <Main canScroll={canScroll}>
           <Section className="Hero h-screen flex flex-col justify-between content-center">
@@ -89,7 +100,9 @@ export default function Index() {
             <Footer />
           </div>
         </Main>
+        <Sound />
       </Wrapper>
+      <Preloader isFinished={preloaderOut} isLoading={isLoading} />
     </>
   );
 }

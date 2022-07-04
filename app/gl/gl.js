@@ -22,8 +22,6 @@ export default class extends Emitter {
   }
 
   setup({ canvas, scrollElement, ctaElement, sliderElement }) {
-    // console.log("GL SETUP", canvas);
-
     /* Dom Elements */
     this.scrollElement = scrollElement;
     this.ctaElement = ctaElement;

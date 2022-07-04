@@ -15,7 +15,7 @@ import Preloader from "../c/Preloader";
 import Canvas from "../gl/Canvas";
 import Sound from "../c/Sound";
 
-import { MintButton } from "~/c/sh/Button";
+import { MintButton, AnimMintButton } from "~/c/sh/Button";
 
 export const links = () => [{ rel: "stylesheet", href: indexcss }];
 
@@ -74,8 +74,8 @@ export default function Index() {
               </h1>
             </Cont>
 
-            <Cont className="flex justify-center content-center">
-              <MintButton />
+            <Cont isIn={heroIn} className="flex justify-center content-center">
+              <AnimMintButton />
             </Cont>
           </Section>
           <Section className="Scroll " childRef={scrollRef}>

@@ -10,6 +10,20 @@ export default function Slider({ soulIndex, setSoulIndex }) {
   const sliderUiRef = useRef(null);
   const slideContentRef = useRef(null);
 
+  // int Obs
+  const wrapperRef = useRef(null);
+  useEffect(() => {
+    const { ScrollTrigger } = require("gsap/dist/ScrollTrigger");
+    gsap.registerPlugin(ScrollTrigger);
+
+    ScrollTrigger.create({
+      trigger: wrapperRef.current,
+      start: "top bottom",
+      end: "bottom top",
+      onToggle: (self) => fadeIn(wrapperRef, self.isActive),
+    });
+  }, []);
+
   // -- **** Slider State
   const [isIn, setIsIn] = useState(false);
   const handleIsIn = () => setIsIn(!isIn);
@@ -30,7 +44,10 @@ export default function Slider({ soulIndex, setSoulIndex }) {
   // console.log(currentSoul);
 
   return (
-    <div className="Slider h-[100vh] sticky top-0 flex flex-col overflow-hidden">
+    <div
+      ref={wrapperRef}
+      className="Slider h-[100vh] sticky top-0 flex flex-col overflow-hidden"
+    >
       <Slides
         currentContent={currentSoul}
         childRef={slideContentRef}
@@ -276,4 +293,16 @@ function animateSliderIn(itemUi, itemSlide, goIn = false) {
       x: "0%",
     });
   }
+}
+
+function fadeIn(item, goIn = false) {
+  // console.log(goIn);
+  let val = goIn ? 1 : 0;
+
+  gsap.to(item.current, {
+    duration: 0.5,
+    ease: "expo.out",
+    autoAlpha: val,
+    delay: 0.2,
+  });
 }

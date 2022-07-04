@@ -1,9 +1,9 @@
 // ALL Textures
-import tx_wormh from "./wormhole.v0.png";
+import tx_wormh from "./wormhole.v2.png";
 import tx_clouds2 from "./Clouds_20.png";
 import tx_clouds4 from "./Clouds_40.png";
 import tx_clouds9 from "./Clouds_200.png";
-import tx_conv from "./conveyor.v0.png";
+import tx_conv from "./conveyor.v2.png";
 import tx_dragon from "./dragon.v0.png";
 import tx_shelf from "./shelf.v0.png";
 import tx_capitan from "./capitain.v0.png";

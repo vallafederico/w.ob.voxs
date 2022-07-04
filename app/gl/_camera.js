@@ -8,7 +8,10 @@ export default class extends PerspectiveCamera {
     this.isSliderMode = false;
     this.sliderCurrent = 0;
 
+    if (window.innerWidth < window.innerHeight) this.isMobile = true;
+
     this.addZ = -1;
+    if (this.isMobile) this.addZ = 0;
     this.rPosX = 1.1;
     this.position.z = this.addZ;
   }
@@ -18,11 +21,15 @@ export default class extends PerspectiveCamera {
    */
 
   punchZoom(bool) {
+    // movement z
+    let z = -4;
+    if (this.isMobile) z = -3.3;
+
     if (bool) {
       this.isSliderMode = true;
       if (this.punchZoomAnim) this.punchZoomAnim.kill();
       this.punchZoomAnim = gsap.to(this.position, {
-        z: -4,
+        z: z,
         x: this.placements[this.sliderCurrent].x + this.rPosX,
         y: this.placements[this.sliderCurrent].y - 0.5,
         ease: "expo.out",

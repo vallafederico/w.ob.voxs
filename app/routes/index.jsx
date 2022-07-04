@@ -67,7 +67,7 @@ export default function Index() {
 
         <Main canScroll={canScroll}>
           <Section className="Hero h-screen flex flex-col justify-between content-center">
-            <Cont isIn={heroIn} className="pt-5">
+            <Cont isIn={heroIn} className="pt-8">
               <h1 className="text-5xl text-center font-display">
                 <span className="block md:text-[10vw] text-8xl">SOULS</span>
                 <span className="block">ARE COMING</span>

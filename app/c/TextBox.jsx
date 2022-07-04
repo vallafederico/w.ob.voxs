@@ -2,7 +2,7 @@ import { TEXTBOXES } from "~/src/content.js";
 
 export default function TextBoxes() {
   return (
-    <div className="TextBoxes flex flex-col">
+    <div className="TextBoxes flex flex-col md:mb-0 mb-[80vh]">
       {TEXTBOXES.map((box, i) => (
         <TextBox key={i} index={i} content={box} />
       ))}
@@ -13,7 +13,7 @@ export default function TextBoxes() {
 function TextBox({ content, index }) {
   return (
     <div
-      className={`TextBox p-10 my-10 bg-light rounded-lg md:w-[25vw] ${
+      className={`TextBox p-10 md:my-[10vh] my-[30vh] bg-light rounded-lg md:w-[25vw] ${
         index ? "md:ml-auto" : null
       } `}
     >

@@ -45,7 +45,10 @@ export default function Preloader({ isLoading = 0, isFinished = false }) {
       ref={wrapper}
       className="Preloader fixed top-0 left-0 w-full h-full p-9 flex flex-col justify-between bg-black z-[999] items-center pt-[40vh]"
     >
-      <p ref={loadingText} className="font-display text-white text-[10vw]">
+      <p
+        ref={loadingText}
+        className="font-display text-white md:text-[10vw] text-[20vw]"
+      >
         00
       </p>
       <div className="Scroller overflow-hidden text-white whitespace-nowrap flex justify-start items-start content-start font-light uppercase">

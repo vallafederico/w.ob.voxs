@@ -121,7 +121,7 @@ function Slide({ handleIsIn, currentContent }) {
           </button>
         </div>
 
-        <div className="overflow-scroll h-[40vh]">
+        <div className="overflow-scroll md:h-[40vh] h-[35vh]">
           {/*   -------- FIRST TAB */}
           <div
             className={`${

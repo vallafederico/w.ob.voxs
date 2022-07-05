@@ -15,7 +15,7 @@ export const links = () => [{ rel: "stylesheet", href: indexcss }];
 export default function Index() {
   return (
     <Wrapper>
-      <Nav />
+      <Nav isAbout="true" />
       <Main canScroll={true}>
         <Section className=" pt-[20vh]">
           <Cont>

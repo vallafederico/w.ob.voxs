@@ -87,8 +87,10 @@ export default class extends Scene {
 
         if (o.name === "m_wormh_pcs" || o.name === "m_wormh")
           o.material = this.whMat;
-        if (o.name === "m_cloud" || o.name === "m_sky")
+        if (o.name === "m_cloud" || o.name === "m_sky") {
           o.material = this.cloudMat;
+          // if (o.name === "m_cloud") o.scale.set(1.5, 1.5, 1.5);
+        }
         if (o.name === "m_conv") o.material = this.beltMat;
         if (o.name === "m_dragon") o.material = this.dragonMat;
         if (o.name === "m_shelf") o.material = this.shelfMat;

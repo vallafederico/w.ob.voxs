@@ -49,7 +49,7 @@ export default function Preloader({ isLoading = 0, isFinished = false }) {
         ref={loadingText}
         className="font-display text-white md:text-[10vw] text-[20vw]"
       >
-        00
+        0
       </p>
       <div className="Scroller overflow-hidden text-white whitespace-nowrap flex justify-start items-start content-start font-light uppercase">
         <div className="an-scroller inline">

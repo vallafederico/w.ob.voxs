@@ -22,7 +22,7 @@
 
 ### Model
 
-[] make linear progression on Slider (0-4 / 5-6 / 7-)
+[x] make linear progression on Slider (0-4 / 5-6 / 7-)
 [] add a glow to end of wormhole
 
 ### Gl
@@ -43,8 +43,8 @@
 ### Missing
 
 [x] correct copy -> souls are here (and all around)
-[] update lunchbox images
-[] reorder lunchboxes
+[x] update lunchbox images
+[x] reorder lunchboxes
 
 # Development
 

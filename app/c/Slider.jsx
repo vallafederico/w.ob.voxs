@@ -3,6 +3,7 @@ import gsap from "gsap";
 
 import { Arrow } from "./sh/Svg";
 import { MaverickSvg } from "./sh/SoulsLogo";
+import { SoulsIcon } from "./sh/SoulsLogo";
 
 import { SLIDER_CONTENT } from "~/src/content.js";
 
@@ -99,7 +100,10 @@ function Slide({ handleIsIn, currentContent }) {
           </h3>
           <h4 className="text-red uppercase text-xs">Soul short tagline </h4>
         </div>
-        <MaverickSvg className="md:h-[5vw] md:w-[5vw] h-[8vw] w-[8vw]" />
+        <SoulsIcon
+          name={currentContent.title}
+          className="md:h-[5vw] md:w-[5vw] h-[8vw] w-[8vw]"
+        />
         <button
           className="bg-black text-white rounded-[100%] leading-[0px] w-9 h-9 flex justify-center items-center uppercase text-xs"
           onClick={() => handleIsIn()}
@@ -224,11 +228,14 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
         <SliderArrow onClick={() => handleSlideIndex(false)} isBack="true" />
         {/* Info - START */}
         <div className="flex justify-between grow gap-9 px-9 items-center">
-          <MaverickSvg className="h-[5vw] w-[5vw] md:block hidden" />
+          <SoulsIcon
+            name={currentContent.title}
+            className="h-[5vw] w-[5vw] md:block hidden"
+          />
           <div>
-            <h3 className="font-display leading-5">
+            <h3 className="font-display leading-8">
               <span className="block md:leading-8">THE</span>
-              <span className="md:text-[3vw] text-[5vw]">
+              <span className="md:text-[3vw] text-[5vw] uppercase">
                 {currentContent.title}
               </span>
             </h3>

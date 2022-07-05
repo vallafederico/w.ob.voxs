@@ -9,27 +9,29 @@ export default function Footer() {
       <Credits />
       <Newsletter />
       <ul className="md:min-w-[10vw] text-xs uppercase font-display">
-        <h4 className="border-b-2 border-b-red text-sm mb-5">Social Vox</h4>
+        <h4 className="border-b-2 border-b-red text-sm mb-5 inline">
+          Social Vox
+        </h4>
         <li className="py-1">
-          <a className="" href="/">
+          <a className="" href="https://www.instagram.com/gogalagames/">
             <IconInstagram className=" fill-white inline max-w-[1em]" />
             <span className="inline">Instagram</span>
           </a>
         </li>
         <li className="py-1">
-          <a className="" href="/">
+          <a className="" href="https://twitter.com/TheVOXverse">
             <IconTwitter className=" fill-white inline max-w-[1em]" />
             <span className="inline">Twitter</span>
           </a>
         </li>
         <li className="py-1">
-          <a className="" href="/">
+          <a className="" href="https://discord.com/invite/JtnCNMFnnK">
             <IconDiscord className=" fill-white inline max-w-[1em]" />
             <span className="inline">Discord</span>
           </a>
         </li>
         <li className="py-1">
-          <a className="" href="/">
+          <a className="" href="https://gogalagames.medium.com/">
             <IconMedium className=" fill-white  inline" />
             <span className="inline">Medium</span>
           </a>
@@ -45,33 +47,47 @@ function Credits() {
       <LogoGala className="fill-white md:w-[15vw] w-[50vw] pb-9" />
       <div>
         <div className="py-5">© Gala Labs. All rights reserved.</div>
-        <a href="/"> Terms and Conditions </a> |{" "}
-        <a href="/"> Privacy Policy </a>
+        <a
+          href="https://collectvox.com/terms-and-conditions"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Terms and Conditions
+        </a>
+        |{" "}
+        <a
+          href="https://app.gala.games/privacy-policy"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {" "}
+          Privacy Policy{" "}
+        </a>
       </div>
     </div>
   );
 }
 
-/**
- * Footer Links
- */
+// /**
+//  * Footer Links
+//  */
 
-const FOOTERLINKS = {
-  title: "Links",
-  links: [
-    { href: "/", text: "What" },
-    { href: "/", text: "Voxverse" },
-    { href: "/", text: "Purchase" },
-    { href: "/", text: "Exchange" },
-  ],
-};
+// const FOOTERLINKS = {
+//   title: "Links",
+//   links: [
+//     { href: "/", text: "What" },
+//     { href: "/", text: "Voxverse" },
+//     { href: "/", text: "Purchase" },
+//     { href: "/", text: "Exchange" },
+//   ],
+// };
 
-const SOCIALLINKS = {
-  title: "Social Souls",
-  links: [
-    { href: "/", text: "Instagram" },
-    { href: "/", text: "Twitter" },
-    { href: "/", text: "Discord" },
-    { href: "/", text: "Medium" },
-  ],
-};
+// const SOCIALLINKS = {
+//   title: "Social Souls",
+//   links: [
+//     { href: "/", text: "Instagram" },
+//     { href: "/", text: "Twitter" },
+//     { href: "/", text: "Discord" },
+//     { href: "/", text: "Medium" },
+//   ],
+// };

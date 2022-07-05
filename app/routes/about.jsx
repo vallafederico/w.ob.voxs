@@ -7,7 +7,6 @@ import Main from "~/c/sh/Main";
 import Wrapper from "~/c/sh/Wrapper";
 import Cont from "~/c/sh/Cont";
 import Footer from "../c/Footer";
-
 import { LaunchCta } from "../c/Cta";
 
 export const links = () => [{ rel: "stylesheet", href: indexcss }];
@@ -44,9 +43,10 @@ function Tabs() {
           }`}
           onClick={() => setCurrentTab(0)}
         >
-          Learn About{" "}
+          <p className="block">Learn About </p>
+
           <span
-            className={`block text-black text-3xl md:text-8xl ${
+            className={`text-black text-3xl md:text-8xl inline ${
               !currentTab ? "border-b-2 border-red" : ""
             }`}
           >
@@ -59,9 +59,9 @@ function Tabs() {
           }`}
           onClick={() => setCurrentTab(1)}
         >
-          Learn About{" "}
+          <p className="block">Learn About</p>
           <span
-            className={`block text-black text-3xl md:text-8xl ${
+            className={` text-black text-3xl md:text-8xl inline ${
               currentTab ? "border-b-2 border-red" : ""
             }`}
           >

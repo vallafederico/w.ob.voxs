@@ -1,5 +1,6 @@
 import indexcss from "../styles/index.css";
 import { useState, useRef, useMemo, useEffect } from "react";
+import gsap from "gsap";
 
 import Nav from "~/c/Nav";
 import Main from "~/c/sh/Main";
@@ -15,7 +16,7 @@ import Preloader from "../c/Preloader";
 import Canvas from "../gl/Canvas";
 import Sound from "../c/Sound";
 
-import { MintButton, AnimMintButton } from "~/c/sh/Button";
+import { MintButton, AMintButton } from "~/c/sh/Button";
 
 export const links = () => [{ rel: "stylesheet", href: indexcss }];
 
@@ -48,6 +49,23 @@ export default function Index() {
     }
   }, [preloaderOut]);
 
+  // button trigger
+  const [buttonIn, setButtonIn] = useState(true);
+  useEffect(() => {
+    const { ScrollTrigger } = require("gsap/dist/ScrollTrigger");
+    gsap.registerPlugin(ScrollTrigger);
+
+    ScrollTrigger.create({
+      trigger: scrollRef.current,
+      start: "top bottom",
+      end: "bottom top",
+      onToggle: (self) => {
+        // console.log(scrollRef, self.isActive);
+        setButtonIn(!self.isActive);
+      },
+    });
+  }, []);
+
   // THREE - handling
   return (
     <>
@@ -75,7 +93,7 @@ export default function Index() {
             </Cont>
 
             <Cont isIn={heroIn} className="flex justify-center content-center">
-              <AnimMintButton />
+              <AMintButton isIn={buttonIn} />
             </Cont>
           </Section>
           <Section className="Scroll " childRef={scrollRef}>
@@ -83,13 +101,12 @@ export default function Index() {
               <TextBoxes />
             </Cont>
           </Section>
-          <Section
-            childRef={sliderRef}
-            id="slider"
-            className="Slider relative h-[300vh]"
-          >
-            <Slider soulIndex={soulIndex} setSoulIndex={setSoulIndex} />
-            <Cont></Cont>
+          <Section childRef={sliderRef} className="Slider relative h-[300vh]">
+            <Slider
+              id="slider"
+              soulIndex={soulIndex}
+              setSoulIndex={setSoulIndex}
+            />
           </Section>
           <div ref={ctaRef}>
             <Section

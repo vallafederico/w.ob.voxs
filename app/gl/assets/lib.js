@@ -63,7 +63,7 @@ export const STX = {
 
 // models
 const BASE_URL = "https://tmpr.s3.eu-central-1.amazonaws.com/pr/voxs/asts";
-export const LIB = { model: BASE_URL + "/convayor_2.glb" };
+export const LIB = { model: BASE_URL + "/convayor_0.glb" };
 
 /// - * Export Textures
 export const TX = {

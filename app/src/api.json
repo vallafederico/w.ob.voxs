@@ -1,0 +1,13 @@
+{
+  "response": [
+    {
+      "tokenId": "string",
+      "image": "string",
+      "hasSoul": "boolean",
+      "soul": {
+        "image": "string",
+        "name": "string"
+      }
+    }
+  ]
+}

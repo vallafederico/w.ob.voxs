@@ -2,28 +2,26 @@ import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
 import { Arrow } from "./sh/Svg";
-import { MaverickSvg } from "./sh/SoulsLogo";
 import { SoulsIcon } from "./sh/SoulsLogo";
-
 import { SLIDER_CONTENT } from "~/src/content.js";
 
-export default function Slider({ soulIndex, setSoulIndex }) {
+export default function Slider({ soulIndex, setSoulIndex, id }) {
   const sliderUiRef = useRef(null);
   const slideContentRef = useRef(null);
 
-  // int Obs
+  // ** Anim ** Intersection Observer
   const wrapperRef = useRef(null);
-  useEffect(() => {
-    const { ScrollTrigger } = require("gsap/dist/ScrollTrigger");
-    gsap.registerPlugin(ScrollTrigger);
+  // useEffect(() => {
+  //   const { ScrollTrigger } = require("gsap/dist/ScrollTrigger");
+  //   gsap.registerPlugin(ScrollTrigger);
 
-    ScrollTrigger.create({
-      trigger: wrapperRef.current,
-      start: "top bottom",
-      end: "bottom top",
-      onToggle: (self) => fadeIn(wrapperRef, self.isActive),
-    });
-  }, []);
+  //   ScrollTrigger.create({
+  //     trigger: wrapperRef.current,
+  //     start: "top bottom",
+  //     end: "bottom top",
+  //     onToggle: (self) => fadeIn(wrapperRef, self.isActive),
+  //   });
+  // }, []);
 
   // -- **** Slider State
   const [isIn, setIsIn] = useState(false);
@@ -46,6 +44,7 @@ export default function Slider({ soulIndex, setSoulIndex }) {
 
   return (
     <div
+      id={id}
       ref={wrapperRef}
       className="Slider h-[100vh] sticky top-0 flex flex-col overflow-hidden"
     >

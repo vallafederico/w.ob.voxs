@@ -28,8 +28,8 @@
 
 [x] viewport on lunchboxes
 [x] make sun smaller (same as in the sandbox)
-[] add a glow to end of wormhole
-[] remove clouds 3d
+[x] add a glow to end of wormhole
+[] FIX clouds 3d
 
 ### Dom
 
@@ -38,7 +38,7 @@
 [x] Uppercase on all SOULS names
 [x] sound icon less prominent (smaller or translucent / both)
 [x] center logo
-[] Dom animation
+[x] Dom animation
 
 [x] About Page
 
@@ -46,10 +46,22 @@
 [x] update lunchbox images
 [x] reorder lunchboxes
 
-### Missing
+[x] red underline fit to word
+[x] slider anchor position to fully visible
+[] mint UI
+[x] social links
+
+[x] Terms and Privacy Links
 
 [] update all copy - PENDING COPY
 [] update og image - PENDING OG IMAGE
+
+### Missing
+
+[] swap page copy
+[] swap soul copy
+[] Link to Terms and Conditions - TO BE CONFIRMED
+[] Link to Privacy Policy - TO BE CONFIRMED
 
 # Development
 

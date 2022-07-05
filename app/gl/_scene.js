@@ -1,4 +1,4 @@
-import { Scene, MeshNormalMaterial } from "three";
+import { Scene, MeshNormalMaterial, MeshBasicMaterial } from "three";
 
 import WormholeMaterial from "./mat/worm";
 import CloudMaterial from "./mat/clouds";
@@ -87,14 +87,14 @@ export default class extends Scene {
 
         if (o.name === "m_wormh_pcs" || o.name === "m_wormh")
           o.material = this.whMat;
-        if (o.name === "m_cloud" || o.name === "m_sky") {
+        if (o.name === "m_cloud" || o.name === "m_sky")
           o.material = this.cloudMat;
-          // if (o.name === "m_cloud") o.scale.set(1.5, 1.5, 1.5);
-        }
         if (o.name === "m_conv") o.material = this.beltMat;
         if (o.name === "m_dragon") o.material = this.dragonMat;
         if (o.name === "m_shelf") o.material = this.shelfMat;
         if (o.name === "Captain") o.material = this.capMat;
+        if (o.name === "white_hole")
+          o.material = new MeshBasicMaterial({ color: 0xffffff });
 
         // souls
         if (o.name.substring(0, 3) === "The") {

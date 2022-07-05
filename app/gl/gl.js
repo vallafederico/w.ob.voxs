@@ -202,6 +202,7 @@ export default class extends Emitter {
     const camPlacements = [];
     model.traverse((o) => {
       if (!o.isMesh && o.name.substring(0, 6) === "place_") {
+        console.log(o.name);
         camPlacements.push(o.position);
       }
     });

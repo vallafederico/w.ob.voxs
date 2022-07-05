@@ -70,7 +70,7 @@ export default function Index() {
             <Cont isIn={heroIn} className="pt-8">
               <h1 className="text-5xl text-center font-display">
                 <span className="block md:text-[10vw] text-8xl">SOULS</span>
-                <span className="block">ARE COMING</span>
+                <span className="block">ARE HERE</span>
               </h1>
             </Cont>
 

@@ -84,17 +84,13 @@ export const SLIDER_CONTENT = {
     },
     // First Row
     {
-      title: "Scholar",
+      title: "Maverick",
       content:
-        "The Scholar Soul is an inquisitive know-it-all who is good with facts: Such as the 17 uses of dragon scales, how to defeat a monster with saltwater taffy, and whether Minotaurs really sleep standing up. You know the useful stuff, and you know that knowledge is power. You’re a real hit at parties.",
-      stats: [{ title: "Smarts", value: "3" }],
-      adds: addons[0],
-    },
-    {
-      title: "Star",
-      content:
-        "The Star Soul can walk into a room full of strangers and walk out with new best friends. You are admired, loved and envied by pretty much everyone, which sometimes puts you into awkward situations. One time you were out to slay a dragon and it was so charmed that it wanted to be your friend instead of fight. So you slayed it later when it wasn’t looking.",
-      stats: [{ title: "Swagger", value: "3" }],
+        "Unafraid to stray from the beaten path, The Maverick Soul charts their own course. Their confidence and determination rallies The Maverick as they climb the greatest peaks and plunge to unfathomable depths in their quest to explore what lies beyond where others fear to tread. When faced with opposition, The Maverick raises their middle finger high and ventures on. Armed with cunning wit and stylish flair, no challenge… and no one can stand in their way.",
+      stats: [
+        { title: "Swagger", value: "1" },
+        { title: "Agility", value: "2" },
+      ],
       adds: addons[0],
     },
     {
@@ -105,15 +101,20 @@ export const SLIDER_CONTENT = {
       adds: addons[0],
     },
     {
-      title: "Maverick",
+      title: "Star",
       content:
-        "Unafraid to stray from the beaten path, The Maverick Soul charts their own course. Their confidence and determination rallies The Maverick as they climb the greatest peaks and plunge to unfathomable depths in their quest to explore what lies beyond where others fear to tread. When faced with opposition, The Maverick raises their middle finger high and ventures on. Armed with cunning wit and stylish flair, no challenge… and no one can stand in their way.",
-      stats: [
-        { title: "Swagger", value: "1" },
-        { title: "Agility", value: "2" },
-      ],
+        "The Star Soul can walk into a room full of strangers and walk out with new best friends. You are admired, loved and envied by pretty much everyone, which sometimes puts you into awkward situations. One time you were out to slay a dragon and it was so charmed that it wanted to be your friend instead of fight. So you slayed it later when it wasn’t looking.",
+      stats: [{ title: "Swagger", value: "3" }],
       adds: addons[0],
     },
+    {
+      title: "Scholar",
+      content:
+        "The Scholar Soul is an inquisitive know-it-all who is good with facts: Such as the 17 uses of dragon scales, how to defeat a monster with saltwater taffy, and whether Minotaurs really sleep standing up. You know the useful stuff, and you know that knowledge is power. You’re a real hit at parties.",
+      stats: [{ title: "Smarts", value: "3" }],
+      adds: addons[0],
+    },
+
     //  Second Row End
     {
       title: "Trickster",

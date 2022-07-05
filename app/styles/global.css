@@ -21,9 +21,9 @@ h4 {
 
 /* ------- PAGE */
 
-.Nav > * {
+/* .Nav > * {
   flex-grow: 1;
-}
+} */
 
 /* ------- WebGl */
 .Canvas {

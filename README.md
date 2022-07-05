@@ -2,9 +2,9 @@
 
 [] DOM animation
 
-[] Post Processing
+[x] Post Processing
 
-[] Preloader
+[x] Preloader
 
 [x] Intro Animation - GL
 
@@ -20,11 +20,33 @@
 
 ## Quickfixes
 
-[] adjust camera position to match
+### Model
 
-[] parametrise camera mover
+[] make linear progression on Slider (0-4 / 5-6 / 7-)
+[] add a glow to end of wormhole
 
-## Development
+### Gl
+
+[x] viewport on lunchboxes
+[x] make sun smaller (same as in the sandbox)
+
+### Dom
+
+[x] button - less leading (better overall)
+[x] larger text on slider boxes
+[x] Uppercase on all SOULS names
+[x] sound icon less prominent (smaller or translucent / both)
+[x] center logo
+
+[x] About Page
+
+### Missing
+
+[x] correct copy -> souls are here (and all around)
+[] update lunchbox images
+[] reorder lunchboxes
+
+# Development
 
 npm run dev
 npm run build

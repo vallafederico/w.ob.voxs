@@ -6,13 +6,13 @@ import { MintButton } from "./sh/Button";
 export default function Nav() {
   return (
     <nav className="Nav fixed text-black flex justify-between items-center w-screen px-10 pb-5 pt-10 z-[99] backdrop-blur-sm">
-      <NavLinks className="max-w-1/3" />
+      <NavLinks className="md:w-1/3" />
 
-      <Link to="/" className="mx-auto">
-        <LogoVox />
+      <Link to="/" className="md:w-1/3 w-1/3 ">
+        <LogoVox className="md:mx-auto" />
       </Link>
 
-      <div className="flex justify-end max-w-1/3">
+      <div className="flex justify-end md:w-1/3">
         <MintButton />
       </div>
     </nav>

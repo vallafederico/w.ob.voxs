@@ -7,27 +7,18 @@ export function Button({ children, className }) {
 export function MintButton({ className }) {
   return (
     <Button
-      className={`bg-red text-white py-2 px-10 rounded-md tx-display uppercase font-display md:text-[1.2em] text-[1em] ${className}`}
+      className={`bg-red text-white pt-4 pb-3 md:px-14  px-8 rounded-lg tx-display uppercase font-display md:text-[1.2em] text-[1em] leading-[.8em] ${className}`}
     >
-      Mint Yours
-      <span className="block text-[.6em] font-sans leading-3">
-        Connect Wallet
-      </span>
+      <div>
+        Mint Yours
+        <span className="block text-[.6em] font-sans">Connect Wallet</span>
+      </div>
     </Button>
   );
 }
 
 export function AnimMintButton({ className }) {
-  return (
-    <Button
-      className={`bg-red text-white py-2 px-10 rounded-md tx-display uppercase font-display md:text-[1.2em] text-[1em] ${className}`}
-    >
-      Mint Yours
-      <span className="block text-[.6em] font-sans leading-3">
-        Connect Wallet
-      </span>
-    </Button>
-  );
+  return <MintButton className={className} />;
 }
 
 //  // int Obs

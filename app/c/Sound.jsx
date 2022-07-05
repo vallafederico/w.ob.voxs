@@ -28,12 +28,12 @@ export default function Sound() {
   return (
     <button
       onClick={() => setIsPlaying(!isPlaying)}
-      className="UiCtrl fixed right-2 bottom-2"
+      className="UiCtrl fixed right-2 bottom-2 opacity-70"
     >
       <SoundIcon
         isPlaying={isPlaying}
         childRef={soundBars}
-        className="md:min-w-[50px] min-w-[40px]"
+        className="md:min-w-[40px] min-w-[40px]"
       />
     </button>
   );

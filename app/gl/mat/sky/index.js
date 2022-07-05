@@ -37,8 +37,8 @@ void main() {
   vec3 final = mix(sky_dark, sky_light, finalMask);
 
   /* SUN */
-  float sun = distance(v_uv, vec2(.5, .3 + u_daylight * .2));
-  sun = smoothstep(0., u_daylight * .1, sun);
+  float sun = distance(v_uv, vec2(.5, .35 + u_daylight * .2));
+  sun = smoothstep(0., u_daylight * .06, sun);
   sun = smoothstep(1., 0., sun);
 
   /* GRADIENT */

@@ -309,7 +309,7 @@ export default class extends Emitter {
     // animation time
     gsap.to(this.sceneAnimation, {
       intro: 1,
-      duration: 0.2,
+      duration: 6,
       delay: 1.7,
       ease: "power1",
       onUpdate: () => this.introTime(this.sceneAnimation.intro),

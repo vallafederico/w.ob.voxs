@@ -101,7 +101,7 @@ function Slide({ handleIsIn, currentContent }) {
         </div>
         <SoulsIcon
           name={currentContent.title}
-          className="md:h-[5vw] md:w-[5vw] h-[8vw] w-[8vw]"
+          className="md:h-[5vw] md:w-[5vw] h-[8vw] w-[8vw] min-h-[80px] min-w-[80px]"
         />
         <button
           className="bg-black text-white rounded-[100%] leading-[0px] w-9 h-9 flex justify-center items-center uppercase text-xs"
@@ -217,11 +217,10 @@ function Slide({ handleIsIn, currentContent }) {
  */
 function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
   // console.log("ui", currentContent);
-
   return (
     <div
       ref={childRef}
-      className="SlideUi absolute w-full h-[15vh] bottom-0 flex justify-center"
+      className="SlideUi absolute w-full h-[15vh] md:bottom-0 bottom-[5vh] flex justify-center"
     >
       <div className="md:w-1/2 w-full bg-light rounded-2xl flex items-center justify-between p-8">
         <SliderArrow onClick={() => handleSlideIndex(false)} isBack="true" />
@@ -229,7 +228,7 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
         <div className="flex justify-between grow gap-9 px-9 items-center">
           <SoulsIcon
             name={currentContent.title}
-            className="h-[5vw] w-[5vw] md:block hidden"
+            className="h-[5vw] w-[5vw]  md:block hidden"
           />
           <div>
             <h3 className="font-display leading-8">

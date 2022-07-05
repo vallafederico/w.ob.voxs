@@ -3,6 +3,7 @@
  */
 import cta_vox_img_1 from "./img/vox-img-1.png";
 import cta_vox_img_2 from "./img/vox-img-2.png";
+import API_soul_img from "./img/soul_img.png";
 import { SLIDER_CONTENT } from "./souls.js";
 
 /**
@@ -34,6 +35,29 @@ export const CTACONTENT = {
     { src: cta_vox_img_2, alt: "The Wanderer Vox" },
   ],
 };
+
+/**
+ * Fake API
+ */
+
+const API_SOUL = {
+  tokenId: "Soul Name",
+  image: API_soul_img,
+  hasSoul: false,
+  number: 19862,
+  soul: {
+    image: "string",
+    name: "string",
+  },
+};
+
+const FAKE_API = [];
+
+for (let i = 0; i < 30; i++) {
+  FAKE_API.push(API_SOUL);
+}
+
+export { FAKE_API };
 
 /**
  * Section 3 -- Slider

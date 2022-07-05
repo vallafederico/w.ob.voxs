@@ -1,7 +1,5 @@
 ### TODO
 
-[] DOM animation
-
 [x] Post Processing
 
 [x] Preloader
@@ -29,7 +27,6 @@
 [x] viewport on lunchboxes
 [x] make sun smaller (same as in the sandbox)
 [x] add a glow to end of wormhole
-[] FIX clouds 3d
 
 ### Dom
 
@@ -62,6 +59,12 @@
 [] swap soul copy
 [] Link to Terms and Conditions - TO BE CONFIRMED
 [] Link to Privacy Policy - TO BE CONFIRMED
+
+### Pending
+
+[x] ross doesn't see the mobile UI - ?
+[] FIX clouds 3d - pending Glen (tomorrow updated model)
+[x] FIX soul icon too small on mobile
 
 # Development
 

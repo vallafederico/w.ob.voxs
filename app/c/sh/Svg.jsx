@@ -1,7 +1,5 @@
 export function Svg({ children, className }) {
-  return (
-    <figure className={`Svg max-w-[100px] ${className}`}>{children}</figure>
-  );
+  return <figure className={`Svg ${className}`}>{children}</figure>;
 }
 
 // --------- VOX svg logo

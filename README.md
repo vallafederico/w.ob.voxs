@@ -18,17 +18,18 @@
 
 [x] sound
 
-## Quickfixes
+# Revision #1
 
 ### Model
 
 [x] make linear progression on Slider (0-4 / 5-6 / 7-)
-[] add a glow to end of wormhole
 
 ### Gl
 
 [x] viewport on lunchboxes
 [x] make sun smaller (same as in the sandbox)
+[] add a glow to end of wormhole
+[] remove clouds 3d
 
 ### Dom
 
@@ -37,14 +38,18 @@
 [x] Uppercase on all SOULS names
 [x] sound icon less prominent (smaller or translucent / both)
 [x] center logo
+[] Dom animation
 
 [x] About Page
 
-### Missing
-
-[x] correct copy -> souls are here (and all around)
+[x] souls are here (and all around)
 [x] update lunchbox images
 [x] reorder lunchboxes
+
+### Missing
+
+[] update all copy - PENDING COPY
+[] update og image - PENDING OG IMAGE
 
 # Development
 

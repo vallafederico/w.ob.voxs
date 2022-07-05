@@ -33,7 +33,7 @@ export default function Index() {
   );
 }
 
-function Tabs({}) {
+function Tabs() {
   const [currentTab, setCurrentTab] = useState(0);
   return (
     <div>
@@ -47,7 +47,7 @@ function Tabs({}) {
           Learn About{" "}
           <span
             className={`block text-black text-3xl md:text-8xl ${
-              !currentTab ? "border-b-3 border-red" : ""
+              !currentTab ? "border-b-2 border-red" : ""
             }`}
           >
             VOX
@@ -62,7 +62,7 @@ function Tabs({}) {
           Learn About{" "}
           <span
             className={`block text-black text-3xl md:text-8xl ${
-              currentTab ? "border-b-3 border-red" : ""
+              currentTab ? "border-b-2 border-red" : ""
             }`}
           >
             SOULS
@@ -72,7 +72,7 @@ function Tabs({}) {
       {/* Content */}
       <div
         className={`${
-          currentTab ? "hidden" : ""
+          currentTab ? "md:hidden hidden" : ""
         } md:flex gap-8 md:pt-[10vh] py-[10vh]`}
       >
         <TextBlock title="Destiny and Free Will">{filler} </TextBlock>
@@ -81,7 +81,7 @@ function Tabs({}) {
       </div>
       <div
         className={`${
-          !currentTab ? "hidden" : ""
+          !currentTab ? "md:hidden hidden" : ""
         } md:flex gap-8 md:pt-[10vh] py-[10vh]`}
       >
         <TextBlock title="Our Metaverse">{filler} </TextBlock>

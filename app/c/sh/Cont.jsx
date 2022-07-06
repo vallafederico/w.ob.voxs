@@ -8,8 +8,8 @@ export default function Cont({ children, className, isIn = true }) {
     if (isIn) {
       gsap.to(wrapper.current, {
         autoAlpha: 1,
-        duration: 1,
-        delay: 2,
+        duration: 0.6,
+        delay: 6.5,
         ease: "expo.in",
       });
     } else {

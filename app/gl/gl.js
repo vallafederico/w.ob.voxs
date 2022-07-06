@@ -310,7 +310,7 @@ export default class extends Emitter {
     gsap.to(this.sceneAnimation, {
       intro: 1,
       duration: 6,
-      delay: 1.7,
+      delay: 2,
       ease: "power1",
       onUpdate: () => this.introTime(this.sceneAnimation.intro),
       onComplete: () => this.emit("canScroll"),
@@ -325,6 +325,7 @@ export default class extends Emitter {
     this.scene.dragonMat.daylight = t;
     this.scene.beltMat.daylight = t;
     this.scene.introSouls.hermit.material.daylight = 1 - t;
+    this.scene.souls.healer.material.daylight = 1 - t;
     // sky Shader
     this.scene.sky.material.daylight = t;
   }
@@ -334,7 +335,10 @@ export default class extends Emitter {
    */
 
   soulIndexChanged({ soulIndex }) {
-    // console.log("gl, soulIndex", soulIndex);
     this.camera.toSliderPosition(soulIndex);
+  }
+
+  soulInChanged({ soulIn }) {
+    this.camera.soulIn(soulIn);
   }
 }

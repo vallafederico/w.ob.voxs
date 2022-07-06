@@ -9,6 +9,7 @@ export default function Canvas({
   soulIndex,
   setPreloaderOut,
   setIsLoading,
+  soulIn,
 }) {
   // ------- Gl - Setup
   const ref = useRef(null);
@@ -51,6 +52,11 @@ export default function Canvas({
       gl.soulIndexChanged(soulIndex);
     }
   }, [soulIndex, gl]);
+  useEffect(() => {
+    if (gl && gl.isActive) {
+      gl.soulInChanged(soulIn);
+    }
+  }, [soulIn, gl]);
 
   return <div ref={ref} className="Canvas" />;
 }

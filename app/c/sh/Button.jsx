@@ -27,7 +27,14 @@ export function AMintButton({ className, isIn = true }) {
   const A = useRef(null);
   useEffect(() => animateIn(A.current, isIn), [isIn]);
 
-  return <MintButton childRef={A} className={className} />;
+  return (
+    <div ref={A} className="relative">
+      <MintButton className={className} />
+      <div className="absolute an-flash bottom-0 text-xs text-white w-full text-center translate-y-[8vh]">
+        SCROLL TO DISCOVER
+      </div>
+    </div>
+  );
 }
 
 function animateIn(item, bool) {

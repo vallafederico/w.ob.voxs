@@ -113,6 +113,7 @@ export default class extends Scene {
               u_t1: this.textures.tx_healer_d,
               u_t2: this.textures.tx_healer_n,
             });
+            o.material.daylight = 1;
           }
           if (o.name === "The_Hermit001") {
             this.introSouls.hermit = o;
@@ -120,6 +121,7 @@ export default class extends Scene {
               u_t1: this.textures.tx_hermit_d,
               u_t2: this.textures.tx_hermit_n,
             });
+            o.material.daylight = 1;
           }
           if (o.name === "The_Hermit") {
             this.souls.hermit = o;

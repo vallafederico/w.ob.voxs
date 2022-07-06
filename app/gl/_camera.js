@@ -7,13 +7,45 @@ export default class extends PerspectiveCamera {
 
     this.isSliderMode = false;
     this.sliderCurrent = 0;
+    this.mouse = { x: 0, y: 0, ex: 0, ey: 0 };
 
     if (window.innerWidth < window.innerHeight) this.isMobile = true;
 
-    this.addZ = -1;
-    if (this.isMobile) this.addZ = 0;
+    this.addZ = -3;
+    if (this.isMobile) this.addZ = -2;
     this.rPosX = 1.1;
-    this.position.z = this.addZ;
+
+    this.fov = 28;
+    this.initEvents();
+  }
+
+  initEvents() {
+    const wX = window.innerWidth,
+      wY = window.innerHeight;
+
+    document.onmousemove = (e) => {
+      this.mouse.x = -((e.clientX / wX) * 2 - 1) * 0.02;
+      this.mouse.y = -((e.clientY / wY) * 2 - 1) * 0.02;
+      this.rotateCam(this.mouse);
+    };
+  }
+
+  rotateCam({ x, y }) {
+    if (this.isSliderMode) {
+      gsap.to(this.rotation, {
+        x: y * 2,
+        y: x * 2,
+        duration: 1,
+        ease: "slow.inOut",
+      });
+    } else {
+      gsap.to(this.rotation, {
+        x: y,
+        y: x,
+        duration: 1,
+        ease: "slow.inOut",
+      });
+    }
   }
 
   /*
@@ -22,8 +54,7 @@ export default class extends PerspectiveCamera {
 
   punchZoom(bool) {
     // movement z
-    let z = -4;
-    if (this.isMobile) z = -3.3;
+    let z = this.addZ;
 
     if (bool) {
       this.isSliderMode = true;
@@ -39,7 +70,7 @@ export default class extends PerspectiveCamera {
       this.isSliderMode = false;
       if (this.punchZoomAnim) this.punchZoomAnim.kill();
       this.punchZoomAnim = gsap.to(this.position, {
-        z: this.addZ,
+        z: 0,
         x: 0,
         y: 0,
         ease: "expo.out",
@@ -54,7 +85,34 @@ export default class extends PerspectiveCamera {
       this.isSliderMode = true;
       if (this.punchZoomAnim) this.punchZoomAnim.kill();
       this.punchZoomAnim = gsap.to(this.position, {
-        z: -4,
+        z: -3,
+        x: this.placements[this.sliderCurrent].x,
+        y: this.placements[this.sliderCurrent].y - 0.5,
+        ease: "expo.out",
+        duration: 1,
+      });
+    }
+  }
+
+  soulIn(bool) {
+    let z = this.addZ - 0.5;
+    let x = this.isMobile ? 0 : 0.2;
+
+    if (bool) {
+      this.isSliderMode = true;
+      if (this.punchZoomAnim) this.punchZoomAnim.kill();
+      this.punchZoomAnim = gsap.to(this.position, {
+        z: z,
+        x: this.placements[this.sliderCurrent].x + x,
+        y: this.placements[this.sliderCurrent].y - 0.5,
+        ease: "expo.out",
+        duration: 1,
+      });
+    } else {
+      this.isSliderMode = false;
+      if (this.punchZoomAnim) this.punchZoomAnim.kill();
+      this.punchZoomAnim = gsap.to(this.position, {
+        z: this.addZ,
         x: this.placements[this.sliderCurrent].x,
         y: this.placements[this.sliderCurrent].y - 0.5,
         ease: "expo.out",

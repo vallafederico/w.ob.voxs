@@ -36,10 +36,7 @@ export default function Index() {
   );
 
   const [soulIn, setSoulIn] = useState(false);
-  const TSoulIn = useMemo(
-    () => ({ soulIn, setSoulIndex }),
-    [soulIn, setSoulIndex]
-  );
+  const TSoulIn = useMemo(() => ({ soulIn }), [soulIn]);
 
   // state for hero
   const [heroIn, setHeroIn] = useState(false);
@@ -77,6 +74,7 @@ export default function Index() {
         soulIndex={TSoulIndex}
         setPreloaderOut={setPreloaderOut}
         setIsLoading={setIsLoading}
+        soulIn={TSoulIn}
       />
 
       <Wrapper>
@@ -106,6 +104,7 @@ export default function Index() {
               id="slider"
               soulIndex={soulIndex}
               setSoulIndex={setSoulIndex}
+              setSoulIn={setSoulIn}
             />
           </Section>
           <div ref={ctaRef}>

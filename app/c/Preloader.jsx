@@ -1,6 +1,9 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
+import { SLIDER_CONTENT } from "~/src/content";
+// console.log(SLIDER_CONTENT.SOULS[0]);
+
 export default function Preloader({ isLoading = 0, isFinished = false }) {
   const loadingText = useRef(null);
   const wrapper = useRef(null);
@@ -51,33 +54,14 @@ export default function Preloader({ isLoading = 0, isFinished = false }) {
       >
         0
       </p>
-      <div className="Scroller overflow-hidden text-white whitespace-nowrap flex justify-start items-start content-start font-light uppercase">
-        <div className="an-scroller inline">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-        <div className="an-scroller inline">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-        <div className="an-scroller inline">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+      <div className="Scroller an-scroller overflow-hidden text-white whitespace-nowrap flex justify-start items-start content-start font-light uppercase text-xs">
+        <div>
+          {SLIDER_CONTENT.SOULS.map((soul, index) => (
+            <div key={index} className="inline px-8">
+              <p className="px-2 inline font-display">THE {soul.title}</p>
+              <p className="px-2 inline">{soul.tagline}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

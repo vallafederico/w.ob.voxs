@@ -37,7 +37,10 @@ void main() {
   vec3 final = mix(sky_dark, sky_light, finalMask);
 
   /* SUN */
-  float sun = distance(v_uv, vec2(.5, .35 + u_daylight * .2));
+  float sun = distance(v_uv, vec2(
+    .5, 
+    .5 + u_daylight * .05 
+  ));
   sun = smoothstep(0., u_daylight * .06, sun);
   sun = smoothstep(1., 0., sun);
 

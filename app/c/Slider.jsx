@@ -5,29 +5,35 @@ import { Arrow } from "./sh/Svg";
 import { SoulsIcon } from "./sh/SoulsLogo";
 import { SLIDER_CONTENT } from "~/src/content.js";
 
-export default function Slider({ soulIndex, setSoulIndex, id }) {
+export default function Slider({ soulIndex, setSoulIndex, id, setSoulIn }) {
   const sliderUiRef = useRef(null);
   const slideContentRef = useRef(null);
 
   // ** Anim ** Intersection Observer
   const wrapperRef = useRef(null);
-  // useEffect(() => {
-  //   const { ScrollTrigger } = require("gsap/dist/ScrollTrigger");
-  //   gsap.registerPlugin(ScrollTrigger);
+  useEffect(() => {
+    const { ScrollTrigger } = require("gsap/dist/ScrollTrigger");
+    gsap.registerPlugin(ScrollTrigger);
 
-  //   ScrollTrigger.create({
-  //     trigger: wrapperRef.current,
-  //     start: "top bottom",
-  //     end: "bottom top",
-  //     onToggle: (self) => fadeIn(wrapperRef, self.isActive),
-  //   });
-  // }, []);
+    ScrollTrigger.create({
+      trigger: wrapperRef.current.parentElement,
+      start: "top top",
+      end: "bottom bottom",
+      onToggle: (self) => {
+        fadeIn(sliderUiRef, self.isActive);
+        if (!self.isActive) {
+          setIsIn(false);
+        }
+      },
+    });
+  }, []);
 
   // -- **** Slider State
   const [isIn, setIsIn] = useState(false);
   const handleIsIn = () => setIsIn(!isIn);
   useEffect(() => {
     animateSliderIn(sliderUiRef, slideContentRef, isIn);
+    setSoulIn(isIn);
   }, [isIn]);
 
   // -- **** Slider Index
@@ -40,7 +46,6 @@ export default function Slider({ soulIndex, setSoulIndex, id }) {
 
   // -- **** Current Content
   const currentSoul = SLIDER_CONTENT.SOULS[slideIndex];
-  // console.log(currentSoul);
 
   return (
     <div
@@ -312,6 +317,6 @@ function fadeIn(item, goIn = false) {
     duration: 0.5,
     ease: "expo.out",
     autoAlpha: val,
-    delay: 0.2,
+    delay: 0,
   });
 }

@@ -54,6 +54,9 @@ body::-webkit-scrollbar {
 .overflow-scroll::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }
+.overflow-y-scroll::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
 
 /* ------- Animation */
 .an-scroller > div {

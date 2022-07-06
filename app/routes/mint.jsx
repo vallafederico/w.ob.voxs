@@ -42,15 +42,15 @@ export default function Mint() {
  * Mint UI
  */
 export function MintUi({ childRef }) {
-  // API
-  // console.log("API-response", FAKE_API[0]);
+  const [selected, setSelected] = useState([]);
+  const selectAll = () => {};
 
   return (
     <Section
       childRef={childRef}
       className="MintUi fixed top-0 left-0 w-full h-full "
     >
-      <Cont className="h-full md:w-[80vw] w-[99vw] bg-black text-white rounded-xl px-12 pb-12 text-center flex flex-col">
+      <Cont className="h-full md:w-[90vw] w-[99vw] bg-black text-white rounded-xl px-12 pb-12 text-center flex flex-col">
         {/* Header */}
         <div className="pb-12 pt-5 flex justify-between uppercase text-sm">
           <p>Mint Your Soul</p>
@@ -74,14 +74,14 @@ export function MintUi({ childRef }) {
             <button className="text-xs uppercase p-4">Select All</button>
           </div>
 
-          <div className="h-[40vh] overflow-y-scroll mb-8 p-4 grid md:grid-cols-6 gap-8">
+          <div className="h-[40vh] overflow-y-scroll mb-8 p-4 grid md:grid-cols-4 lg:grid-cols-6 gap-4">
             {FAKE_API.map((it, i) => (
-              <SoulUi key={i} content={it} />
+              <SoulUi key={i} index={i} content={it} />
             ))}
           </div>
 
           <div>
-            <MintButton />
+            <MintButton text="Mint Selected" />
           </div>
         </div>
       </Cont>
@@ -94,15 +94,19 @@ function SoulUi({ content }) {
   return (
     <div
       onClick={() => setIsSelected(!isSelected)}
-      className={`md:h-[20vh] h-[10vh] p-4 ${
+      className={`md:h-[20vh] h-[12vh] p-7 ${
         isSelected ? "bg-red" : ""
-      } rounded-md flex flex-col justify-between`}
+      } rounded-md flex md:flex-col justify-between flex-row`}
     >
-      <img className="md:block hidden" src={content.image} alt="" />
-      <p className={`text-xs mt-1 text-red ${isSelected ? "text-light" : ""}`}>
-        #{content.number}
-      </p>
-      <h4>{content.tokenId}</h4>
+      <img className="" src={content.image} alt="" />
+      <div className="w-1/2 md:w-full">
+        <p
+          className={`text-xs mt-1 text-red ${isSelected ? "text-light" : ""}`}
+        >
+          #{content.number}
+        </p>
+        <h4>{content.tokenId}</h4>
+      </div>
     </div>
   );
 }

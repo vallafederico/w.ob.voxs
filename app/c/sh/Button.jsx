@@ -9,7 +9,7 @@ export function Button({ children, className, childRef = null }) {
   );
 }
 
-export function MintButton({ className, childRef }) {
+export function MintButton({ className, childRef, text = "Connect Wallet" }) {
   return (
     <Button
       childRef={childRef}
@@ -17,7 +17,7 @@ export function MintButton({ className, childRef }) {
     >
       <div>
         Mint Yours
-        <span className="block text-[.6em] font-sans">Connect Wallet</span>
+        <span className="block text-[.6em] font-sans">{text}</span>
       </div>
     </Button>
   );

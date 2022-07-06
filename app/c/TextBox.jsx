@@ -13,7 +13,7 @@ export default function TextBoxes() {
 function TextBox({ content, index }) {
   return (
     <div
-      className={`TextBox p-10 md:my-[10vh] my-[30vh] bg-light rounded-lg md:w-[25vw] ${
+      className={`TextBox p-10 md:my-[10vh] my-[30vh] bg-light rounded-lg md:w-[25vw] lg:w-1/4 ${
         index ? "md:ml-auto" : null
       } `}
     >

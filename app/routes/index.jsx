@@ -16,6 +16,8 @@ import Preloader from "../c/Preloader";
 import Canvas from "../gl/Canvas";
 import Sound from "../c/Sound";
 
+import HeroText from "../c/sh/HeroText";
+
 import { MintButton, AMintButton } from "~/c/sh/Button";
 
 export const links = () => [{ rel: "stylesheet", href: indexcss }];
@@ -84,10 +86,7 @@ export default function Index() {
         <Main canScroll={canScroll}>
           <Section className="Hero h-screen flex flex-col justify-between content-center">
             <Cont isIn={heroIn} className="pt-8">
-              <h1 className="text-5xl text-center font-display">
-                <span className="block md:text-[10vw] text-8xl">SOULS</span>
-                <span className="block">ARE HERE</span>
-              </h1>
+              <HeroText isIn={heroIn} />
             </Cont>
 
             <Cont isIn={heroIn} className="flex justify-center content-center">

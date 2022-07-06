@@ -77,7 +77,7 @@ function Slides({ childRef, slideIndex, handleIsIn, currentContent }) {
   return (
     <div
       ref={childRef}
-      className="Slides absolute lg:w-1/3 md:w-2/5 bottom-0 h-[70vh] md:mb-[20vh] mb-[5vh] md:right-9 translate-x-[100%]"
+      className="Slides absolute xl:w-1/3 lg:w-1/2 md:w-1/2 bottom-0 h-[70vh] md:mb-[10vh] mb-[5vh] md:right-9 translate-x-[100%]"
     >
       <Slide
         handleIsIn={handleIsIn}
@@ -98,7 +98,7 @@ function Slide({ handleIsIn, currentContent }) {
         <div>
           <h3 className="font-display leading-9">
             <span className="block">THE</span>
-            <span className="md:text-[3vw] text-[8vw] uppercase">
+            <span className="md:text-[3vw] text-[7vw] uppercase">
               {currentContent.title}
             </span>
           </h3>
@@ -108,10 +108,10 @@ function Slide({ handleIsIn, currentContent }) {
         </div>
         <SoulsIcon
           name={currentContent.title}
-          className="md:h-[5vw] md:w-[5vw] h-[8vw] w-[8vw] min-h-[80px] min-w-[80px]"
+          className="md:h-[5vw] md:w-[5vw] h-[6vw] w-[6vw] min-h-[50px] min-w-[50px] hidden md:block"
         />
         <button
-          className="bg-black text-white rounded-[100%] leading-[0px] w-9 h-9 flex justify-center items-center uppercase text-xs"
+          className="bg-black text-white rounded-[100%] leading-[0px] w-8 h-8 flex justify-center items-center uppercase text-xs"
           onClick={() => handleIsIn()}
         >
           X
@@ -150,6 +150,14 @@ function Slide({ handleIsIn, currentContent }) {
 
         <div className="overflow-scroll md:h-[40vh] h-[35vh]">
           {/*   -------- FIRST TAB */}
+          <div className="md:hidden flex">
+            <h5 className="uppercase text-red text-sm py-4 mr-8">Symbol</h5>
+            <SoulsIcon
+              name={currentContent.title}
+              className="h-[20vw] w-[20vw]"
+            />
+          </div>
+
           <div
             className={`${
               currentTab === 0 ? "visible" : "hidden"
@@ -161,10 +169,10 @@ function Slide({ handleIsIn, currentContent }) {
             <h5 className="uppercase text-red text-sm py-4">Great at</h5>
             <p className=" text-sm">{currentContent.adds.great}</p>
             <h5 className="uppercase text-red text-sm py-4">Stats</h5>
-            <div className="text-sm py-2 flex gap-3">
+            <div className="text-sm py-2 flex gap-3 wrap">
               {currentContent.stats.map((it, i) => (
                 <p
-                  className="text-red py-2 px-4 border-red border bg-[#F9EEDE] rounded-md inline-block"
+                  className="text-red py-2 px-4 border-red border bg-[#F9EEDE] text-xs rounded-md inline-block"
                   key={i}
                 >
                   + {it.value} {it.title}
@@ -238,7 +246,7 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
             className="h-[5vw] w-[5vw]  md:block hidden"
           />
           <div>
-            <h3 className="font-display leading-8">
+            <h3 className="font-display md:leading-8">
               <span className="block md:leading-8">THE</span>
               <span className="md:text-[3vw] text-[5vw] uppercase">
                 {currentContent.title}
@@ -249,7 +257,7 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
             </h4>
           </div>
           <button
-            className="bg-black text-white rounded-md p-3 uppercase text-xs"
+            className="bg-black text-white rounded-md p-3 uppercase md:text-xs  text-[.6em]"
             onClick={() => handleIsIn()}
           >
             Discover

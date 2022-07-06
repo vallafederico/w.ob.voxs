@@ -249,7 +249,7 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
       ref={childRef}
       className="SlideUi absolute w-full h-[15vh] md:bottom-0 bottom-[5vh] flex justify-center"
     >
-      <div className="xl:w-1/2 md:w-2/3 w-full bg-light rounded-2xl flex items-center justify-between p-8">
+      <div className="xl:w-1/2 md:w-4/5 w-full bg-light rounded-2xl flex items-center justify-between p-8">
         <SliderArrow onClick={() => handleSlideIndex(false)} isBack="true" />
         {/* Info - START */}
         <div className="flex justify-between grow gap-9 px-9 items-center">

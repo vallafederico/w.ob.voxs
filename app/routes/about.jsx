@@ -75,18 +75,55 @@ function Tabs() {
           currentTab ? "md:hidden hidden" : ""
         } md:flex gap-8 md:pt-[10vh] py-[10vh]`}
       >
-        <TextBlock title="Destiny and Free Will">{filler} </TextBlock>
-        <TextBlock title="Play to your strengths.">{filler} </TextBlock>
-        <TextBlock title="Boost your DeFi">{filler} </TextBlock>
+        <TextBlock title="Destiny and Free Will">
+          Each VOX can claim a single Soul. Your specific Soul is determined by
+          the precise moment at which your VOX was first minted from its box,
+          similar to a zodiac sign. Still, Souls do not permanently attach to
+          VOX. Instead, they are yours to transfer or sell depending on who you
+          want your VOX to be.{" "}
+        </TextBlock>
+        <TextBlock title="Play to your strengths.">
+          Having a Soul allows you to level up certain traits faster in-game:
+          Smarts, Wit, Might, Endurance, Agility, and Swagger. Play to your
+          strengths and shore up your weaknesses. Use your Wit to outsmart a
+          cunning dragon, or double down on Might and Swagger to intimidate an
+          enemy. It’s all about choosing your style of play; after all, you
+          wouldn’t bring a pool noodle to a sword fight.
+        </TextBlock>
+        <TextBlock title="Boost your DeFi">
+          We will be introducing a new version of DeFi for VOX, not seen
+          anywhere else. Rather than passive earning, users who own a VOX will
+          be given access to an ecosystem that provides rewards based on active
+          engagement. If a VOX has a Soul, they will earn even more rewards. The
+          requirements for participating will be determined separately for each
+          product available to you. You can still play the games and earn with a
+          VOX that doesn’t have a Soul… but where’s the fun in that?{" "}
+        </TextBlock>
       </div>
       <div
         className={`${
           !currentTab ? "md:hidden hidden" : ""
         } md:flex gap-8 md:pt-[10vh] py-[10vh]`}
       >
-        <TextBlock title="Our Metaverse">{filler} </TextBlock>
-        <TextBlock title="Do VOX have utility?">{filler} </TextBlock>
-        <TextBlock title="What Is a VOX?">{filler} </TextBlock>
+        <TextBlock title="Our Metaverse">
+          Each VOX can claim a single Soul. Your specific Soul is determined by
+          the precise moment at which your VOX was first minted from its box,
+          similar to a zodiac sign. Still, Souls do not permanently attach to
+          VOX. Instead, they are yours to transfer or sell depending on who you
+          want your VOX to be.
+        </TextBlock>
+        <TextBlock title="Do VOX have utility?">
+          Yes, VOX are designed to have various utilities. That means they will
+          serve a purpose beyond just being a cute avatar that you can own and
+          animate. VOX will be able to lock up GALA and eventually earn VOXcoin
+          as rewards for play. There are additional utilities as well, such as
+          play-to-earn rewards in Town Star and in-game benefits in Mirandus.
+        </TextBlock>
+        <TextBlock title="What Is a VOX?">
+          A VOX is a unique avatar with traits. VOX are collectible ERC-721
+          NFTs. Each VOX is programmatically generated and provably unique,
+          meaning that no two VOX will look the same.
+        </TextBlock>
       </div>
       {/* ENd - Content */}
     </div>

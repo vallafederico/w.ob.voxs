@@ -97,7 +97,9 @@ function Slide({ handleIsIn, currentContent }) {
               {currentContent.title}
             </span>
           </h3>
-          <h4 className="text-red uppercase text-xs">Soul short tagline </h4>
+          <h4 className="text-red uppercase text-xs">
+            {currentContent.tagline}
+          </h4>
         </div>
         <SoulsIcon
           name={currentContent.title}
@@ -237,7 +239,9 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
                 {currentContent.title}
               </span>
             </h3>
-            <h4 className="text-red uppercase text-xs">Soul short tagline </h4>
+            <h4 className="text-red uppercase text-xs md:block hidden">
+              {currentContent.tagline}
+            </h4>
           </div>
           <button
             className="bg-black text-white rounded-md p-3 uppercase text-xs"
@@ -290,7 +294,7 @@ function animateSliderIn(itemUi, itemSlide, goIn = false) {
     gsap.to(itemUi.current, {
       duration: 0.5,
       ease: "expo.out",
-      y: "100%",
+      y: "200%",
     });
     gsap.to(itemSlide.current, {
       duration: 0.5,

@@ -37,10 +37,13 @@ export function LaunchCta({ className, children }) {
       </div>
       <div className="relative z-2">
         <h2 className="py-5 max-w-[15ch] font-display uppercase md:text-6xl text-4xl text-red">
-          <span className="block text-white">Get Your</span>
-          <span className="block md:text-9xl text-8xl">Souls</span>
+          <span className="block text-white">SOULS MINT OPEN</span>
+          <span className="block md:text-9xl text-8xl">NOW</span>
         </h2>
-        <h3 className="max-w-[40ch] py-5">{CTACONTENT.text}</h3>
+        <h3 className="py-5">
+          <p>Every VOX has it’s own soul.</p>
+          <p>All souls are different and unique to the VOX they belong to.</p>
+        </h3>
         <div className="md:hidden block ">
           {" "}
           <Image src={CTACONTENT.imgs[0].src} />

@@ -50,15 +50,15 @@
 
 [x] Terms and Privacy Links
 
-[] update all copy - PENDING COPY
+[x] update all copy - PENDING COPY
 [] update og image - PENDING OG IMAGE
 
 ### Missing
 
-[] swap page copy
-[] swap soul copy
-[] Link to Terms and Conditions - TO BE CONFIRMED
-[] Link to Privacy Policy - TO BE CONFIRMED
+[x] swap page copy
+[x] swap soul copy
+[x] Link to Terms and Conditions - TO BE CONFIRMED
+[x] Link to Privacy Policy - TO BE CONFIRMED
 
 ### Pending
 

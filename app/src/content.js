@@ -19,7 +19,7 @@ export const TEXTBOXES = [
   {
     head: "BOOST STATS AND DEFI",
     subHead: "WHY DO YOU NEED A SOUL?",
-    text: "There are endless possibilities in the metaverse. VOX owners with Souls will enjoy benefits to both gameplay and future DeFi. Collect a Soul to play up the unique strengths of your VOX in games like VOX Odyssey and the VOXverse, while gaining access to potential DeFi rewards. There are 12 Souls. Who will you be?",
+    text: "There are endless possibilities in the metaverse. VOX owners with Souls will enjoy benefits to both gameplay and future DeFi. Collect a soul to play up the unique strengths of your VOX in games like VOX Odyssey and the VOXverse while gaining access to potential DeFi rewards. There are 12 Souls. Who will you be?",
   },
 ];
 

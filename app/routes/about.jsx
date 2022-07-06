@@ -8,6 +8,7 @@ import Wrapper from "~/c/sh/Wrapper";
 import Cont from "~/c/sh/Cont";
 import Footer from "../c/Footer";
 import { LaunchCta } from "../c/Cta";
+import { MintButton } from "../c/sh/Button";
 
 export const links = () => [{ rel: "stylesheet", href: indexcss }];
 
@@ -23,7 +24,9 @@ export default function Index() {
         </Section>
         <Section>
           <Cont>
-            <LaunchCta />
+            <LaunchCta>
+              <MintButton />
+            </LaunchCta>
           </Cont>
         </Section>
         <Footer />
@@ -73,7 +76,7 @@ function Tabs() {
       <div
         className={`${
           currentTab ? "md:hidden hidden" : ""
-        } md:flex gap-8 md:pt-[10vh] py-[10vh]`}
+        } md:flex gap-16 md:pt-[10vh] py-[10vh]`}
       >
         <TextBlock title="Destiny and Free Will">
           Each VOX can claim a single Soul. Your specific Soul is determined by
@@ -103,7 +106,7 @@ function Tabs() {
       <div
         className={`${
           !currentTab ? "md:hidden hidden" : ""
-        } md:flex gap-8 md:pt-[10vh] py-[10vh]`}
+        } md:flex gap-16 md:pt-[10vh] py-[10vh]`}
       >
         <TextBlock title="Our Metaverse">
           Each VOX can claim a single Soul. Your specific Soul is determined by
@@ -132,7 +135,7 @@ function Tabs() {
 
 function TextBlock({ title = "Title", children }) {
   return (
-    <div className="py-8">
+    <div className="py-8 md:w-1/3">
       <h2 className="font-display text-4xl leading-[1.2em] pb-4">{title}</h2>
       <p className="">{children}</p>
     </div>

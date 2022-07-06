@@ -116,7 +116,7 @@ export default function Index() {
                   <MintButton />
                 </LaunchCta>
               </Cont>
-              <AdditionalCta />
+              <AdditionalCta className="mt-[5vh]" />
             </Section>
 
             <Footer />

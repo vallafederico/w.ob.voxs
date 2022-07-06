@@ -19,12 +19,16 @@ export function LaunchCta({ className, children }) {
         </div>
         <div className="relative z-2">
           <h2 className="py-5 font-display uppercase md:text-6xl text-4xl text-red">
-            <span className="block text-white">SOULS MINT OPEN</span>
-            <span className="block md:text-7 xl:text-[5vw] text-8xl ">NOW</span>
+            <span className="block text-white">SOULS MINT</span>
+            <span className="block md:text-7 xl:text-[5vw] text-8xl ">
+              OPEN NOW
+            </span>
           </h2>
           <h3 className="py-5">
-            <p>Every VOX has it’s own soul.</p>
-            <p>All souls are different and unique to the VOX they belong to.</p>
+            <p>
+              The first Souls released into the VOX realm are a limited-edition,
+              free mint of 10% of total supply.
+            </p>
           </h3>
           <div className="lg:hidden block">
             {" "}
@@ -39,7 +43,7 @@ export function LaunchCta({ className, children }) {
 
 export function AdditionalCta({ className }) {
   return (
-    <div className="flex justify-center my-6">
+    <div className={`flex justify-center my-6 ${className}`}>
       <div className="md:flex justify-between items-center w-2/3 text-xs">
         <div className="uppercase">
           Discover more on{" "}

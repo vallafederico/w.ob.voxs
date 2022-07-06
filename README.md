@@ -71,25 +71,33 @@
 [x] copy - all comments (to check)
 [x] Issue on NAV /about
 
-[] mock text navigation for slider (as addon)
+[x] mock text navigation for slider (as addon)
 
-[] restart from overview when re-opening a slider UI
+[x] restart from overview when re-opening a slider UI
 [x] bullet the bulleted (in copy) elements
 
-[] /about - transparency on tabs header, better padding overall
-[] /about - add images to text block + revert to background-light+rounded (-- need images)
+[x] /about - transparency on tabs header, better padding overall
+[x] /about - add images to text block + revert to background-light+rounded (-- need images)
 
-[] text boxes - higher up in the scrollable section
-[] mobile footer - socials
-[] mobile footer - spacing terms and condition
-[] mobile footer - padding on the link heading
+[x] text boxes - higher up in the scrollable section
+[x] mobile footer - socials
+[x] mobile footer - spacing terms and condition
+[x] mobile footer - padding on the link heading
 
-[] 3xl - better scale text
-[] media query not triggering on Ipad (vertical)
+[x] 3xl - better scale text
+[x] media query not triggering on Ipad (vertical)
 
-[] Wormhole end (1) glow / (2) opacity fades when closed
+[x] Wormhole end (1) glow / (2) opacity fades when closed
 
-[] audio should loop as its current state
+[x] audio should loop as its current state
+
+## Again
+
+[] about section becomes no tab on mobile
+[] small CTA only to have button (to collectvox.com)
+[] mobile hamburgher for /about page
+[] /about - title size should not cause line break
+[] /about - carousel in mobile and Ipad for cards
 
 # Development
 

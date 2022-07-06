@@ -55,7 +55,7 @@ function NavLinks({ className, isAbout = false }) {
           className={({ isActive }) => (isActive ? "hidden" : "px-5 py-2")}
           to="/about"
         >
-          About Vox And Souls
+          About
         </NavLink>
         <NavLink
           className={({ isActive }) => (isActive ? "hidden" : "px-5 py-2")}

@@ -204,7 +204,7 @@ export const SLIDER_CONTENT = {
         weaknesses: {
           content:
             "Although The Sage has many strengths, their natural tendency to collect knowledge and wisdom can sometimes backfire. To an outside observer, their mind may seem as cluttered as their abode often is! The Sage will be the first to assure people that there is a method to their madness, but finding it is sometimes a different story. Ever in tune with their emotions and the emotions of others, The Sage can be vulnerable to harsh criticism and may withdraw if they do not feel appreciated. If not surrounded with patient understanding, The Sage may become:",
-          list: ["Eccentric", "Scattered", "Sensitive,"],
+          list: ["Eccentric", "Scattered", "Sensitive"],
         },
         friend:
           "The Sage is happiest among good company who can provide stimulating and uplifting conversations. The Scholar and The Healer particularly encourage The Sage to share their wisdom, while still contributing quite a bit of knowledge to the conversation. Honestly, the quiet afternoons spent together discussing the deep questions of the universe are memories The Sage treasures.",

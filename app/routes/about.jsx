@@ -87,14 +87,12 @@ function Tabs() {
           currentTab ? "hidden lg:hidden" : ""
         } lg:flex gap-16 lg:pt-[10vh] py-[10vh]`}
       >
-        <TextBlock title="Our Metaverse" img={img_metav}>
-          Each VOX can claim a single Soul. Your specific Soul is determined by
-          the precise moment at which your VOX was first minted from its box,
-          similar to a zodiac sign. Still, Souls do not permanently attach to
-          VOX. Instead, they are yours to transfer or sell depending on who you
-          want your VOX to be.
+        <TextBlock title="What Is a VOX?" img={img_whatis}>
+          A VOX is a unique avatar with traits. VOX are collectible ERC-721
+          NFTs. Each VOX is programmatically generated and provably unique,
+          meaning that no two VOX will look the same.
         </TextBlock>
-        <TextBlock title="Do VOX have utility?" img={img_utility}>
+        <TextBlock title="VOX have Utility?" img={img_utility}>
           Yes, VOX are designed to have various utilities. That means they will
           serve a purpose beyond just being a cute avatar that you can own and
           animate. VOX will be able to lock up GALA and eventually earn VOXcoin
@@ -102,10 +100,13 @@ function Tabs() {
           play-to-earn rewards in <i>Town Star</i> and in-game benefits in
           <i> Mirandus.</i>
         </TextBlock>
-        <TextBlock title="What Is a VOX?" img={img_whatis}>
-          A VOX is a unique avatar with traits. VOX are collectible ERC-721
-          NFTs. Each VOX is programmatically generated and provably unique,
-          meaning that no two VOX will look the same.
+        <TextBlock title="Our Metaverse" img={img_metav}>
+          Gala is teaming up with <i>The Sims</i> creator Will Wright, the great
+          innovator of digital universes, to bring VOX to life! <i>VOXverse</i>{" "}
+          will be more than an endless drudge of collecting and crafting; it’ll
+          be a digital world of Web3 tech that allows collectors to explore,
+          build memories, play, navigate fears, and earn rewards. So, get ready
+          for the <i>VOXverse!</i>
         </TextBlock>
       </div>
       <div
@@ -113,14 +114,14 @@ function Tabs() {
           !currentTab ? "hidden lg:hidden" : ""
         } lg:flex gap-16 lg:pt-[10vh] py-[10vh]`}
       >
-        <TextBlock title="Destiny and Free Will" img={img_destiny}>
+        <TextBlock title="Destiny & Free Will" img={img_destiny}>
           Each VOX can claim a single Soul. Your specific Soul is determined by
           the precise moment at which your VOX was first minted from its box,
           similar to a zodiac sign. Still, Souls do not permanently attach to
           VOX. Instead, they are yours to transfer or sell depending on who you
           want your VOX to be.{" "}
         </TextBlock>
-        <TextBlock title="Play to your strengths." img={img_playto}>
+        <TextBlock title="Play to your Strengths" img={img_playto}>
           Having a Soul allows you to level up certain traits faster in-game:
           Smarts, Wit, Might, Endurance, Agility, and Swagger. Play to your
           strengths and shore up your weaknesses. Use your Wit to outsmart a
@@ -145,7 +146,7 @@ function Tabs() {
 
 function TextBlock({ title = "Title", children, img }) {
   return (
-    <div className="p-8 lg:w-1/3 my-8 bg-light flex flex-col justify-between rounded-lg xl:max-w-[25vw]">
+    <div className="p-8 lg:w-1/3 my-8 bg-light flex flex-col rounded-lg">
       <div>
         <h2 className="font-display text-5xl leading-[1.2em]">{title}</h2>
         <img src={img} alt="" className="py-6" />

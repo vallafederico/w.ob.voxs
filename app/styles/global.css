@@ -91,7 +91,8 @@ body::-webkit-scrollbar {
 /* test */
 
 .style-list > li {
-  list-style: disc inside none;
+  list-style: disc outside none;
   display: list-item;
-  margin-left: 1em;
+  margin-left: 2em;
+  padding-left: 0;
 }

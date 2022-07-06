@@ -98,7 +98,7 @@ function Slide({ handleIsIn, currentContent }) {
       <div className="flex justify-between grow gap-9 items-center">
         <div>
           <h3 className="font-display uppercase">
-            <span className="block md:text-[1em] sm:text-[1em] lg:text-[2em] xl:text-[2em] leading-[1.1em]">
+            <span className="block md:text-[1em] sm:text-[.8em] lg:text-[1.3em] xl:text-[1.3em] leading-[1em]">
               THE
             </span>
             <span className="block text-[1.5em] leading-[1.1em] sm:text-[3em] md:text-[2em] lg:text-[2.5em] xl:text-[3em]">
@@ -259,7 +259,7 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
           />
           <div>
             <h3 className="font-display uppercase">
-              <span className="block md:text-[1em] sm:text-[1em] lg:text-[2em] xl:text-[2em] leading-[1.1em]">
+              <span className="block md:text-[1em] sm:text-[.8em] lg:text-[1.3em] xl:text-[1.8em] leading-[1.1em]">
                 THE
               </span>
               <span className="block text-[1.5em] leading-[1.1em] sm:text-[3em] md:text-[2em] lg:text-[2.5em] xl:text-[3em]">

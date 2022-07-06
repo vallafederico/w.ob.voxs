@@ -188,7 +188,7 @@ export const SLIDER_CONTENT = {
       content:
         "Wise beyond measure, The Sage Soul understands the world around them with a piercing perception. Although some might use this power for nefarious purposes, The Sage wields their knowledge and wisdom, not as a weapon, but as a tool to bring comfort to those who come across their path.   ",
       stats: [
-        { title: "SMarts", value: "1" },
+        { title: "Smarts", value: "1" },
         { title: "Wit", value: "4" },
         { title: "Agility", value: "1" },
       ],
@@ -409,7 +409,7 @@ export const SLIDER_CONTENT = {
         "The Warrior Soul lives by a sacred code of nobility, honor, and honorable nobility. Ever committed to the path before them, The Warrior lives and dies by their own iron will. The Warrior is instantly recognizable—headstrong, steadfast, and loyal. Whether defending the reputation of a friend or chasing away terrifying spiders for The Star, The Warrior is always ready to jump into action. ",
       stats: [
         { title: "Might", value: "5" },
-        { title: "Might", value: "1" },
+        { title: "Endurance", value: "1" },
       ],
       adds: {
         // ++++++++ add ons

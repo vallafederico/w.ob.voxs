@@ -44,7 +44,7 @@ export default function HeroText({ isIn }) {
     <h1 className="text-5xl text-center font-display">
       <div
         ref={textRef}
-        className="block md:text-[10vw] text-8xl overflow-hidden"
+        className="block lg:text-[10vw] md:text-[15vw] text-8xl overflow-hidden"
       >
         <div className="inline-block relative">S</div>
         <div className="inline-block relative">O</div>
@@ -53,7 +53,7 @@ export default function HeroText({ isIn }) {
         <div className="inline-block relative">S</div>
       </div>
 
-      <div ref={secTextRef} className="block overflow-hidden">
+      <div ref={secTextRef} className="block overflow-hidden xl:text-[3vw]">
         <div className="inline-block relative">ARE</div>
         {"  "}
         <div className="inline-block relative">HERE</div>

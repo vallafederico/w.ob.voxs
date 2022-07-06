@@ -1,3 +1,3 @@
 export default function Wrapper({ children }) {
-  return <div className="pw min-h-screen">{children}</div>;
+  return <div className="px-auto min-h-screen">{children}</div>;
 }

@@ -250,12 +250,14 @@ export default class extends Emitter {
       this.scene.rig.sliderProgress = this.scroll.scroller.slider;
       this.scene.rig.ctaProgress = this.scroll.scroller.cta;
       this.scene.sky.position.y = this.scroll.scroller.step * 200;
+
+      this.scene.wormEnd.material.opacity =
+        1 - (this.scroll.scroller.step + 0.7);
     }
 
     this.post?.isActive
       ? this.post.render(this.time)
       : this.renderer.render(this.scene, this.camera);
-    // this.renderer.render(this.scene, this.camera);
 
     window.requestAnimationFrame(this.render.bind(this));
   }

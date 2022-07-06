@@ -11,7 +11,7 @@ export default function Sound() {
     () =>
       new Howl({
         src: [track],
-        loop: true,
+        loop: 1,
         volume: 0.3,
       }),
     []

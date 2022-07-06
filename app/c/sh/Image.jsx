@@ -1,3 +1,3 @@
-export default function Image({ src, alt = "Vox Image" }) {
-  return <img src={src} alt={alt} />;
+export default function Image({ src, alt = "Vox Image", className }) {
+  return <img className={className} src={src} alt={alt} />;
 }

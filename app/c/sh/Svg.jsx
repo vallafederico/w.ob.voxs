@@ -39,9 +39,7 @@ export function LogoGala({ className }) {
 export function Arrow({ className, isBack = false }) {
   const flipCss = isBack ? "rotate-180" : null;
   return (
-    <Svg
-      className={`Arrow fill-black md:min-w-[2vw] min-w-[10vw]  ${className} ${flipCss}`}
-    >
+    <Svg className={`Arrow fill-black min-w-[40px] ${className} ${flipCss}`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 104.27 105.87"

@@ -9,7 +9,7 @@ export default function Nav({ isAbout, isIn = true }) {
   const navRef = useRef(null);
 
   useEffect(() => {
-    gsap.set(navRef.current, { autoAlpha: 0 });
+    if (!isIn) gsap.set(navRef.current, { autoAlpha: 0 });
   }, []);
 
   useEffect(() => {
@@ -27,13 +27,13 @@ export default function Nav({ isAbout, isIn = true }) {
       ref={navRef}
       className="Nav fixed text-black flex justify-between items-center w-screen px-10 pb-5 pt-10 z-[99] backdrop-blur-sm"
     >
-      <NavLinks className="md:w-1/3" isAbout={isAbout} />
+      <NavLinks className="lg:w-1/3" isAbout={isAbout} />
 
-      <Link to="/" className="md:w-1/3 w-1/3 ">
-        <LogoVox className="md:mx-auto" />
+      <Link to="/" className="lg:w-1/3 w-1/3 ">
+        <LogoVox className="lg:mx-auto" />
       </Link>
 
-      <div className="flex justify-end md:w-1/3">
+      <div className="flex justify-end lg:w-1/3">
         <MintButton />
       </div>
     </nav>
@@ -43,7 +43,7 @@ export default function Nav({ isAbout, isIn = true }) {
 function NavLinks({ className, isAbout = false }) {
   return (
     <ul
-      className={`flex-row hidden md:flex text-xs uppercase font-display ${className}`}
+      className={`flex-row hidden lg:flex text-[.9rem] uppercase font-display ${className}`}
     >
       <li className={`${isAbout ? "hidden" : ""}`}>
         <a className="px-5 py-2" href="/#slider">

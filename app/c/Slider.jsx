@@ -77,7 +77,7 @@ function Slides({ childRef, slideIndex, handleIsIn, currentContent }) {
   return (
     <div
       ref={childRef}
-      className="Slides absolute xl:w-1/3 lg:w-1/2 md:w-1/2 bottom-0 h-[70vh] md:mb-[10vh] mb-[5vh] md:right-9 translate-x-[100%]"
+      className="Slides absolute xl:w-1/3 lg:w-1/2 md:w-2/3 bottom-0 h-[70vh] md:h-[60vh] md:mb-[10vh] mb-[5vh] md:right-9 translate-x-[100%]"
     >
       <Slide
         handleIsIn={handleIsIn}
@@ -90,15 +90,18 @@ function Slides({ childRef, slideIndex, handleIsIn, currentContent }) {
 
 function Slide({ handleIsIn, currentContent }) {
   const [currentTab, setCurrentTab] = useState(0);
+  const resetCurrent = () => setCurrentTab(0);
 
   return (
     <div className="h-full w-full bg-light rounded-2xl p-8 flex flex-col">
       {/* Heading */}
       <div className="flex justify-between grow gap-9 items-center">
         <div>
-          <h3 className="font-display leading-9">
-            <span className="block">THE</span>
-            <span className="md:text-[3vw] text-[7vw] uppercase leading-4 md:leading-8">
+          <h3 className="font-display uppercase">
+            <span className="block md:text-[1em] sm:text-[1em] lg:text-[2em] xl:text-[2em] leading-[1.1em]">
+              THE
+            </span>
+            <span className="block text-[1.5em] leading-[1.1em] sm:text-[3em] md:text-[2em] lg:text-[2.5em] xl:text-[3em]">
               {currentContent.title}
             </span>
           </h3>
@@ -112,7 +115,10 @@ function Slide({ handleIsIn, currentContent }) {
         />
         <button
           className="bg-black text-white rounded-[100%] leading-[0px] w-8 h-8 flex justify-center items-center uppercase text-xs"
-          onClick={() => handleIsIn()}
+          onClick={() => {
+            handleIsIn();
+            resetCurrent();
+          }}
         >
           X
         </button>
@@ -144,11 +150,11 @@ function Slide({ handleIsIn, currentContent }) {
             } uppercase`}
             onClick={() => setCurrentTab(2)}
           >
-            Strengths & Weaknesses
+            Friends & Foes
           </button>
         </div>
 
-        <div className="overflow-scroll md:h-[40vh] h-[35vh]">
+        <div className="overflow-scroll lg:h-[35vh] md:h-[40vh] h-[40vh]">
           {/*   -------- FIRST TAB */}
           <div className="md:hidden flex">
             <h5 className="uppercase text-red text-sm py-4 mr-8">Symbol</h5>
@@ -190,21 +196,27 @@ function Slide({ handleIsIn, currentContent }) {
             {/* Stren */}
             <h5 className="uppercase text-red text-sm py-4">Strenghts</h5>
             <p className=" text-sm">{currentContent.adds.strengths.content}</p>
-            <p className=" text-sm py-2">
-              {currentContent.adds.strengths.list}
-            </p>
+            <ul className=" text-sm py-2 style-list">
+              {currentContent.adds.strengths.list.map((it, i) => (
+                <li key={i}>{it}</li>
+              ))}
+            </ul>
             {/* Weak */}
             <h5 className="uppercase text-red text-sm py-4">Weaknesses</h5>
             <p className=" text-sm">{currentContent.adds.weaknesses.content}</p>
-            <p className=" text-sm py-2">
-              {currentContent.adds.weaknesses.list}
-            </p>
+            <ul className=" text-sm py-2 style-list">
+              {currentContent.adds.weaknesses.list.map((it, i) => (
+                <li key={i}>{it}</li>
+              ))}
+            </ul>
             {/* Quirks */}
             <h5 className="uppercase text-red text-sm py-4">Quirks</h5>
             <div className=" text-sm">
-              {currentContent.adds.quirks.map((cont, i) => (
-                <p key={i}>{cont}</p>
-              ))}
+              <ul className="style-list">
+                {currentContent.adds.quirks.map((cont, i) => (
+                  <li key={i}>{cont}</li>
+                ))}
+              </ul>
             </div>
           </div>
 
@@ -237,22 +249,25 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
       ref={childRef}
       className="SlideUi absolute w-full h-[15vh] md:bottom-0 bottom-[5vh] flex justify-center"
     >
-      <div className="md:w-1/2 w-full bg-light rounded-2xl flex items-center justify-between p-8">
+      <div className="xl:w-1/2 md:w-2/3 w-full bg-light rounded-2xl flex items-center justify-between p-8">
         <SliderArrow onClick={() => handleSlideIndex(false)} isBack="true" />
         {/* Info - START */}
         <div className="flex justify-between grow gap-9 px-9 items-center">
           <SoulsIcon
             name={currentContent.title}
-            className="h-[5vw] w-[5vw]  md:block hidden"
+            className="w-[5vw] sm:w-[15vw] md:w-[10vw] max-w-[150px] sm:block hidden"
           />
           <div>
-            <h3 className="font-display md:leading-8">
-              <span className="block md:leading-8">THE</span>
-              <span className="md:text-[3vw] text-[5vw] uppercase leading-4 md:leading-8">
+            <h3 className="font-display uppercase">
+              <span className="block md:text-[1em] sm:text-[1em] lg:text-[2em] xl:text-[2em] leading-[1.1em]">
+                THE
+              </span>
+              <span className="block text-[1.5em] leading-[1.1em] sm:text-[3em] md:text-[2em] lg:text-[2.5em] xl:text-[3em]">
                 {currentContent.title}
               </span>
             </h3>
-            <h4 className="text-red uppercase text-xs md:block hidden">
+
+            <h4 className="text-red uppercase text-xs md:block hidden max-w-[30ch]">
               {currentContent.tagline}
             </h4>
           </div>

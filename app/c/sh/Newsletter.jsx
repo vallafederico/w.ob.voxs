@@ -16,7 +16,7 @@ export function Newsletter({ link = "/" }) {
         <label className="block text-[.6em] max-w-[50ch] px-5">
           I agree to the terms and conditions and privacy policy and to receive
           promotional materials from and about VOX, and I understand that I can
-          withdraw my consent at any time. (In flow)
+          withdraw my consent at any time.
         </label>
       </div>
     </form>

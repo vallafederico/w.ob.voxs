@@ -66,6 +66,31 @@
 [] FIX clouds 3d - pending Glen (tomorrow updated model)
 [x] FIX soul icon too small on mobile
 
+### Last
+
+[x] copy - all comments (to check)
+[x] Issue on NAV /about
+
+[] mock text navigation for slider (as addon)
+
+[] restart from overview when re-opening a slider UI
+[x] bullet the bulleted (in copy) elements
+
+[] /about - transparency on tabs header, better padding overall
+[] /about - add images to text block + revert to background-light+rounded (-- need images)
+
+[] text boxes - higher up in the scrollable section
+[] mobile footer - socials
+[] mobile footer - spacing terms and condition
+[] mobile footer - padding on the link heading
+
+[] 3xl - better scale text
+[] media query not triggering on Ipad (vertical)
+
+[] Wormhole end (1) glow / (2) opacity fades when closed
+
+[] audio should loop as its current state
+
 # Development
 
 npm run dev

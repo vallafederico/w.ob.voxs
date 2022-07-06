@@ -9,9 +9,6 @@ export default function Footer() {
       <Credits />
       <Newsletter />
       <ul className="md:min-w-[10vw] text-xs uppercase font-display">
-        <h4 className="border-b-2 border-b-red text-sm mb-5 inline">
-          Social Vox
-        </h4>
         <li className="py-1">
           <a className="" href="https://www.instagram.com/gogalagames/">
             <IconInstagram className=" fill-white inline max-w-[1em]" />
@@ -44,7 +41,7 @@ export default function Footer() {
 function Credits() {
   return (
     <div className="Credits border2 text-xs ">
-      <LogoGala className="fill-white md:w-[15vw] w-[50vw] pb-9" />
+      <LogoGala className="fill-white xl:w-[7vw] lg:w-[15vw] md:w-[20vw] w-[50vw] pb-9" />
       <div>
         <div className="py-5">© Gala Labs. All rights reserved.</div>
         <a
@@ -53,7 +50,7 @@ function Credits() {
           rel="noreferrer"
         >
           Terms and Conditions
-        </a>
+        </a>{" "}
         |{" "}
         <a
           href="https://app.gala.games/privacy-policy"
@@ -67,27 +64,3 @@ function Credits() {
     </div>
   );
 }
-
-// /**
-//  * Footer Links
-//  */
-
-// const FOOTERLINKS = {
-//   title: "Links",
-//   links: [
-//     { href: "/", text: "What" },
-//     { href: "/", text: "Voxverse" },
-//     { href: "/", text: "Purchase" },
-//     { href: "/", text: "Exchange" },
-//   ],
-// };
-
-// const SOCIALLINKS = {
-//   title: "Social Souls",
-//   links: [
-//     { href: "/", text: "Instagram" },
-//     { href: "/", text: "Twitter" },
-//     { href: "/", text: "Discord" },
-//     { href: "/", text: "Medium" },
-//   ],
-// };

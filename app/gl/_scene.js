@@ -93,8 +93,14 @@ export default class extends Scene {
         if (o.name === "m_dragon") o.material = this.dragonMat;
         if (o.name === "m_shelf") o.material = this.shelfMat;
         if (o.name === "Captain") o.material = this.capMat;
-        if (o.name === "white_hole")
-          o.material = new MeshBasicMaterial({ color: 0xffffff });
+        if (o.name === "white_hole") {
+          this.wormEnd = o;
+          o.material = new MeshBasicMaterial({
+            color: 0xffffff,
+            transparent: true,
+            opacity: 1,
+          });
+        }
 
         // souls
         if (o.name.substring(0, 3) === "The") {

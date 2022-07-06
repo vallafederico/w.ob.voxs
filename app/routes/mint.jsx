@@ -1,5 +1,5 @@
 import indexcss from "../styles/index.css";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 
 import Main from "~/c/sh/Main";
 import Section from "~/c/sh/Section.jsx";
@@ -12,10 +12,6 @@ export const links = () => [{ rel: "stylesheet", href: indexcss }];
 
 export default function Mint() {
   const mintRef = useRef(null);
-
-  // useEffect(() => {
-  //   console.log(mintRef.current);
-  // }, []);
 
   return (
     <>

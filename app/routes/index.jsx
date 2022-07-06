@@ -11,7 +11,7 @@ import Slider from "~/c/Slider";
 
 import TextBoxes from "../c/TextBox";
 import Footer from "../c/Footer";
-import { LaunchCta } from "../c/Cta";
+import { LaunchCta, AdditionalCta } from "../c/Cta";
 import Preloader from "../c/Preloader";
 import Canvas from "../gl/Canvas";
 import Sound from "../c/Sound";
@@ -93,8 +93,8 @@ export default function Index() {
               <AMintButton isIn={buttonIn} />
             </Cont>
           </Section>
-          <Section className="Scroll " childRef={scrollRef}>
-            <Cont className="md:min-h-[200vh] min-h-[400vh]">
+          <Section className="Scroll" childRef={scrollRef}>
+            <Cont className="md:min-h-[200vh] min-h-[400vh] pb-[50vh]">
               <TextBoxes />
             </Cont>
           </Section>
@@ -116,7 +116,9 @@ export default function Index() {
                   <MintButton />
                 </LaunchCta>
               </Cont>
+              <AdditionalCta />
             </Section>
+
             <Footer />
           </div>
         </Main>

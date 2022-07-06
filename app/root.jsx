@@ -1,14 +1,9 @@
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "@remix-run/react";
+import { Links, LiveReload, Meta, Outlet, Scripts } from "@remix-run/react";
 
 import tailwindcss from "./styles/tailwind.css";
 import globalcss from "./styles/global.css";
+
+import og_img from "~/src/img/Vox-Souls-Website.png";
 
 export const meta = () => ({
   charset: "utf-8",
@@ -26,11 +21,12 @@ export default function App() {
     <html lang="en">
       <head>
         <Meta />
+        <meta property="og:title" content="Vox Souls - Mint Yours Now" />
+        <meta property="og:image" content={og_img} />
         <Links />
       </head>
       <body className="bg-white">
         <Outlet />
-        {/* <ScrollRestoration /> */}
         <Scripts />
         <LiveReload />
       </body>

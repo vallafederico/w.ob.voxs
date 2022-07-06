@@ -98,7 +98,7 @@ function Slide({ handleIsIn, currentContent }) {
         <div>
           <h3 className="font-display leading-9">
             <span className="block">THE</span>
-            <span className="md:text-[3vw] text-[7vw] uppercase">
+            <span className="md:text-[3vw] text-[7vw] uppercase leading-4 md:leading-8">
               {currentContent.title}
             </span>
           </h3>
@@ -248,7 +248,7 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
           <div>
             <h3 className="font-display md:leading-8">
               <span className="block md:leading-8">THE</span>
-              <span className="md:text-[3vw] text-[5vw] uppercase">
+              <span className="md:text-[3vw] text-[5vw] uppercase leading-4 md:leading-8">
                 {currentContent.title}
               </span>
             </h3>

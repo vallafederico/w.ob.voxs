@@ -20,6 +20,7 @@ export default class extends PerspectiveCamera {
   }
 
   initEvents() {
+    if (this.isMobile) return;
     const wX = window.innerWidth,
       wY = window.innerHeight;
 

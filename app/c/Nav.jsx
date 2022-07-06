@@ -1,11 +1,32 @@
+import gsap from "gsap";
+import { useRef, useEffect } from "react";
 import { NavLink, Link } from "@remix-run/react";
 
 import { LogoVox } from "./sh/Svg";
 import { MintButton } from "./sh/Button";
 
-export default function Nav({ isAbout }) {
+export default function Nav({ isAbout, isIn = true }) {
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    gsap.set(navRef.current, { autoAlpha: 0 });
+  }, []);
+
+  useEffect(() => {
+    if (isIn) {
+      gsap.to(navRef.current, {
+        autoAlpha: 1,
+        duration: 1,
+        delay: 7,
+      });
+    }
+  }, [isIn]);
+
   return (
-    <nav className="Nav fixed text-black flex justify-between items-center w-screen px-10 pb-5 pt-10 z-[99] backdrop-blur-sm">
+    <nav
+      ref={navRef}
+      className="Nav fixed text-black flex justify-between items-center w-screen px-10 pb-5 pt-10 z-[99] backdrop-blur-sm"
+    >
       <NavLinks className="md:w-1/3" isAbout={isAbout} />
 
       <Link to="/" className="md:w-1/3 w-1/3 ">

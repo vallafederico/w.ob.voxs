@@ -58,7 +58,6 @@ export function MintUi({ childRef }) {
         ...v,
         selected: false,
       }));
-      console.log("setNfts", nfts);
       setNfts(nfts);
       setWalletAddress(address);
     }
@@ -91,12 +90,12 @@ export function MintUi({ childRef }) {
         {/* DYNAMIC */}
         <div className="flex flex-col justify-between grow">
           <div className="flex justify-end border-b mt-2">
-            {/* <button
+            <button
               className="text-xs uppercase p-4"
               onClick={() => selectAll()}
             >
               Select All
-            </button> */}
+            </button>
           </div>
 
           <div className="md:h-[40vh] h-full md:overflow-y-scroll overflow-auto mb-8 p-4 grid md:grid-cols-4 lg:grid-cols-6 gap-8">
@@ -150,9 +149,9 @@ function SoulUi({ content, onSelectionChange }) {
           #{content.tokenId}
         </p>
       </div>
-      <div className="absolute top-6 left-4 grid grid-flow-col items-center">
+      <div className="absolute top-12 left-8 grid grid-flow-col items-center">
         <img className="h-12 w-12" src={content.soul.image} alt="" />
-        <span className="text-black text-[.6em]">{content.soul.name}</span>
+        <span className="text-black text-[.8em]">{content.soul.name}</span>
       </div>
       <img className="" src={content.image} alt="" />
       <div className="w-1/2 md:w-full">

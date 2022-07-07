@@ -36,7 +36,6 @@ export async function getVOXs(walletAddress) {
   } else {
     console.error(result.error)
   }
-  console.log('getVoxs', flatData)
   return flatData;
 }
 

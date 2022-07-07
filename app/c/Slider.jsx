@@ -34,6 +34,12 @@ export default function Slider({ soulIndex, setSoulIndex, id, setSoulIn }) {
   useEffect(() => {
     animateSliderIn(sliderUiRef, slideContentRef, isIn);
     setSoulIn(isIn);
+
+    if (isIn) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
   }, [isIn]);
 
   // -- **** Slider Index
@@ -48,6 +54,17 @@ export default function Slider({ soulIndex, setSoulIndex, id, setSoulIn }) {
   const currentSoul = SLIDER_CONTENT.SOULS[slideIndex];
 
   //  modal open
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleModal = () => setModalOpen(!modalOpen);
+
+  useEffect(() => {
+    // console.log(modalOpen);
+    if (modalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
+  }, [modalOpen]);
 
   return (
     <div
@@ -67,54 +84,43 @@ export default function Slider({ soulIndex, setSoulIndex, id, setSoulIn }) {
         slideIndex={slideIndex}
         handleSlideIndex={handleSlideIndex}
         handleIsIn={handleIsIn}
+        handleModal={handleModal}
       />
-      {/* <SliderModalTrigger /> */}
+      <Modal isOpen={modalOpen} handleModal={handleModal} />
     </div>
   );
 }
 
-/**
- *  Modal
- */
-
-function SliderModalTrigger() {
-  const [modalOpen, setModalOpen] = useState(false);
-  // const [isOpen, setIsOpen] = useState(false);
-
-  console.log("modal", modalOpen);
-
-  return (
-    <>
-      {/* trigger */}
-      <button
-        onClick={() => setModalOpen(!modalOpen)}
-        className="absolute border2 top-0 flex justify-between text-xs bg-black text-red uppercase px-8 py-3 rounded-md"
-      >
-        <div>What Soul Will I Be?</div>
-        <div className="ml-3 bg-red text-black w-[1em] h-[1em] p-2 flex shrink-0 justify-center items-center rounded-[100%]">
-          ?
-        </div>
-      </button>
-      {/* <SliderModal modalOpen={modalOpen} /> */}
-    </>
-  );
-}
-
-function SliderModal({ modalOpen }) {
+// Modal
+function Modal({ isOpen, handleModal }) {
   return (
     <div
       className={`${
-        modalOpen ? "" : "hidden"
-      }bg-light absolute w-[100vw] h-[100vh] `}
+        isOpen ? "absolute" : "hidden"
+      } border-3  top-0 left-0 w-full h-full flex items-center justify-center`}
     >
-      MODAL
+      <div className="absolute w-full h-full bg-black blur-xl opacity-40"></div>
+
+      <div className="TextBox p-10 my-[10vh] bg-light rounded-lg md:w-2/3 lg:w-1/3 xl:w-1/4 relative">
+        <p className="text-red uppercase">Who Will You Be?</p>
+        <h3 className="font-display font-black text-6xl mb-9">THE 12 SOULS</h3>
+        <p className="font-light">
+          Every single Soul is different. No Soul is better or worse than
+          another. It’s all up to how you want to play in VOX Odyssey and who
+          you want to become in the VOXverse.
+        </p>
+        <button
+          onClick={() => handleModal()}
+          className="absolute top-5 right-5 w-8 h-8 rounded-[100%] bg-black text-white text-xs font-display"
+        >
+          X
+        </button>
+      </div>
     </div>
   );
 }
 
-/**
- *  END - Modal
- */
+// End Modal
 
 /**
  * Slides
@@ -288,7 +294,13 @@ function Slide({ handleIsIn, currentContent }) {
 /**
  * Slider UI
  */
-function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
+function SliderUi({
+  handleSlideIndex,
+  handleIsIn,
+  childRef,
+  currentContent,
+  handleModal,
+}) {
   // console.log("ui", currentContent);
   return (
     <div
@@ -301,7 +313,7 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
         <div className="flex justify-between grow gap-9 px-9 items-center">
           <SoulsIcon
             name={currentContent.title}
-            className="w-[5vw] sm:w-[15vw] md:w-[10vw] max-w-[150px] sm:block hidden"
+            className="w-[5vw] sm:w-[15vw] md:w-[10vw] xl:w-[7vw] max-w-[150px] sm:block hidden"
           />
           <div>
             <h3 className="font-display uppercase">
@@ -327,6 +339,21 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
         {/* Info - END */}
         <SliderArrow onClick={() => handleSlideIndex(true)} />
       </div>
+      <ModalTrigger handleModal={handleModal} />
+    </div>
+  );
+}
+
+function ModalTrigger({ handleModal }) {
+  return (
+    <div
+      onClick={() => handleModal()}
+      className="absolute text-xs uppercase text-red flex justify-between items-center bg-black p-3 rounded-t-xl translate-y-[-100%]"
+    >
+      <p>What VOX will I Be?</p>
+      <p className="ml-8 text-black bg-red w-[2em] h-[2em] flex items-center justify-center rounded-[100%]">
+        ?
+      </p>
     </div>
   );
 }

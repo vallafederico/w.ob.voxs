@@ -39,6 +39,7 @@ export function ConfirmMintButton({
   className,
   childRef,
   text = "Connect Wallet",
+  title = "Mint Yours",
   onClick,
 }) {
   return (
@@ -48,7 +49,7 @@ export function ConfirmMintButton({
       className={`bg-red text-white pt-4 pb-3 md:px-14  px-8 sm:px-2 rounded-lg tx-display uppercase font-display md:text-[1.2em] sm:text-[1em] text-[.8em] leading-[.8em] ${className}`}
     >
       <div className="">
-        Mint Yours
+        {title}
         <span className=" text-[.6em] font-sans hidden sm:block">{text}</span>
       </div>
     </Button>

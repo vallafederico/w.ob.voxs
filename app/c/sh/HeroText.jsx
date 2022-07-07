@@ -52,7 +52,7 @@ export default function HeroText({ isIn }) {
   }, [isIn]);
 
   return (
-    <div className="text-center">
+    <div className="text-center flex flex-col items-center">
       <h1 className="text-3xl text-center font-display md:mt-0 mt-8">
         <div ref={secTextRef} className="block overflow-hidden xl:text-[3vw]">
           <div className="inline-block relative">INTRODUCING</div>
@@ -73,7 +73,10 @@ export default function HeroText({ isIn }) {
         </div>
       </h1>
 
-      <p ref={thirdTextRef} className="font-sans lg:text-xl text-base">
+      <p
+        ref={thirdTextRef}
+        className="font-sans lg:text-xl text-base max-w-[60ch] text-red font-light"
+      >
         Breathe life into Avatars that DeFi, with Souls that change your stat
         gain and impact your adventures in-game.
       </p>

@@ -23,11 +23,11 @@ export default function TextBoxes() {
         <i>VOX Odyssey</i> and the <i>VOXverse</i> while gaining access to
         potential DeFi rewards. There are 12 Souls. Who will you be?
       </TextBox>
-      <TextBox content={textbox3} index={0}>
+      {/* <TextBox content={textbox3} index={0}>
         Every single Soul is different. No Soul is better or worse than another.
         It’s all up to how you want to play in VOX Odyssey and who you want to
         become in the VOXverse.
-      </TextBox>
+      </TextBox> */}
     </div>
   );
 }

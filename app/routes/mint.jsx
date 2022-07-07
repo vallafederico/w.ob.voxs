@@ -160,7 +160,7 @@ function SoulUi({ content, onSelectionChange }) {
             content.selected ? "text-light" : ""
           }`}
         >
-          #{content.name}
+          {content.name}
         </p>
       </div>
     </div>

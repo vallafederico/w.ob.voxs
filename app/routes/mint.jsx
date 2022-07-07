@@ -99,7 +99,7 @@ export function MintUi({ childRef }) {
             </button> */}
           </div>
 
-          <div className="md:h-[40vh] h-full md:overflow-y-scroll overflow-auto mb-8 p-4 grid md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="md:h-[40vh] h-full md:overflow-y-scroll overflow-auto mb-8 p-4 grid md:grid-cols-4 lg:grid-cols-6 gap-8">
             {nfts.map((it, i) => (
               <SoulUi
                 key={i}
@@ -139,7 +139,7 @@ function SoulUi({ content, onSelectionChange }) {
       }}
       className={`relative md:h-[20vh] h-[12vh] ${
         content.selected ? "bg-red" : ""
-      } rounded-md flex md:flex-col justify-between flex-row`}
+      } rounded-md flex md:flex-col justify-between flex-row p-6 `}
     >
       <div className="w-1/2 md:w-full">
         <p

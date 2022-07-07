@@ -1,11 +1,13 @@
 import { TEXTBOXES } from "~/src/content.js";
 
+const textbox3 = {
+  head: "THE 12 SOULS",
+  subHead: "WHO WILL YOU BE?",
+};
+
 export default function TextBoxes() {
   return (
     <div className="TextBoxes flex flex-col mb-[300vh]">
-      {/* {TEXTBOXES.map((box, i) => (
-        <TextBox key={i} index={i} content={box} />
-      ))} */}
       <TextBox content={TEXTBOXES[0]} index={0}>
         If there’s one great mystery in all the universes, metaverses, and
         multiverses, it’s the living Soul. A Soul shapes your VOX’s personality.
@@ -20,6 +22,11 @@ export default function TextBoxes() {
         play up the unique strengths of your VOX in games like{" "}
         <i>VOX Odyssey</i> and the <i>VOXverse</i> while gaining access to
         potential DeFi rewards. There are 12 Souls. Who will you be?
+      </TextBox>
+      <TextBox content={textbox3} index={0}>
+        Every single Soul is different. No Soul is better or worse than another.
+        It’s all up to how you want to play in VOX Odyssey and who you want to
+        become in the VOXverse.
       </TextBox>
     </div>
   );

@@ -1,7 +1,14 @@
-import { Links, LiveReload, Meta, Outlet, Scripts } from "@remix-run/react";
-
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+} from "@remix-run/react";
 import tailwindcss from "./styles/tailwind.css";
 import globalcss from "./styles/global.css";
+import {useEffect} from "react";
+import {startMoralis} from "./web3.helpers";
 
 import og_img from "~/src/img/Vox-Souls-Website.png";
 
@@ -17,6 +24,9 @@ export const links = () => [
 ];
 
 export default function App() {
+  useEffect(() => {
+    startMoralis();
+  }, []);
   return (
     <html lang="en">
       <head>

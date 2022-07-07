@@ -1,17 +1,18 @@
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 
-export function Button({ children, className, childRef = null }) {
+export function Button({ children, className, onClick, childRef = null }) {
   return (
-    <button ref={childRef} className={`Button cursor-pointer ${className}`}>
+    <button onClick={onClick} ref={childRef} className={`Button cursor-pointer ${className}`}>
       {children}
     </button>
   );
 }
 
-export function MintButton({ className, childRef, text = "Connect Wallet" }) {
+export function MintButton({ className, childRef, text = "Connect Wallet", onClick }) {
   return (
     <Button
+      onClick={onClick}
       childRef={childRef}
       className={`bg-red text-white pt-4 pb-3 md:px-14  px-8 rounded-lg tx-display uppercase font-display md:text-[1.2em] text-[1em] leading-[.8em] ${className}`}
     >

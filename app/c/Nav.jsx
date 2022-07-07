@@ -5,7 +5,7 @@ import { NavLink, Link } from "@remix-run/react";
 import { LogoVox } from "./sh/Svg";
 import { MintButton } from "./sh/Button";
 
-export default function Nav({ isAbout, isIn = true }) {
+export default function Nav({ isAbout, isMint = false, isIn = true }) {
   const navRef = useRef(null);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Nav({ isAbout, isIn = true }) {
       </Link>
 
       <div className="flex justify-end lg:w-1/3">
-        <MintButton />
+        {!isMint ? <MintButton /> : null}
       </div>
     </nav>
   );

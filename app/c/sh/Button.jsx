@@ -3,22 +3,53 @@ import { useEffect, useRef } from "react";
 
 export function Button({ children, className, onClick, childRef = null }) {
   return (
-    <button onClick={onClick} ref={childRef} className={`Button cursor-pointer ${className}`}>
+    <button
+      onClick={onClick}
+      ref={childRef}
+      className={`Button cursor-pointer ${className}`}
+    >
       {children}
     </button>
   );
 }
 
-export function MintButton({ className, childRef, text = "Connect Wallet", onClick }) {
+export function MintButton({
+  className,
+  childRef,
+  text = "Connect Wallet",
+  onClick,
+}) {
+  return (
+    <a href="/mint">
+      <Button
+        onClick={onClick}
+        childRef={childRef}
+        className={`bg-red text-white pt-4 pb-3 md:px-14  px-8 sm:px-2 rounded-lg tx-display uppercase font-display md:text-[1.2em] sm:text-[1em] text-[.8em] leading-[.8em] ${className}`}
+      >
+        <div className="">
+          Mint Yours
+          <span className=" text-[.6em] font-sans hidden sm:block">{text}</span>
+        </div>
+      </Button>
+    </a>
+  );
+}
+
+export function ConfirmMintButton({
+  className,
+  childRef,
+  text = "Connect Wallet",
+  onClick,
+}) {
   return (
     <Button
       onClick={onClick}
       childRef={childRef}
-      className={`bg-red text-white pt-4 pb-3 md:px-14  px-8 rounded-lg tx-display uppercase font-display md:text-[1.2em] text-[1em] leading-[.8em] ${className}`}
+      className={`bg-red text-white pt-4 pb-3 md:px-14  px-8 sm:px-2 rounded-lg tx-display uppercase font-display md:text-[1.2em] sm:text-[1em] text-[.8em] leading-[.8em] ${className}`}
     >
-      <div>
+      <div className="">
         Mint Yours
-        <span className="block text-[.6em] font-sans">{text}</span>
+        <span className=" text-[.6em] font-sans hidden sm:block">{text}</span>
       </div>
     </Button>
   );

@@ -11,7 +11,7 @@ import Slider from "~/c/Slider";
 
 import TextBoxes from "../c/TextBox";
 import Footer from "../c/Footer";
-import { LaunchCta, AdditionalCta } from "../c/Cta";
+import { LaunchCta, HomeAdditionalCta } from "../c/Cta";
 import Preloader from "../c/Preloader";
 import Canvas from "../gl/Canvas";
 import Sound from "../c/Sound";
@@ -116,7 +116,7 @@ export default function Index() {
                   <MintButton />
                 </LaunchCta>
               </Cont>
-              <AdditionalCta className="mt-[5vh]" />
+              <HomeAdditionalCta className="mt-[5vh]" />
             </Section>
 
             <Footer />

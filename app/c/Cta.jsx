@@ -44,7 +44,7 @@ export function LaunchCta({ className, children }) {
 export function AdditionalCta({ className }) {
   return (
     <div className={`flex justify-center ${className} mt-9`}>
-      <div className="md:flex md:flex-row flex-col min-h-[10vh] md:justify-between content-center items-center w-2/3 text-xs">
+      <div className="md:flex md:flex-row flex-col min-h-[10vh] md:justify-between content-center items-center md:w-2/3 text-xs">
         <div className="uppercase md:mb-0 mb-9 text-center">
           Discover more on{" "}
           <a
@@ -54,6 +54,29 @@ export function AdditionalCta({ className }) {
             rel="noreferrer"
           >
             collectvox.com
+          </a>
+        </div>
+        <a
+          href="https://opensea.io/collection/collectvoxtownstar"
+          target="_blank"
+          rel="noreferrer"
+          className="bg-black text-white py-3 px-8 rounded-xl md:my-0 my-6"
+        >
+          NOT A VOX HOLDER? GET YOURS ->
+        </a>
+      </div>
+    </div>
+  );
+}
+
+export function HomeAdditionalCta({ className }) {
+  return (
+    <div className={`flex justify-center ${className} mt-9`}>
+      <div className="md:flex md:flex-row flex-col min-h-[10vh] md:justify-between content-center items-center md:w-2/3 text-xs">
+        <div className="uppercase md:mb-0 mb-9 text-center">
+          Learn about{" "}
+          <a className="underline" href="/about">
+            Vox and Souls
           </a>
         </div>
         <a

@@ -5,7 +5,9 @@ export function Svg({ children, className }) {
 // --------- VOX svg logo
 export function LogoVox({ className }) {
   return (
-    <Svg className={`Logo Vox max-w-[100px] fill-red ${className}`}>
+    <Svg
+      className={`Logo Vox sm:max-w-[100px] max-w-[70px] fill-red ${className}`}
+    >
       <svg
         version="1.1"
         id="Layer_1"

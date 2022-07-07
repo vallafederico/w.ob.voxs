@@ -47,6 +47,8 @@ export default function Slider({ soulIndex, setSoulIndex, id, setSoulIn }) {
   // -- **** Current Content
   const currentSoul = SLIDER_CONTENT.SOULS[slideIndex];
 
+  //  modal open
+
   return (
     <div
       id={id}
@@ -66,9 +68,53 @@ export default function Slider({ soulIndex, setSoulIndex, id, setSoulIn }) {
         handleSlideIndex={handleSlideIndex}
         handleIsIn={handleIsIn}
       />
+      {/* <SliderModalTrigger /> */}
     </div>
   );
 }
+
+/**
+ *  Modal
+ */
+
+function SliderModalTrigger() {
+  const [modalOpen, setModalOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+
+  console.log("modal", modalOpen);
+
+  return (
+    <>
+      {/* trigger */}
+      <button
+        onClick={() => setModalOpen(!modalOpen)}
+        className="absolute border2 top-0 flex justify-between text-xs bg-black text-red uppercase px-8 py-3 rounded-md"
+      >
+        <div>What Soul Will I Be?</div>
+        <div className="ml-3 bg-red text-black w-[1em] h-[1em] p-2 flex shrink-0 justify-center items-center rounded-[100%]">
+          ?
+        </div>
+      </button>
+      {/* <SliderModal modalOpen={modalOpen} /> */}
+    </>
+  );
+}
+
+function SliderModal({ modalOpen }) {
+  return (
+    <div
+      className={`${
+        modalOpen ? "" : "hidden"
+      }bg-light absolute w-[100vw] h-[100vh] `}
+    >
+      MODAL
+    </div>
+  );
+}
+
+/**
+ *  END - Modal
+ */
 
 /**
  * Slides
@@ -281,33 +327,9 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
         {/* Info - END */}
         <SliderArrow onClick={() => handleSlideIndex(true)} />
       </div>
-      <SliderModalTrigger />
     </div>
   );
 }
-
-function SliderModalTrigger() {
-  // const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <>
-      {/* trigger */}
-      <button
-        // onClick={() => setIsOpen(!isOpen)}
-        className="absolute border2 top-0 translate-y-[-100%] flex justify-between text-xs bg-black text-red uppercase px-8 py-3 rounded-t-md"
-      >
-        <div>What Vox Will I Be?</div>
-        <div className="ml-3 bg-red text-black w-[1em] h-[1em] p-2 flex shrink-0 justify-center items-center rounded-[100%]">
-          ?
-        </div>
-      </button>
-    </>
-  );
-}
-
-// function SliderModal() {
-//   return <div className="bg-light fixed w-[100vw] h-[100vh]">MODAL</div>;
-// }
 
 /*** Utils */
 function SliderArrow({ isBack = false, onClick = false }) {

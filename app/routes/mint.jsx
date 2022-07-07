@@ -45,7 +45,7 @@ export function MintUi({ childRef }) {
     setNfts(
       nfts.map((v) => ({
         ...v,
-        selected: true,
+        selected: !v.soul,
       }))
     );
   };
@@ -58,7 +58,6 @@ export function MintUi({ childRef }) {
         ...v,
         selected: false,
       }));
-      console.log("setNfts", nfts);
       setNfts(nfts);
       setWalletAddress(address);
     }
@@ -91,12 +90,12 @@ export function MintUi({ childRef }) {
         {/* DYNAMIC */}
         <div className="flex flex-col justify-between grow">
           <div className="flex justify-end border-b mt-2">
-            {/* <button
+            <button
               className="text-xs uppercase p-4"
               onClick={() => selectAll()}
             >
               Select All
-            </button> */}
+            </button>
           </div>
 
           <div className="text-white flex flex-col md:flex-row md:flex-wrap gap-4 max-h-[45vh] md:max-h-[55vh] overflow-y-scroll">
@@ -106,7 +105,7 @@ export function MintUi({ childRef }) {
                 index={i}
                 content={it}
                 onSelectionChange={(selected) => {
-                  it.selected = selected;
+                  it.selected = !it.soul && selected;
                   setNfts(
                     nfts.map((v) => ({
                       ...v,
@@ -122,7 +121,10 @@ export function MintUi({ childRef }) {
               text="Selected Souls"
               title="Mint Now"
               onClick={async () => {
-                mint(nfts, walletAddress);
+                mint(
+                  nfts.filter((n) => n.selected),
+                  walletAddress
+                );
               }}
             />
           </div>
@@ -137,6 +139,7 @@ function SoulUi({ content, onSelectionChange }) {
     <div
       onClick={() => {
         onSelectionChange(!content.selected);
+        console.log("clicked", content.selected);
       }}
       className={`${
         content.selected ? "bg-red" : ""

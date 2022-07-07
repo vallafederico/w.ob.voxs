@@ -36,7 +36,6 @@ export async function getVOXs(walletAddress) {
   } else {
     console.error(result.error)
   }
-  console.log('getVoxs', flatData)
   return flatData;
 }
 
@@ -77,14 +76,16 @@ async function signNfts(nfts, walletAddress) {
 }
 
 export async function mint(nfts = [], walletAddress) {
+  if (!nfts.length) return;
+
   const signatureData = await signNfts(nfts, walletAddress);
   const multiple = nfts.length > 1;
-  const functionName = multiple ? 'batchMintLunchboxes' : 'mintLunchbox';
+  const name = multiple ? 'batchMintLunchboxes' : 'mintLunchbox';
 
   const contractOptions = {
     chain: MORALIS_CHAIN,
     contractAddress: SOULS_MINT_CONTRACT,
-    functionName,
+    functionName: name,
     abi: [
       {
         inputs: inputs(multiple),

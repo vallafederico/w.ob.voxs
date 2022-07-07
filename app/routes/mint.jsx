@@ -1,14 +1,12 @@
 import indexcss from "../styles/index.css";
-import { useRef, useState } from "react";
-
+import {useRef, useEffect, useState} from "react";
 import Main from "~/c/sh/Main";
 import Section from "~/c/sh/Section.jsx";
 import Cont from "~/c/sh/Cont.jsx";
-import { MintButton } from "~/c/sh/Button.jsx";
+import {MintButton} from "~/c/sh/Button.jsx";
+import {getVOXs, getWalletAddress, mint} from "../web3.helpers";
 
-import { FAKE_API } from "~/src/content.js";
-
-export const links = () => [{ rel: "stylesheet", href: indexcss }];
+export const links = () => [{rel: "stylesheet", href: indexcss}];
 
 export default function Mint() {
   const mintRef = useRef(null);
@@ -37,20 +35,43 @@ export default function Mint() {
 /**
  * Mint UI
  */
-export function MintUi({ childRef }) {
-  const [selected, setSelected] = useState([]);
-  const selectAll = () => {};
+export function MintUi({childRef}) {
+  const [nfts, setNfts] = useState([]);
+  const [walletAddress, setWalletAddress] = useState('');
 
+  const selectAll = () => {
+    setNfts(nfts.map(v => ({
+      ...v,
+      selected: true
+    })))
+  };
+
+  useEffect(() => {
+    async function getNfts() {
+      const address = await getWalletAddress();
+      const vox = await getVOXs(address);
+      const nfts = vox.map(v => ({
+        ...v,
+        selected: false,
+      }));
+      console.log('setNfts', nfts)
+      setNfts(nfts);
+      setWalletAddress(address);
+    }
+
+    getNfts();
+  }, []);
   return (
     <Section
       childRef={childRef}
       className="MintUi fixed top-0 left-0 w-full h-full "
     >
-      <Cont className="h-full md:w-[90vw] w-[99vw] bg-black text-white rounded-xl px-12 pb-12 text-center flex flex-col">
+      <Cont
+        className="h-full md:w-[90vw] w-[99vw] bg-black text-white rounded-xl px-12 pb-12 text-center flex flex-col">
         {/* Header */}
         <div className="pb-12 pt-5 flex justify-between uppercase text-sm">
           <p>Mint Your Soul</p>
-          <p>IC + Adress</p>
+          <p>IC + Address</p>
         </div>
         {/* Body */}
         <div className="flex flex-col justify-center items-center">
@@ -67,17 +88,24 @@ export function MintUi({ childRef }) {
         {/* DYNAMIC */}
         <div className="flex flex-col justify-between grow">
           <div className="flex justify-end border-b">
-            <button className="text-xs uppercase p-4">Select All</button>
+            <button className="text-xs uppercase p-4" onClick={() => selectAll()}>Select All</button>
           </div>
 
           <div className="h-[40vh] overflow-y-scroll mb-8 p-4 grid md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {FAKE_API.map((it, i) => (
-              <SoulUi key={i} index={i} content={it} />
+            {nfts.map((it, i) => (
+              <SoulUi key={i} index={i} content={it} onSelectionChange={(selected) => {
+                it.selected = selected;
+                setNfts(nfts.map(v => ({
+                  ...v
+                })))
+              }} />
             ))}
           </div>
 
           <div>
-            <MintButton text="Mint Selected" />
+            <MintButton text="Mint Selected" onClick={async () => {
+              mint(nfts, walletAddress);
+            }} />
           </div>
         </div>
       </Cont>
@@ -85,23 +113,38 @@ export function MintUi({ childRef }) {
   );
 }
 
-function SoulUi({ content }) {
-  const [isSelected, setIsSelected] = useState(false);
+function SoulUi({content, onSelectionChange}) {
   return (
     <div
-      onClick={() => setIsSelected(!isSelected)}
-      className={`md:h-[20vh] h-[12vh] p-7 ${
-        isSelected ? "bg-red" : ""
+      onClick={() => {
+        onSelectionChange(!content.selected)
+      }}
+      className={`relative md:h-[20vh] h-[12vh] ${
+        content.selected ? "bg-red" : ""
       } rounded-md flex md:flex-col justify-between flex-row`}
     >
+      <div className="w-1/2 md:w-full">
+        <p
+          className={`text-xs mt-1 text-red ${content.selected ? "text-light" : ""}`}
+        >
+          #{content.tokenId}
+        </p>
+
+      </div>
+      <div className="absolute top-6 left-4 grid grid-flow-col items-center">
+        <img className="h-12 w-12" src={content.soul.image} alt="" />
+        <span className="text-black text-[.6em]">
+          {content.soul.name}
+        </span>
+      </div>
       <img className="" src={content.image} alt="" />
       <div className="w-1/2 md:w-full">
         <p
-          className={`text-xs mt-1 text-red ${isSelected ? "text-light" : ""}`}
+          className={`text-xs mt-1 text-red ${content.selected ? "text-light" : ""}`}
         >
-          #{content.number}
+          #{content.name}
         </p>
-        <h4>{content.tokenId}</h4>
+
       </div>
     </div>
   );

@@ -830,6 +830,10 @@ html {
   margin-top: 1.25rem;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .block {
   display: block;
 }
@@ -904,6 +908,10 @@ html {
 
 .h-\[50vh\] {
   height: 50vh;
+}
+
+.h-\[12vh\] {
+  height: 12vh;
 }
 
 .max-h-\[30vw\] {
@@ -1177,6 +1185,10 @@ html {
   gap: 1rem;
 }
 
+.overflow-auto {
+  overflow: auto;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1348,6 +1360,10 @@ html {
 
 .p-5 {
   padding: 1.25rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
 }
 
 .py-5 {
@@ -1778,6 +1794,10 @@ html {
     height: 40vh;
   }
 
+  .md\:h-\[20vh\] {
+    height: 20vh;
+  }
+
   .md\:max-h-\[55vh\] {
     max-height: 55vh;
   }
@@ -1822,6 +1842,10 @@ html {
     width: auto;
   }
 
+  .md\:w-\[90vw\] {
+    width: 90vw;
+  }
+
   .md\:min-w-\[10vw\] {
     min-width: 10vw;
   }
@@ -1830,8 +1854,16 @@ html {
     min-width: 40px;
   }
 
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:flex-col {
+    flex-direction: column;
   }
 
   .md\:flex-wrap {
@@ -1842,9 +1874,18 @@ html {
     justify-content: space-between;
   }
 
+  .md\:overflow-y-scroll {
+    overflow-y: scroll;
+  }
+
   .md\:px-14 {
     padding-left: 3.5rem;
     padding-right: 3.5rem;
+  }
+
+  .md\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 
   .md\:text-6xl {
@@ -1928,6 +1969,14 @@ html {
 
   .lg\:w-\[30\%\] {
     width: 30%;
+  }
+
+  .lg\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .lg\:p-3 {
+    padding: 0.75rem;
   }
 
   .lg\:pt-\[10vh\] {

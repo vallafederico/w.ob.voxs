@@ -67,9 +67,9 @@ export function MintUi({ childRef }) {
   return (
     <Section
       childRef={childRef}
-      className="MintUi fixed top-0 left-0 w-full h-full py-2 pb-[5vh] pt-[15vh]"
+      className="MintUi fixed top-0 left-0 w-full py-2 pb-[5vh] pt-[15vh]"
     >
-      <Cont className="h-full md:w-[90vw] bg-black text-white rounded-xl md:px-12 px-4 pb-12 text-center flex flex-col ">
+      <Cont className="bg-black rounded-xl text-center flex flex-col">
         {/* Header */}
         <div className="pb-12 pt-5 flex justify-between uppercase text-sm">
           {/* <p>Mint Your Soul</p>
@@ -98,7 +98,7 @@ export function MintUi({ childRef }) {
             </button>
           </div>
 
-          <div className="md:h-[40vh] h-full md:overflow-y-scroll overflow-auto mb-8 p-4 grid md:grid-cols-4 lg:grid-cols-6 gap-8">
+          <div className="text-white flex flex-col md:flex-row md:flex-wrap gap-4 max-h-[45vh] md:max-h-[55vh] overflow-y-scroll lg:p-3">
             {nfts.map((it, i) => (
               <SoulUi
                 key={i}
@@ -116,9 +116,10 @@ export function MintUi({ childRef }) {
             ))}
           </div>
 
-          <div>
+          <div className="my-4">
             <ConfirmMintButton
-              text="Mint Selected"
+              text="Selected Souls"
+              title="Mint Now"
               onClick={async () => {
                 mint(
                   nfts.filter((n) => n.selected),
@@ -137,35 +138,38 @@ function SoulUi({ content, onSelectionChange }) {
   return (
     <div
       onClick={() => {
+        console.log("before", content.selected);
         onSelectionChange(!content.selected);
+        // console.log("clicked", content.selected);
       }}
-      className={`relative md:h-[20vh] h-[12vh] ${
+      className={`${
         content.selected ? "bg-red" : ""
-      } rounded-md flex md:flex-col justify-between flex-row p-6 `}
+      } p-4 rounded-lg shrink-0 relative w-2/3 md:w-[40%] lg:w-[30%] xl:w-[20%] 2xl:w-[15%] mx-auto`}
     >
-      <div className="w-1/2 md:w-full">
-        <p
-          className={`text-xs mt-1 text-red ${
-            content.selected ? "text-light" : ""
-          }`}
-        >
+      {/* Vox Info */}
+      <div className="">
+        <img className="w-full rounded-lg" src={content.image} alt="" />
+        <p className={` ${content.selected ? "text-light" : "text-red"}`}>
+          #{content.name}
+        </p>
+        {/* <p className={` ${content.selected ? "text-light" : ""}`}>
           #{content.tokenId}
-        </p>
+        </p> */}
+
+        {/* Soul Info */}
+        <div className="flex items-center absolute top-4 px-4">
+          <img
+            className="w-[30px] rounded-lg"
+            src={content.soul.image}
+            alt=""
+          />
+          <span className="ml-3 text-xs text-black uppercase">
+            {content.soul.name}
+          </span>
+        </div>
+        {/* End Soul Info */}
       </div>
-      <div className="absolute top-12 left-8 grid grid-flow-col items-center">
-        <img className="h-12 w-12" src={content.soul.image} alt="" />
-        <span className="text-black text-[.8em]">{content.soul.name}</span>
-      </div>
-      <img className="" src={content.image} alt="" />
-      <div className="w-1/2 md:w-full">
-        <p
-          className={`text-xs mt-1 text-red ${
-            content.selected ? "text-light" : ""
-          }`}
-        >
-          {content.name}
-        </p>
-      </div>
+      {/* End Vox Info */}
     </div>
   );
 }

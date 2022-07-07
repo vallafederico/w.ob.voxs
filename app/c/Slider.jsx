@@ -114,7 +114,7 @@ function Slide({ handleIsIn, currentContent }) {
           className="md:h-[5vw] md:w-[5vw] h-[6vw] w-[6vw] min-h-[50px] min-w-[50px] hidden md:block"
         />
         <button
-          className="bg-black text-white rounded-[100%] leading-[0px] w-8 h-8 flex justify-center items-center uppercase text-xs"
+          className="bg-black text-white rounded-[100%] leading-[0px] w-8 h-8 shrink-0 flex justify-center items-center uppercase text-xs"
           onClick={() => {
             handleIsIn();
             resetCurrent();
@@ -247,9 +247,9 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
   return (
     <div
       ref={childRef}
-      className="SlideUi absolute w-full h-[15vh] md:bottom-0 bottom-[5vh] flex justify-center"
+      className="SlideUi absolute w-full h-[15vh] md:bottom-0 bottom-[5vh] flex justify-center "
     >
-      <div className="xl:w-1/2 md:w-4/5 w-full bg-light rounded-2xl flex items-center justify-between p-8">
+      <div className="xl:w-1/2 md:w-4/5 w-full bg-light rounded-2xl flex items-center justify-between px-6 py-8">
         <SliderArrow onClick={() => handleSlideIndex(false)} isBack="true" />
         {/* Info - START */}
         <div className="flex justify-between grow gap-9 px-9 items-center">
@@ -272,7 +272,7 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
             </h4>
           </div>
           <button
-            className="bg-black text-white rounded-md p-3 uppercase md:text-xs  text-[.6em]"
+            className="bg-black text-white rounded-md p-2 uppercase md:text-xs  text-[.6em]"
             onClick={() => handleIsIn()}
           >
             Discover
@@ -281,9 +281,33 @@ function SliderUi({ handleSlideIndex, handleIsIn, childRef, currentContent }) {
         {/* Info - END */}
         <SliderArrow onClick={() => handleSlideIndex(true)} />
       </div>
+      <SliderModalTrigger />
     </div>
   );
 }
+
+function SliderModalTrigger() {
+  // const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      {/* trigger */}
+      <button
+        // onClick={() => setIsOpen(!isOpen)}
+        className="absolute border2 top-0 translate-y-[-100%] flex justify-between text-xs bg-black text-red uppercase px-8 py-3 rounded-t-md"
+      >
+        <div>What Vox Will I Be?</div>
+        <div className="ml-3 bg-red text-black w-[1em] h-[1em] p-2 flex shrink-0 justify-center items-center rounded-[100%]">
+          ?
+        </div>
+      </button>
+    </>
+  );
+}
+
+// function SliderModal() {
+//   return <div className="bg-light fixed w-[100vw] h-[100vh]">MODAL</div>;
+// }
 
 /*** Utils */
 function SliderArrow({ isBack = false, onClick = false }) {

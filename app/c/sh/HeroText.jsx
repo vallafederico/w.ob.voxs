@@ -15,8 +15,8 @@ export default function HeroText({ isIn }) {
       y: "300%",
       autoAlpha: 0,
     });
-    gsap.set(thirdTextRef.current.children, {
-      opacity: 0,
+    gsap.set(thirdTextRef.current, {
+      autoAlpha: 0,
     });
   }, []);
 
@@ -44,9 +44,9 @@ export default function HeroText({ isIn }) {
       },
     });
 
-    gsap.to(thirdTextRef.current.children, {
-      opacity: 1,
-      delay: 18,
+    gsap.to(thirdTextRef.current, {
+      autoAlpha: 1,
+      delay: 8,
       duration: 1.2,
     });
   }, [isIn]);
@@ -73,7 +73,7 @@ export default function HeroText({ isIn }) {
         </div>
       </h1>
 
-      <p ref={thirdTextRef} className="font-sans text-xl">
+      <p ref={thirdTextRef} className="font-sans lg:text-xl text-base">
         Breathe life into Avatars that DeFi, with Souls that change your stat
         gain and impact your adventures in-game.
       </p>

@@ -58,6 +58,10 @@ body::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }
 
+.overflow-x-auto::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
 /* ------- Animation */
 .an-scroller > div {
   animation: scroller 50s linear infinite;

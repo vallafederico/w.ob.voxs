@@ -76,6 +76,8 @@ async function signNfts(nfts, walletAddress) {
 }
 
 export async function mint(nfts = [], walletAddress) {
+  if (!nfts.length) return;
+
   const signatureData = await signNfts(nfts, walletAddress);
   const multiple = nfts.length > 1;
   const name = multiple ? 'batchMintLunchboxes' : 'mintLunchbox';

@@ -45,7 +45,7 @@ export function MintUi({ childRef }) {
     setNfts(
       nfts.map((v) => ({
         ...v,
-        selected: true,
+        selected: !v.soul,
       }))
     );
   };
@@ -105,7 +105,7 @@ export function MintUi({ childRef }) {
                 index={i}
                 content={it}
                 onSelectionChange={(selected) => {
-                  it.selected = selected;
+                  it.selected = !it.soul && selected;
                   setNfts(
                     nfts.map((v) => ({
                       ...v,
@@ -120,7 +120,7 @@ export function MintUi({ childRef }) {
             <ConfirmMintButton
               text="Mint Selected"
               onClick={async () => {
-                mint(nfts, walletAddress);
+                mint(nfts.filter(n => n.selected), walletAddress);
               }}
             />
           </div>

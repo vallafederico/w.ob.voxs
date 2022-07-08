@@ -23,15 +23,13 @@ varying vec2 v_uv;
 const vec3 sky_dark = vec3(0.058823529411764705, 0.10196078431372549, 0.3568627450980392);
 const vec3 sky_light = vec3(0.3215686274509804, 0.5529411764705883, 0.7725490196078432);
 const vec3 col_bg = vec3(0.9176470588235294, 0.9098039215686274, 0.8705882352941177);
+const vec3 col_black = vec3(0., 0., 0.);
 
 
 void main() {
-  vec3 col1 = vec3(v_uv, 0.);
-  vec3 col2 = vec3(v_uv, 1.);
-
   float mask = distance(v_uv.y, 0.);
   mask = smoothstep(1., .5, mask);
-  float finishController = smoothstep(.5, 1., u_daylight);
+  float finishController = smoothstep(.8, 1., u_daylight);
   float finalMask = smoothstep(0., 1., mask * u_daylight + finishController);
   
   vec3 final = mix(sky_dark, sky_light, finalMask);
@@ -51,8 +49,11 @@ void main() {
   final += sun;
   final = mix(col_bg, final, y_grad);
 
+  // final mix with black
+  float final_mix = smoothstep(0., .3, u_daylight);
+  vec3 mixed_final = mix(col_black, final, final_mix);
 
-  gl_FragColor = vec4(final, 1.);
+  gl_FragColor = vec4(mixed_final, 1.);
 }
 
 `;

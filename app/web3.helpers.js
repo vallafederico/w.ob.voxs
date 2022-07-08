@@ -1,21 +1,23 @@
 /* eslint-disable no-undef */
-import {providers} from 'ethers';
-import Moralis from 'moralis';
+import { providers } from "ethers";
+import Moralis from "moralis";
 
 export async function getWalletAddress() {
-  await ethereum?.request({method: 'eth_requestAccounts'});
+  await ethereum?.request({ method: "eth_requestAccounts" });
   const provider = new providers.Web3Provider(ethereum);
   const [address] = await provider.listAccounts();
   return address;
 }
 
 // TODO these need to change for production
-export const WALLET_API_URL = 'https://tcnnusd5pe.execute-api.us-east-1.amazonaws.com/staging'
-export const MORALIS_SERVER_URL = 'https://tfbny1ckxvhi.usemoralis.com:2053/server';
-export const SOULS_APP_ID = '1TAJesc6sdg4cBPl9NtNxTFryCFbFVo9GWmjcX8B';
-export const IPFS_GATEWAY = 'https://vox.mypinata.cloud/ipfs/'
-export const MORALIS_CHAIN = 'rinkeby'
-export const SOULS_MINT_CONTRACT = '0xe078e649026c72ff9372e38097edfed100b7d501';
+export const WALLET_API_URL =
+  "https://tcnnusd5pe.execute-api.us-east-1.amazonaws.com/staging";
+export const MORALIS_SERVER_URL =
+  "https://tfbny1ckxvhi.usemoralis.com:2053/server";
+export const SOULS_APP_ID = "1TAJesc6sdg4cBPl9NtNxTFryCFbFVo9GWmjcX8B";
+export const IPFS_GATEWAY = "https://vox.mypinata.cloud/ipfs/";
+export const MORALIS_CHAIN = "rinkeby";
+export const SOULS_MINT_CONTRACT = "0xe078e649026c72ff9372e38097edfed100b7d501";
 
 export async function getVOXs(walletAddress) {
   if (!walletAddress) {
@@ -25,27 +27,29 @@ export async function getVOXs(walletAddress) {
   let result = await fetch(
     `${WALLET_API_URL}/api/wallet?address=${walletAddress}`,
     {
-      method: 'GET',
-    },
+      method: "GET",
+    }
   ).then((response) => response.json());
-  let flatData = []
+  let flatData = [];
   if (result && !result.error) {
     for (const key in result) {
-      result[key].forEach((d) => flatData.push({...d, contract_type: "ERC721"}))
+      result[key].forEach((d) =>
+        flatData.push({ ...d, contract_type: "ERC721" })
+      );
     }
   } else {
-    console.error(result.error)
+    console.error(result.error);
   }
   return flatData;
 }
 
 export const TokenTypeStrings = {
   ERC1155_STRING: "ERC1155",
-  ERC721_STRING: "ERC721"
-}
+  ERC721_STRING: "ERC721",
+};
 
-function rewriteIpfsUrl(url = '') {
-  return url.replace('ipfs://', IPFS_GATEWAY);
+function rewriteIpfsUrl(url = "") {
+  return url.replace("ipfs://", IPFS_GATEWAY);
 }
 
 export function normalizeUri(uri) {
@@ -62,16 +66,18 @@ async function signNfts(nfts, walletAddress) {
   try {
     const body = JSON.stringify({
       address: walletAddress,
-      tokenInfo: nfts.map(({ tokenId, tokenAddress }) => ({ tokenId: tokenId.toString(), tokenAddress }))
+      tokenInfo: nfts.map(({ tokenId, tokenAddress }) => ({
+        tokenId: tokenId.toString(),
+        tokenAddress,
+      })),
     });
-    return await fetch(
-      `${WALLET_API_URL}/api/sign`,
-      {
-        headers: {'content-type': 'application/json'},
-        method: 'POST',
-        body }).then((response) => response.json());
+    return await fetch(`${WALLET_API_URL}/api/sign`, {
+      headers: { "content-type": "application/json" },
+      method: "POST",
+      body,
+    }).then((response) => response.json());
   } catch (e) {
-    console.log('signNfts error', e)
+    console.log("signNfts error", e);
   }
 }
 
@@ -80,7 +86,7 @@ export async function mint(nfts = [], walletAddress) {
 
   const signatureData = await signNfts(nfts, walletAddress);
   const multiple = nfts.length > 1;
-  const name = multiple ? 'batchMintLunchboxes' : 'mintLunchbox';
+  const name = multiple ? "batchMintLunchboxes" : "mintLunchbox";
 
   const contractOptions = {
     chain: MORALIS_CHAIN,
@@ -100,73 +106,77 @@ export async function mint(nfts = [], walletAddress) {
   };
 
   await Moralis.enableWeb3();
-  await Moralis.executeFunction(contractOptions)
+  await Moralis.executeFunction(contractOptions);
 }
 
-function params(walletAddress, multiple, {signature, tokens}, nfts) {
+function params(walletAddress, multiple, { signature, tokens }, nfts) {
   return {
     account: walletAddress,
-    id: multiple ? nfts.map(o => o.tokenId) : nfts[0].tokenId,
-    _contract: multiple ? nfts.map(o => o.tokenAddress) : nfts[0].tokenAddress,
+    id: multiple ? nfts.map((o) => o.tokenId) : nfts[0].tokenId,
+    _contract: multiple
+      ? nfts.map((o) => o.tokenAddress)
+      : nfts[0].tokenAddress,
     mintTime: multiple ? tokens.map((t) => t.mintedTime) : tokens[0].mintedTime,
-    sig: signature
-  }
+    sig: signature,
+  };
 }
 
 function inputs(multiple) {
-  return multiple ? [
-    {
-      "internalType": "address",
-      "name": "account",
-      "type": "address"
-    },
-    {
-      "internalType": "address[]",
-      "name": "_contract",
-      "type": "address[]"
-    },
-    {
-      "internalType": "uint256[]",
-      "name": "id",
-      "type": "uint256[]"
-    },
-    {
-      "internalType": "uint256[]",
-      "name": "mintTime",
-      "type": "uint256[]"
-    },
-    {
-      "internalType": "bytes",
-      "name": "sig",
-      "type": "bytes"
-    }
-  ] : [
-    {
-      "internalType": "address",
-      "name": "account",
-      "type": "address"
-    },
-    {
-      "internalType": "address",
-      "name": "_contract",
-      "type": "address"
-    },
-    {
-      "internalType": "uint256",
-      "name": "id",
-      "type": "uint256"
-    },
-    {
-      "internalType": "uint256",
-      "name": "mintTime",
-      "type": "uint256"
-    },
-    {
-      "internalType": "bytes",
-      "name": "sig",
-      "type": "bytes"
-    }
-  ]
+  return multiple
+    ? [
+        {
+          internalType: "address",
+          name: "account",
+          type: "address",
+        },
+        {
+          internalType: "address[]",
+          name: "_contract",
+          type: "address[]",
+        },
+        {
+          internalType: "uint256[]",
+          name: "id",
+          type: "uint256[]",
+        },
+        {
+          internalType: "uint256[]",
+          name: "mintTime",
+          type: "uint256[]",
+        },
+        {
+          internalType: "bytes",
+          name: "sig",
+          type: "bytes",
+        },
+      ]
+    : [
+        {
+          internalType: "address",
+          name: "account",
+          type: "address",
+        },
+        {
+          internalType: "address",
+          name: "_contract",
+          type: "address",
+        },
+        {
+          internalType: "uint256",
+          name: "id",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "mintTime",
+          type: "uint256",
+        },
+        {
+          internalType: "bytes",
+          name: "sig",
+          type: "bytes",
+        },
+      ];
 }
 
 let localStorage = undefined;
@@ -175,27 +185,27 @@ if (typeof window !== "undefined") {
 }
 
 const nftStorageKey = ({ tokenId }) => {
-  return `pending_token_${tokenId}`
-}
+  return `pending_token_${tokenId}`;
+};
 
 export function mapPending(nfts) {
-  return nfts.map(n => {
-    let pending = JSON.parse(localStorage.getItem(nftStorageKey(n)) ?? 'false')
+  return nfts.map((n) => {
+    let pending = JSON.parse(localStorage.getItem(nftStorageKey(n)) ?? "false");
     // if it has a soul, or it's been pending for more than 2 hours then pending = false
-    if (n.soul || (pending && ((new Date()).getTime() - pending) > 7200000)) {
+    if (n.soul || (pending && new Date().getTime() - pending > 7200000)) {
       pending = false;
-      localStorage.setItem(nftStorageKey(n), 'false');
+      localStorage.setItem(nftStorageKey(n), "false");
     }
     return {
       ...n,
-      pending
-    }
-  })
+      pending,
+    };
+  });
 }
 
 export function setPending(nfts) {
-  nfts.forEach(n => {
-    n.pending = (new Date()).getTime()
-    localStorage.setItem(nftStorageKey(n), JSON.stringify(n.pending))
-  })
+  nfts.forEach((n) => {
+    n.pending = new Date().getTime();
+    localStorage.setItem(nftStorageKey(n), JSON.stringify(n.pending));
+  });
 }

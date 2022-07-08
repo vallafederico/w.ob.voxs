@@ -168,3 +168,31 @@ function inputs(multiple) {
     }
   ]
 }
+
+let localStorage = undefined;
+if (typeof window !== "undefined") {
+  localStorage = window.localStorage;
+}
+
+const nftStorageKey = ({ tokenId }) => {
+  return `pending_token_${tokenId}`
+}
+
+export function mapPending(nfts) {
+  return nfts.map(n => {
+    let pending = JSON.parse(localStorage.getItem(nftStorageKey(n)) ?? 'false')
+    // 2 hour timeout
+    if (pending && ((new Date()).getTime() - pending) > 7200000) {
+      pending = false;
+      localStorage.setItem(nftStorageKey(n), 'false');
+    }
+    return {
+      ...n,
+      pending
+    }
+  })
+}
+
+export function setPending(nfts) {
+  nfts.forEach(n => localStorage.setItem(nftStorageKey(n), JSON.stringify((new Date()).getTime())))
+}

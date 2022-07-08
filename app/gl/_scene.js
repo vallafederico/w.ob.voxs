@@ -7,6 +7,7 @@ import DragonMaterial from "./mat/dragon";
 import ShelfMaterial from "./mat/shelf";
 import CaptainMaterial from "./mat/dragon";
 import SoulMaterial from "./mat/soul";
+import HoleMaterial from "./mat/hole";
 // import gsap from "gsap";
 
 import Rig from "./rig";
@@ -95,11 +96,7 @@ export default class extends Scene {
         if (o.name === "Captain") o.material = this.capMat;
         if (o.name === "white_hole") {
           this.wormEnd = o;
-          o.material = new MeshBasicMaterial({
-            color: 0xffffff,
-            transparent: true,
-            opacity: 1,
-          });
+          o.material = new HoleMaterial();
         }
 
         // souls

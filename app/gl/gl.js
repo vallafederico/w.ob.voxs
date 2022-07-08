@@ -251,8 +251,7 @@ export default class extends Emitter {
       this.scene.rig.ctaProgress = this.scroll.scroller.cta;
       this.scene.sky.position.y = this.scroll.scroller.step * 200;
 
-      this.scene.wormEnd.material.opacity =
-        1.5 - (this.scroll.scroller.step + 1);
+      this.scene.wormEnd.material.open = this.scroll.scroller.step;
     }
 
     this.post?.isActive

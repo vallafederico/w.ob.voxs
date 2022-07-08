@@ -17,8 +17,9 @@ export function Newsletter({ formData }) {
 
 function SuccessMessage({ text = "Subscribed Successfully!", subText = "" }) {
   return (
-    <div className="py-2 my-5 text-red font-display">
-      {text} <span className="block font-sans uppercase">{subText}</span>
+    <div className="py-2 my-5 text-red font-display text-center">
+      {text}{" "}
+      <span className="block font-sans uppercase text-white">{subText}</span>
     </div>
   );
 }
@@ -38,7 +39,7 @@ function FormToSub() {
         </button>
       </div>
       <div className="flex my-4">
-        <input type="checkbox" />
+        <input type="checkbox" required="required" />
         <label className="block text-[.6em] max-w-[50ch] px-5">
           I agree to the terms and conditions and privacy policy and to receive
           promotional materials from and about VOX, and I understand that I can

@@ -1,3 +1,5 @@
+import { useActionData } from "@remix-run/react";
+
 import indexcss from "../styles/index.css";
 import { useState, useRef, useMemo, useEffect } from "react";
 import gsap from "gsap";
@@ -20,20 +22,24 @@ import HeroText from "../c/sh/HeroText";
 
 import { MintButton, AMintButton } from "~/c/sh/Button";
 
+import { subscribeHandler } from "~/signup/newsletter-signup.js";
+
 export const links = () => [{ rel: "stylesheet", href: indexcss }];
 
 /* -- Newsletter Signup */
+
 export async function action({ request }) {
   const formData = await request.formData();
   let email = formData.get("email");
 
   const sub = await subscribeHandler(email);
-  console.log(sub);
+  console.log("SUB", sub);
 
-  return null;
+  return { statusCode: sub.statusCode };
 }
 
 export default function Index() {
+  const formData = useActionData();
   // scroll bool for preloader
   const [canScroll, setCanScroll] = useState(false);
   const [preloaderOut, setPreloaderOut] = useState(false);
@@ -130,7 +136,7 @@ export default function Index() {
               <HomeAdditionalCta className="mt-[5vh]" />
             </Section>
 
-            <Footer />
+            <Footer formData={formData} />
           </div>
         </Main>
         <Sound />

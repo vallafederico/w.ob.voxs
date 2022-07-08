@@ -1,11 +1,14 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { Svg } from "./sh/Svg";
 import { Howl } from "howler";
-import track from "~/src/Vox_Loop2.mp3";
+// import track from "~/src/Vox_Loop2.mp3";
 
 export default function Sound() {
   const [isPlaying, setIsPlaying] = useState(false);
   const soundBars = useRef(null);
+
+  const track =
+    "https://tmpr.s3.eu-central-1.amazonaws.com/pr/voxs/asts/VoxSong_1minEdit.wav";
 
   const soundLoop = useMemo(
     () =>

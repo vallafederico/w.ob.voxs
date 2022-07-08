@@ -26,8 +26,8 @@ export function LaunchCta({ className, children }) {
           </h2>
           <h3 className="py-5">
             <p>
-              The first Souls released into the VOX realm are a limited-edition,
-              free mint of 10% of total supply.
+              The first Souls released into the VOX realm are a limited, free
+              mint of 10% of the total supply.
             </p>
           </h3>
           <div className="lg:hidden block">

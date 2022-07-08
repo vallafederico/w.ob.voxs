@@ -33,7 +33,7 @@ export default function Sound() {
       <SoundIcon
         isPlaying={isPlaying}
         childRef={soundBars}
-        className="md:min-w-[40px] min-w-[40px]"
+        className="md:w-[40px] w-[40px]"
       />
     </button>
   );

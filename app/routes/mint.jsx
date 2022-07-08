@@ -89,12 +89,8 @@ export function MintUi({ childRef }) {
         <div className="flex flex-col justify-center items-center">
           <div className="max-w-[55ch]">
             <h2 className="font-display text-red md:text-5xl text-3xl mb-4">
-              Select the VOX you want a soul to be minted for
+              Select the VOX you want to mint a Soul for.
             </h2>
-            <h3 className="text-xs hidden md:block font-thin">
-              Every VOX has it’s own soul. All souls are different and unique to
-              the VOX they belong to
-            </h3>
           </div>
         </div>
         {/* DYNAMIC */}

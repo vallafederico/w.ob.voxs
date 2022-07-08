@@ -106,8 +106,8 @@ function Modal({ isOpen, handleModal }) {
         <h3 className="font-display font-black text-6xl mb-9">THE 12 SOULS</h3>
         <p className="font-light">
           Every single Soul is different. No Soul is better or worse than
-          another. It’s all up to how you want to play in VOX Odyssey and who
-          you want to become in the VOXverse.
+          another. It’s all up to how you want to play in <i>VOX Odyssey</i> and
+          who you want to become in the <i>VOXverse.</i>
         </p>
         <button
           onClick={() => handleModal()}

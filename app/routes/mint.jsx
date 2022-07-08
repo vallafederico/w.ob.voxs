@@ -5,7 +5,7 @@ import Section from "~/c/sh/Section.jsx";
 import Cont from "~/c/sh/Cont.jsx";
 import { ConfirmMintButton } from "~/c/sh/Button.jsx";
 import Nav from "~/c/Nav.jsx";
-import { getVOXs, getWalletAddress, mint } from "../web3.helpers";
+import {getVOXs, getWalletAddress, mapPending, mint, setPending} from "../web3.helpers";
 
 export const links = () => [{ rel: "stylesheet", href: indexcss }];
 
@@ -45,7 +45,7 @@ export function MintUi({ childRef }) {
     setNfts(
       nfts.map((v) => ({
         ...v,
-        selected: !v.soul,
+        selected: !v.soul && !v.pending,
       }))
     );
   };
@@ -54,10 +54,12 @@ export function MintUi({ childRef }) {
     async function getNfts() {
       const address = await getWalletAddress();
       const vox = await getVOXs(address);
-      const nfts = vox.map((v) => ({
+      const nfts = mapPending(vox.map((v) => ({
         ...v,
         selected: false,
-      }));
+      })));
+
+      console.log('nfts', nfts)
       setNfts(nfts);
       setWalletAddress(address);
     }
@@ -105,7 +107,7 @@ export function MintUi({ childRef }) {
                 index={i}
                 content={it}
                 onSelectionChange={(selected) => {
-                  it.selected = !it.soul && selected;
+                  it.selected = !it.soul && !it.pending && selected;
                   setNfts(
                     nfts.map((v) => ({
                       ...v,
@@ -120,10 +122,12 @@ export function MintUi({ childRef }) {
             <ConfirmMintButton
               text="Mint Selected"
               onClick={async () => {
-                mint(
-                  nfts.filter((n) => n.selected),
+                const selected = nfts.filter((n) => n.selected);
+                await mint(
+                  selected,
                   walletAddress
                 );
+                setPending(selected);
               }}
             />
           </div>
@@ -139,14 +143,14 @@ function SoulUi({ content, onSelectionChange }) {
       onClick={() => {
         onSelectionChange(!content.selected);
       }}
-      className={`relative md:h-[20vh] h-[12vh] ${
-        content.selected ? "bg-red" : ""
+      className={`relative md:h-[25vh] h-[12vh] ${
+        content.selected || content.pending ? "bg-red" : ""
       } rounded-md flex md:flex-col justify-between flex-row p-6 `}
     >
       <div className="w-1/2 md:w-full">
         <p
           className={`text-xs mt-1 text-red ${
-            content.selected ? "text-light" : ""
+            content.selected || content.pending ? "text-light" : ""
           }`}
         >
           #{content.tokenId}
@@ -160,11 +164,17 @@ function SoulUi({ content, onSelectionChange }) {
       <div className="w-1/2 md:w-full">
         <p
           className={`text-xs mt-1 text-red ${
-            content.selected ? "text-light" : ""
+            content.selected || content.pending ? "text-light" : ""
           }`}
         >
           {content.name}
         </p>
+        {content.pending ?
+          <div className="absolute top-0 left-0 h-full w-full backdrop-brightness-50">
+            <div className="absolute top-28 left-8 mx-4 bg-white text-black p-8 h-8 uppercase rounded-2xl uppercase font-display drop-shadow-md grid place-content-center">
+              pending
+            </div>
+          </div> : null}
       </div>
     </div>
   );

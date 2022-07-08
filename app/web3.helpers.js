@@ -181,8 +181,8 @@ const nftStorageKey = ({ tokenId }) => {
 export function mapPending(nfts) {
   return nfts.map(n => {
     let pending = JSON.parse(localStorage.getItem(nftStorageKey(n)) ?? 'false')
-    // 2 hour timeout
-    if (pending && ((new Date()).getTime() - pending) > 7200000) {
+    // if it has a soul, or it's been pending for more than 2 hours then pending = false
+    if (n.soul || (pending && ((new Date()).getTime() - pending) > 7200000)) {
       pending = false;
       localStorage.setItem(nftStorageKey(n), 'false');
     }
@@ -194,5 +194,8 @@ export function mapPending(nfts) {
 }
 
 export function setPending(nfts) {
-  nfts.forEach(n => localStorage.setItem(nftStorageKey(n), JSON.stringify((new Date()).getTime())))
+  nfts.forEach(n => {
+    n.pending = (new Date()).getTime()
+    localStorage.setItem(nftStorageKey(n), JSON.stringify(n.pending))
+  })
 }

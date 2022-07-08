@@ -62,7 +62,7 @@ export function AdditionalCta({ className }) {
           rel="noreferrer"
           className="bg-black text-white py-3 px-8 rounded-xl md:my-0 my-6"
         >
-          NOT A VOX HOLDER? GET YOURS ->
+          NOT A VOX HOLDER? GET YOURS {"->"}
         </a>
       </div>
     </div>
@@ -80,12 +80,12 @@ export function HomeAdditionalCta({ className }) {
           </a>
         </div>
         <a
-          href="https://opensea.io/collection/collectvoxtownstar"
+          href="https://linktr.ee/thevoxverse"
           target="_blank"
           rel="noreferrer"
           className="bg-black text-white py-3 px-8 rounded-xl md:my-0 my-6"
         >
-          NOT A VOX HOLDER? GET YOURS ->
+          NOT A VOX HOLDER? GET YOURS {"->"}
         </a>
       </div>
     </div>

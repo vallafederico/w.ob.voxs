@@ -22,6 +22,17 @@ import { MintButton, AMintButton } from "~/c/sh/Button";
 
 export const links = () => [{ rel: "stylesheet", href: indexcss }];
 
+/* -- Newsletter Signup */
+export async function action({ request }) {
+  const formData = await request.formData();
+  let email = formData.get("email");
+
+  const sub = await subscribeHandler(email);
+  console.log(sub);
+
+  return null;
+}
+
 export default function Index() {
   // scroll bool for preloader
   const [canScroll, setCanScroll] = useState(false);

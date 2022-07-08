@@ -17,6 +17,14 @@ export const IPFS_GATEWAY = 'https://vox.mypinata.cloud/ipfs/'
 export const MORALIS_CHAIN = 'rinkeby'
 export const SOULS_MINT_CONTRACT = '0xe078e649026c72ff9372e38097edfed100b7d501';
 
+// production values
+// export const WALLET_API_URL = 'https://znhrmj4i87.execute-api.us-east-1.amazonaws.com/production'
+// export const MORALIS_SERVER_URL = 'https://kp1i5xthoppr.usemoralis.com:2053/server'
+// export const SOULS_APP_ID = '8Lrgly2KkyhpnIlQN0kJgUr2ue9YqCkNy1JwBUfS'
+// export const IPFS_GATEWAY = 'https://vox.mypinata.cloud/ipfs/'
+// export const MORALIS_CHAIN = 'mainnet'
+// export const SOULS_MINT_CONTRACT = '0xdffc286a5310d829783211035e47cdec12ddacca'
+
 export async function getVOXs(walletAddress) {
   if (!walletAddress) {
     walletAddress = await getWalletAddress();

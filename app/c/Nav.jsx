@@ -40,6 +40,10 @@ export default function Nav({ isAbout, isMint = false, isIn = true }) {
   );
 }
 
+// function Hamb() {
+//   return <div className="relative">|||</div>;
+// }
+
 function NavLinks({ className, isAbout = false }) {
   return (
     <ul

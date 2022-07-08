@@ -252,7 +252,7 @@ export default class extends Emitter {
       this.scene.sky.position.y = this.scroll.scroller.step * 200;
 
       this.scene.wormEnd.material.opacity =
-        1 - (this.scroll.scroller.step + 0.7);
+        1.5 - (this.scroll.scroller.step + 1);
     }
 
     this.post?.isActive

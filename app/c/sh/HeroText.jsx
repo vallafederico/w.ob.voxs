@@ -54,7 +54,10 @@ export default function HeroText({ isIn }) {
   return (
     <div className="text-center flex flex-col items-center">
       <h1 className="text-3xl text-center font-display md:mt-0 mt-8">
-        <div ref={secTextRef} className="block overflow-hidden xl:text-[3vw]">
+        <div
+          ref={secTextRef}
+          className="block overflow-hidden xl:text-[3vw] leading-[1.1em]"
+        >
           <div className="inline-block relative">INTRODUCING</div>
         </div>
 

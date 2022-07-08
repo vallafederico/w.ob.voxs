@@ -3,11 +3,11 @@ import { LogoGala } from "./sh/Svg";
 
 import { IconMedium, IconInstagram, IconTwitter, IconDiscord } from "./sh/Icon";
 
-export default function Footer() {
+export default function Footer({ formData }) {
   return (
     <footer className="Footer bg-black p-[5vw] text-white md:flex content-center justify-between items-center">
       <Credits />
-      <Newsletter />
+      <Newsletter formData={formData} />
       <ul className="md:min-w-[10vw] text-xs uppercase font-display">
         <li className="py-1">
           <a className="" href="https://www.instagram.com/gogalagames/">

@@ -1,4 +1,4 @@
-// import { useActionData } from "@remix-run/react";
+import { useActionData } from "@remix-run/react";
 import indexcss from "../styles/index.css";
 import { useState } from "react";
 
@@ -31,10 +31,11 @@ export async function action({ request }) {
   const sub = await subscribeHandler(email);
   console.log("SUB", sub);
 
-  return null;
+  return { statusCode: sub.statusCode };
 }
 
 export default function Index() {
+  const formData = useActionData();
   return (
     <Wrapper>
       <Nav isAbout="true" />
@@ -56,7 +57,7 @@ export default function Index() {
             </LaunchCta>
           </Cont>
         </Section>
-        <Footer />
+        <Footer formData={formData} />
       </Main>
     </Wrapper>
   );

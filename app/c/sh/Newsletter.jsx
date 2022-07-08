@@ -1,6 +1,29 @@
 import { Form } from "@remix-run/react";
 
-export function Newsletter() {
+export function Newsletter({ formData }) {
+  // console.log(formData);
+
+  const newsletterDisplay = () => {
+    if (formData?.statusCode === 200) {
+      return <SuccessMessage subText="You're In!" />;
+    } else if (formData?.statusCode === 500) {
+      return <SuccessMessage text="Already Subscribed." subText="You're In!" />;
+    }
+    return <FormToSub />;
+  };
+
+  return newsletterDisplay();
+}
+
+function SuccessMessage({ text = "Subscribed Successfully!", subText = "" }) {
+  return (
+    <div className="py-2 my-5 text-red font-display">
+      {text} <span className="block font-sans uppercase">{subText}</span>
+    </div>
+  );
+}
+
+function FormToSub() {
   return (
     <Form method="post" className="Newsletter py-2 my-5">
       <div>

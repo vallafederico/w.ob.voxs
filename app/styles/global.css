@@ -64,7 +64,7 @@ body::-webkit-scrollbar {
 
 /* ------- Animation */
 .an-scroller > div {
-  animation: scroller 50s linear infinite;
+  animation: scroller 150s linear infinite;
 }
 
 @keyframes scroller {

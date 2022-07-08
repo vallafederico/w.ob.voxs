@@ -62,10 +62,9 @@ export default class extends Emitter {
   async load() {
     console.time("loading");
     this.loaded = {};
-
     console.time("MODEL load");
+
     const [
-      model,
       tx_wormh,
       tx_clouds2,
       tx_clouds4,
@@ -75,7 +74,6 @@ export default class extends Emitter {
       tx_shelf,
       tx_capitan,
     ] = await Promise.all([
-      loadModel(LIB.model),
       loadTexture(TX.tx_wormh),
       loadTexture(TX.tx_clouds2),
       loadTexture(TX.tx_clouds4),
@@ -85,8 +83,12 @@ export default class extends Emitter {
       loadTexture(TX.tx_shelf),
       loadTexture(TX.tx_capitan),
     ]);
+
+    this.emit("loading", 30); // >>>>>>>>>>>> Emitting first loading Event (30%)
+
+    const [model] = await Promise.all([loadModel(LIB.model)]);
     console.timeEnd("MODEL load");
-    this.emit("loading", 60); // >>>>>>>>>>>> Emitting first loading Event (80%)
+    this.emit("loading", 82); // >>>>>>>>>>>> Emitting first loading Event (80%)
 
     // * Souls Loading
     console.time("SOULS load");

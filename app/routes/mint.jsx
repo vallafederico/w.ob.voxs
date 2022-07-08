@@ -5,7 +5,13 @@ import Section from "~/c/sh/Section.jsx";
 import Cont from "~/c/sh/Cont.jsx";
 import { ConfirmMintButton } from "~/c/sh/Button.jsx";
 import Nav from "~/c/Nav.jsx";
-import {getVOXs, getWalletAddress, mapPending, mint, setPending} from "../web3.helpers";
+import {
+  getVOXs,
+  getWalletAddress,
+  mapPending,
+  mint,
+  setPending,
+} from "../web3.helpers";
 
 export const links = () => [{ rel: "stylesheet", href: indexcss }];
 
@@ -15,7 +21,7 @@ export default function Mint() {
   return (
     <>
       <MintUi childRef={mintRef} />
-      <Nav isMint={true} />
+      <Nav isMint={true} isAbout={true} />
       <Main canScroll={true}>
         {/* <Section>
           <Cont></Cont>
@@ -54,12 +60,14 @@ export function MintUi({ childRef }) {
     async function getNfts() {
       const address = await getWalletAddress();
       const vox = await getVOXs(address);
-      const nfts = mapPending(vox.map((v) => ({
-        ...v,
-        selected: false,
-      })));
+      const nfts = mapPending(
+        vox.map((v) => ({
+          ...v,
+          selected: false,
+        }))
+      );
 
-      console.log('nfts', nfts)
+      console.log("nfts", nfts);
       setNfts(nfts);
       setWalletAddress(address);
     }
@@ -123,10 +131,7 @@ export function MintUi({ childRef }) {
               text="Mint Selected"
               onClick={async () => {
                 const selected = nfts.filter((n) => n.selected);
-                await mint(
-                  selected,
-                  walletAddress
-                );
+                await mint(selected, walletAddress);
                 setPending(selected);
               }}
             />
@@ -169,12 +174,13 @@ function SoulUi({ content, onSelectionChange }) {
         >
           {content.name}
         </p>
-        {content.pending ?
+        {content.pending ? (
           <div className="absolute top-0 left-0 h-full w-full backdrop-brightness-50">
             <div className="absolute top-28 left-8 mx-4 bg-white text-black p-8 h-8 uppercase rounded-2xl uppercase font-display drop-shadow-md grid place-content-center">
               pending
             </div>
-          </div> : null}
+          </div>
+        ) : null}
       </div>
     </div>
   );

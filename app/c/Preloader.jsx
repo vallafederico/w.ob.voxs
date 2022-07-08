@@ -52,10 +52,22 @@ export default function Preloader({ isLoading = 0, isFinished = false }) {
         ref={loadingText}
         className="font-display text-white md:text-[10vw] text-[20vw]"
       >
-        0
+        {isLoading}
       </p>
       <div className="Scroller an-scroller overflow-hidden text-white whitespace-nowrap flex justify-start items-start content-start font-light uppercase text-xs">
         <div>
+          {SLIDER_CONTENT.SOULS.map((soul, index) => (
+            <div key={index} className="inline px-8">
+              <p className="px-2 inline font-display">THE {soul.title}</p>
+              <p className="px-2 inline">{soul.tagline}</p>
+            </div>
+          ))}
+          {SLIDER_CONTENT.SOULS.map((soul, index) => (
+            <div key={index} className="inline px-8">
+              <p className="px-2 inline font-display">THE {soul.title}</p>
+              <p className="px-2 inline">{soul.tagline}</p>
+            </div>
+          ))}
           {SLIDER_CONTENT.SOULS.map((soul, index) => (
             <div key={index} className="inline px-8">
               <p className="px-2 inline font-display">THE {soul.title}</p>

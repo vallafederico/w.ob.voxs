@@ -11,12 +11,12 @@ import Footer from "../c/Footer";
 import { LaunchCta, AdditionalCta } from "../c/Cta";
 import { MintButton } from "../c/sh/Button";
 
-import img_boost from "~/src/img/boost.jpg";
-import img_destiny from "~/src/img/destiny.jpg";
-import img_metav from "~/src/img/metav.jpg";
-import img_playto from "~/src/img/playto.jpg";
-import img_utility from "~/src/img/utility.jpg";
-import img_whatis from "~/src/img/whatis.jpg";
+import img_boost from "~/src/img/highr/boost.png";
+import img_destiny from "~/src/img/highr/destiny.png";
+import img_metav from "~/src/img/highr/metav.png";
+import img_playto from "~/src/img/highr/playto.png";
+import img_utility from "~/src/img/highr/utility.png";
+import img_whatis from "~/src/img/highr/whatis.png";
 
 import { subscribeHandler } from "~/signup/newsletter-signup.js";
 // console.log(handler);

@@ -82,12 +82,12 @@
 #### LAST
 
 - [ ] add a nav bar on tablet and below
-- [ ] swap images for higher res - pending assets
-- [ ] image swap on about page
-- [ ] italicise popup words
-- [ ] mint copy - Select the VOX you want to mint a Soul for.
-- [ ] footer copy - All other logos and trademarks are property of their owners.
-- [ ] about page / tabs on mobile
+- [x] swap images for higher res - pending assets
+- [x] image swap on about page
+- [x] italicise popup words
+- [x] mint copy - Select the VOX you want to mint a Soul for.
+- [x] footer copy - All other logos and trademarks are property of their owners.
+- [x] about page / tabs on mobile
 - [ ] mozilla: slider arrow need max width
 
 # Development

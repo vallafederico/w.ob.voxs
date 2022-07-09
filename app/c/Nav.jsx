@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { NavLink, Link } from "@remix-run/react";
 
 import { LogoVox } from "./sh/Svg";
@@ -33,10 +33,128 @@ export default function Nav({ isAbout, isMint = false, isIn = true }) {
         <LogoVox className="lg:mx-auto" />
       </Link>
 
-      <div className="flex justify-end lg:w-1/3">
+      <div className="flex justify-end items-center lg:w-1/3">
         {!isMint ? <MintButton /> : null}
+        <MenuBtn />
       </div>
     </nav>
+  );
+}
+
+function MenuBtn() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const menuDisplay = () => {
+    if (!isOpen) {
+      return (
+        <div className="rotate-90 relative">
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+        </div>
+      );
+    } else {
+      return <div className="mx-1">X</div>;
+    }
+  };
+
+  return (
+    <div
+      onClick={() => setIsOpen(!isOpen)}
+      className="p-4 pr-0 flex relative font-display"
+    >
+      {menuDisplay()}
+      <Menu isOpen={isOpen} />
+    </div>
+  );
+}
+
+function Menu({ isOpen }) {
+  return (
+    <div
+      className={`${
+        isOpen ? "" : "hidden"
+      } absolute top-0 right-0 translate-y-[10vh] w-[50vw] z-20 bg-light p-4 rounded-lg drop-shadow-lg`}
+    >
+      <ul className="uppercase font-display">
+        <li className="my-3">
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? "hidden" : "")}
+          >
+            Home
+          </NavLink>
+        </li>
+        <li className="my-3">
+          <NavLink
+            to="/about"
+            className={({ isActive }) => (isActive ? "hidden" : "")}
+          >
+            About
+          </NavLink>
+        </li>
+        <li className="my-3">
+          <a
+            className="py-3 my-3"
+            target="_blank"
+            rel="noreferrer"
+            href="https://linktr.ee/thevoxverse"
+          >
+            Opensea
+          </a>
+        </li>
+        <li className="my-3">
+          <a
+            className="py-3 my-3"
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.instagram.com/gogalagames/"
+          >
+            Instagram
+          </a>
+        </li>
+        <li className="my-3">
+          <a
+            className="py-3 my-3"
+            target="_blank"
+            rel="noreferrer"
+            href="https://twitter.com/TheVOXverse"
+          >
+            Twitter
+          </a>
+        </li>
+        <li className="my-3">
+          <a
+            className="py-3 my-3"
+            target="_blank"
+            rel="noreferrer"
+            href="https://gogalagames.medium.com/"
+          >
+            Medium
+          </a>
+        </li>
+        <li className="my-3">
+          <a
+            className="py-3 my-3"
+            target="_blank"
+            rel="noreferrer"
+            href="https://discord.com/invite/JtnCNMFnnK"
+          >
+            Discord
+          </a>
+        </li>
+        <li className="my-3">
+          <a
+            className="py-3 my-3"
+            target="_blank"
+            rel="noreferrer"
+            href="https://linktr.ee/thevoxverse"
+          >
+            Collectvox.com
+          </a>
+        </li>
+      </ul>
+    </div>
   );
 }
 

@@ -63,7 +63,6 @@ function Credits() {
     <div className="Credits border2 text-xs ">
       <LogoGala className="fill-white xl:w-[7vw] lg:w-[15vw] md:w-[20vw] w-[50vw] pb-9" />
       <div>
-        <div className="py-5">© Gala Labs. All rights reserved.</div>
         <a
           href="https://collectvox.com/terms-and-conditions"
           target="_blank"
@@ -80,6 +79,12 @@ function Credits() {
           {" "}
           Privacy Policy{" "}
         </a>
+        <div className="py-5">
+          © Gala Labs. All rights reserved.
+          <span className="block text-xs font-light">
+            All other logos and trademarks are property of their owners.
+          </span>
+        </div>
       </div>
     </div>
   );

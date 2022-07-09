@@ -47,7 +47,7 @@ function MenuBtn() {
   const menuDisplay = () => {
     if (!isOpen) {
       return (
-        <div className="rotate-90 relative">
+        <div className="rotate-90 relative lg:hidden">
           <span>|</span>
           <span>|</span>
           <span>|</span>

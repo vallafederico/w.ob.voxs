@@ -81,7 +81,7 @@
 
 #### LAST
 
-- [ ] add a nav bar on tablet and below
+- [x] add a nav bar on tablet and below
 - [x] swap images for higher res - pending assets
 - [x] image swap on about page
 - [x] italicise popup words

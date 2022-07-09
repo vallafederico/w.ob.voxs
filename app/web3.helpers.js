@@ -200,7 +200,7 @@ export function mapPending(nfts) {
   return nfts.map((n) => {
     let pending = JSON.parse(localStorage.getItem(nftStorageKey(n)) ?? "false");
     // if it has a soul, or it's been pending for more than 2 hours then pending = false
-    if (n.soul || (pending && new Date().getTime() - pending > 7200000)) {
+    if (n.soul?.name || (pending && new Date().getTime() - pending > 7200000)) {
       pending = false;
       localStorage.setItem(nftStorageKey(n), "false");
     }

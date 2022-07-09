@@ -3,6 +3,9 @@ module.exports = {
   content: ["./app/**/*.{ts,tsx,jsx,js}"],
   theme: {
     extend: {
+      inset: {
+        "4.25rem": "4.25rem"
+      },
       fontFamily: {
         sans: ["Inter"],
         display: ["Work Sans"],

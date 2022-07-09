@@ -80,11 +80,6 @@ export function MintUi({ childRef }) {
       className="MintUi fixed top-0 left-0 w-full h-full py-2 pb-[5vh] pt-[15vh]"
     >
       <Cont className="h-full md:w-[90vw] bg-black text-white rounded-xl md:px-12 px-4 pb-12 text-center flex flex-col ">
-        {/* Header */}
-        <div className="pb-12 pt-5 flex justify-between uppercase text-sm">
-          {/* <p>Mint Your Soul</p>
-          <p>IC + Address</p> */}
-        </div>
         {/* Body */}
         <div className="flex flex-col justify-center items-center">
           <div className="max-w-[55ch]">
@@ -111,7 +106,7 @@ export function MintUi({ childRef }) {
                 index={i}
                 content={it}
                 onSelectionChange={(selected) => {
-                  it.selected = !it.soul && !it.pending && selected;
+                  it.selected = !it.soul?.name && !it.pending && selected;
                   setNfts(
                     nfts.map((v) => ({
                       ...v,
@@ -157,10 +152,10 @@ function SoulUi({ content, onSelectionChange }) {
           #{content.tokenId}
         </p>
       </div>
-      <div className="absolute top-12 left-8 grid grid-flow-col items-center">
+      {content?.soul?.name ? (<div className="absolute top-[4.25rem] left-8 grid grid-flow-col items-center">
         <img className="h-12 w-12" src={content.soul.image} alt="" />
         <span className="text-black text-[.8em]">{content.soul.name}</span>
-      </div>
+      </div> ): null}
       <img className="" src={content.image} alt="" />
       <div className="w-1/2 md:w-full">
         <p

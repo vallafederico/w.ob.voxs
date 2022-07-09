@@ -716,8 +716,8 @@ html {
   bottom: 0.5rem;
 }
 
-.top-\[4\.25rem\] {
-  top: 4.25rem;
+.top-12 {
+  top: 3rem;
 }
 
 .left-8 {
@@ -726,6 +726,10 @@ html {
 
 .top-28 {
   top: 7rem;
+}
+
+.left-10 {
+  left: 2.5rem;
 }
 
 .z-\[99\] {
@@ -819,12 +823,12 @@ html {
   margin-bottom: 2rem;
 }
 
-.mt-1 {
-  margin-top: 0.25rem;
-}
-
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
 }
 
 .mr-3 {
@@ -1122,6 +1126,10 @@ html {
   place-content: center;
 }
 
+.place-items-center {
+  place-items: center;
+}
+
 .content-center {
   align-content: center;
 }
@@ -1343,6 +1351,10 @@ html {
   padding: 1rem;
 }
 
+.p-12 {
+  padding: 3rem;
+}
+
 .p-6 {
   padding: 1.5rem;
 }
@@ -1544,6 +1556,11 @@ html {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-\[\.8em\] {

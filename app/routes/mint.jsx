@@ -1,19 +1,19 @@
 import indexcss from "../styles/index.css";
-import { useRef, useEffect, useState } from "react";
+import {useRef, useEffect, useState} from "react";
 import Main from "~/c/sh/Main";
 import Section from "~/c/sh/Section.jsx";
 import Cont from "~/c/sh/Cont.jsx";
-import { ConfirmMintButton } from "~/c/sh/Button.jsx";
+import {ConfirmMintButton} from "~/c/sh/Button.jsx";
 import Nav from "~/c/Nav.jsx";
 import {
   getVOXs,
   getWalletAddress,
   mapPending,
   mint,
-  setPending,
+  setPending, setupPendingPolling,
 } from "../web3.helpers";
 
-export const links = () => [{ rel: "stylesheet", href: indexcss }];
+export const links = () => [{rel: "stylesheet", href: indexcss}];
 
 export default function Mint() {
   const mintRef = useRef(null);
@@ -43,10 +43,12 @@ export default function Mint() {
 /**
  * Mint UI
  */
-export function MintUi({ childRef }) {
+export function MintUi({childRef}) {
   const [nfts, setNfts] = useState([]);
   const [walletAddress, setWalletAddress] = useState("");
+  const [showLoading, setShowLoading] = useState(true);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [timeoutHandle, setTimeoutHandle] = useState(undefined);
 
   const selectAll = () => {
     setNfts(
@@ -68,12 +70,22 @@ export function MintUi({ childRef }) {
         }))
       );
 
-      console.log("nfts", nfts);
+      console.log('nfts', nfts)
       setNfts(nfts);
       setWalletAddress(address);
+      setTimeoutHandle(setupPendingPolling(nfts, (nfts) => {
+        setNfts(nfts);
+      }))
+      setShowLoading(false);
     }
 
     getNfts();
+
+    return () => {
+      if (timeoutHandle) {
+        clearTimeout(timeoutHandle);
+      }
+    }
   }, []);
   return (
     <>
@@ -81,7 +93,8 @@ export function MintUi({ childRef }) {
         childRef={childRef}
         className="MintUi fixed top-0 left-0 w-full h-full py-2 pb-[5vh] pt-[15vh]"
       >
-        <Cont className="h-full md:w-[90vw] bg-black text-white rounded-xl md:px-12 px-4 pb-12 text-center flex flex-col ">
+        <Cont
+          className="h-full md:w-[90vw] bg-black text-white rounded-xl md:px-12 px-4 pb-12 text-center flex flex-col ">
           {/* Body */}
           <div className="flex flex-col justify-center items-center">
             <div className="max-w-[55ch]">
@@ -101,7 +114,8 @@ export function MintUi({ childRef }) {
               </button>
             </div>
 
-            <div className="md:h-[40vh] h-full md:overflow-y-scroll overflow-auto mb-8 p-4 grid md:grid-cols-4 lg:grid-cols-6 gap-8">
+            <div
+              className="h-[40vh] overflow-y-scroll mb-8 p-4 flex flex-wrap w-full">
               {nfts.map((it, i) => (
                 <SoulUi
                   key={i}
@@ -127,39 +141,59 @@ export function MintUi({ childRef }) {
                   await mint(selected, walletAddress);
                   await setPending(selected, walletAddress);
                   setShowConfirmDialog(true);
+                  setTimeoutHandle(setupPendingPolling(nfts, (nfts) => {
+                    setNfts(nfts);
+                  }));
                 }}
               />
             </div>
           </div>
         </Cont>
       </Section>
-      {showConfirmDialog ? (<>
-        <div className="h-screen w-screen backdrop-brightness-50 fixed left-0 top-0 grid justify-center place-items-center">
+
+      {showLoading ? (
+        <div
+          className="h-screen w-screen backdrop-brightness-50 fixed left-0 top-0 grid justify-center place-items-center">
           <div className="bg-white p-12 uppercase rounded-2xl font-display drop-shadow-md grid justify-center">
-            <h1 className="text-2xl">mint request successful</h1>
-            <button type="button" className="bg-red text-white pt-4 pb-3 md:px-14 mt-8 px-8 sm:px-2 rounded-lg tx-display uppercase font-display md:text-[1.2em] sm:text-[1em] text-[.8em] leading-[.8em]"
+            <h1 className="text-2xl">Loading...</h1>
+
+          </div>
+        </div>
+      ) : null}
+
+      {showConfirmDialog ? (
+        <div
+          className="h-screen w-screen backdrop-brightness-50 fixed left-0 top-0 grid justify-center place-items-center">
+          <div className="bg-white p-12 rounded-2xl drop-shadow-md grid justify-center max-w-xl">
+            <h1 className="text-2xl text-center font-display  uppercase">mint request successful</h1>
+            <h4 className="mt-4">
+              Pending indicators will only be visible in this browser. When minting is complete they will disappear.
+            </h4>
+            <button type="button"
+                    className="bg-red text-white pt-4 pb-3 md:px-14 mt-8 px-8 sm:px-2 rounded-lg tx-display uppercase font-display md:text-[1.2em] sm:text-[1em] text-[.8em] leading-[.8em]"
                     onClick={() => setShowConfirmDialog(false)}
             >
               ok
             </button>
           </div>
         </div>
-      </>) : null}
+      ) : null}
+
     </>
   );
 }
 
-function SoulUi({ content, onSelectionChange }) {
+function SoulUi({content, onSelectionChange}) {
   return (
     <div
       onClick={() => {
         onSelectionChange(!content.selected);
       }}
-      className={`relative md:h-[25vh] h-[12vh] ${
+      className={`relative h-[250px] w-[220px] mb-8 ${
         content.selected || content.pending ? "bg-red" : ""
-      } rounded-md flex md:flex-col justify-between flex-row p-6 `}
+      } flex flex-col justify-between flex-row p-6`}
     >
-      <div className="w-1/2 md:w-full">
+      <div className="w-full">
         <p
           className={`text-xs mt-1 text-red ${
             content.selected || content.pending ? "text-light" : ""
@@ -171,9 +205,11 @@ function SoulUi({ content, onSelectionChange }) {
       {content?.soul?.name ? (<div className="absolute top-12 left-8 grid grid-flow-col items-center">
         <img className="h-12 w-12" src={content.soul.image} alt="" />
         <span className="text-black text-[.8em]">{content.soul.name}</span>
-      </div> ): null}
+      </div>) : null}
+      <div className="rounded-2xl overflow-hidden">
       <img className="" src={content.image} alt="" />
-      <div className="w-1/2 md:w-full">
+      </div>
+      <div className="w-full">
         <p
           className={`text-xs mt-1 text-red ${
             content.selected || content.pending ? "text-light" : ""
@@ -183,7 +219,8 @@ function SoulUi({ content, onSelectionChange }) {
         </p>
         {content.pending ? (
           <div className="absolute top-0 left-0 h-full w-full backdrop-brightness-50">
-            <div className="absolute top-28 left-10 mx-4 bg-white text-black p-8 h-8 uppercase rounded-2xl font-display drop-shadow-md grid place-content-center">
+            <div
+              className="absolute top-28 left-10 mx-4 bg-white text-black p-8 h-8 uppercase rounded-2xl font-display drop-shadow-md grid place-content-center">
               pending
             </div>
           </div>

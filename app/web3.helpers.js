@@ -201,17 +201,33 @@ export function mapPending(nfts) {
   })
 }
 
-export async function setPending(nfts, walletAddress) {
-  if (!nfts?.length) return;
-  nfts.forEach(n => n.pending = true)
-  const body = JSON.stringify({
-    address: walletAddress,
-    tokenInfo: nfts.map(({ tokenId, tokenAddress }) => ({ tokenId: tokenId.toString(), tokenAddress }))
-  });
-  await fetch(
-    `${WALLET_API_URL}/api/pending-transaction`,
-    {
-      headers: {'content-type': 'application/json'},
-      method: 'POST',
-      body }).then((response) => response.json());
+export function setPending(nfts) {
+  nfts.forEach(n => {
+    n.pending = (new Date()).getTime()
+    localStorage.setItem(nftStorageKey(n), JSON.stringify(n.pending))
+  })
 }
+
+export function setupPendingPolling(nfts, updateFn) {
+  if (!nfts.length) return undefined;
+
+  const pending = nfts.filter(n => n.pending);
+  if (pending.length) {
+    return pollingTimer(updateFn);
+  }
+}
+
+function pollingTimer(updateFn) {
+  return setTimeout(async () => {
+    const vox = await getVOXs()
+    const nfts = mapPending(vox.map((v) => ({
+      ...v,
+      selected: false,
+    })));
+    updateFn(nfts);
+    if (nfts.some(n => n.pending)) {
+      pollingTimer(updateFn);
+    }
+  }, 10 * 1000)
+}
+

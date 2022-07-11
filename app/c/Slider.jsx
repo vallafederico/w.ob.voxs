@@ -227,13 +227,13 @@ function Slide({ handleIsIn, currentContent }) {
             <h5 className="uppercase text-red text-sm py-4">Great at</h5>
             <p className=" text-sm">{currentContent.adds.great}</p>
             <h5 className="uppercase text-red text-sm py-4">Stats</h5>
-            <div className="text-sm py-2 flex gap-3 wrap">
+            <div className="text-sm py-2 flex gap-3 flex-wrap">
               {currentContent.stats.map((it, i) => (
                 <p
-                  className="text-red py-2 px-4 border-red border bg-[#F9EEDE] text-xs rounded-md inline-block"
+                  className="text-red py-2 px-4 border-red border bg-[#F9EEDE] text-xs rounded-md inline-block whitespace-nowrap"
                   key={i}
                 >
-                  + {it.value} {it.title}
+                  + {it.value} {it.title} Gain
                 </p>
               ))}
             </div>

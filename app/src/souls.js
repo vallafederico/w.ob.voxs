@@ -9,7 +9,6 @@ export const SLIDER_CONTENT = {
         { title: "Wit", value: "2.5%" },
         { title: "Agility", value: "0.83%" },
         { title: "Swagger", value: "0.84%" },
-        { title: "Gain", value: "2.5%" },
       ],
       adds: {
         // ++++++++ add ons

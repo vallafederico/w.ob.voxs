@@ -63,21 +63,22 @@ export function normalizeUri(uri) {
 export function startMoralis() {
   const serverUrl = MORALIS_SERVER_URL;
   const appId = SOULS_APP_ID;
-  Moralis.start({ serverUrl, appId });
+  Moralis.start({serverUrl, appId});
 }
 
 async function signNfts(nfts, walletAddress) {
   try {
     const body = JSON.stringify({
       address: walletAddress,
-      tokenInfo: nfts.map(({ tokenId, tokenAddress }) => ({ tokenId: tokenId.toString(), tokenAddress }))
+      tokenInfo: nfts.map(({tokenId, tokenAddress}) => ({tokenId: tokenId.toString(), tokenAddress}))
     });
     return await fetch(
       `${WALLET_API_URL}/api/sign`,
       {
         headers: {'content-type': 'application/json'},
         method: 'POST',
-        body }).then((response) => response.json());
+        body
+      }).then((response) => response.json());
   } catch (e) {
     console.log('signNfts error', e)
   }
@@ -182,7 +183,7 @@ if (typeof window !== "undefined") {
   localStorage = window.localStorage;
 }
 
-const nftStorageKey = ({ tokenId }) => {
+const nftStorageKey = ({tokenId}) => {
   return `pending_token_${tokenId}`
 }
 
@@ -217,6 +218,20 @@ export function setupPendingPolling(nfts, updateFn) {
   }
 }
 
+export async function getCollection() {
+  const address = await getWalletAddress();
+  const vox = await getVOXs(address);
+  return {
+    address,
+    nfts: mapPending(
+      vox.map((v) => ({
+        ...v,
+        selected: false,
+      })),
+    )
+  }
+}
+
 function pollingTimer(updateFn) {
   return setTimeout(async () => {
     const vox = await getVOXs()
@@ -229,5 +244,16 @@ function pollingTimer(updateFn) {
       pollingTimer(updateFn);
     }
   }, 10 * 1000)
+}
+
+export function watchForWallet(updateFn) {
+  return setTimeout(async () => {
+    try {
+      const {nfts} = await getCollection();
+      updateFn(nfts);
+    } catch (e) {
+      watchForWallet(updateFn);
+    }
+  }, 1000)
 }
 

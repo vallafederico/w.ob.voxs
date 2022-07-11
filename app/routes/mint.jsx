@@ -6,11 +6,9 @@ import Cont from "~/c/sh/Cont.jsx";
 import {ConfirmMintButton} from "~/c/sh/Button.jsx";
 import Nav from "~/c/Nav.jsx";
 import {
-  getVOXs,
-  getWalletAddress,
-  mapPending,
+  getCollection,
   mint,
-  setPending, setupPendingPolling,
+  setPending, setupPendingPolling, watchForWallet,
 } from "../web3.helpers";
 
 export const links = () => [{rel: "stylesheet", href: indexcss}];
@@ -23,18 +21,6 @@ export default function Mint() {
       <MintUi childRef={mintRef} />
       <Nav isMint={true} isAbout={true} />
       <Main canScroll={true}>
-        {/* <Section>
-          <Cont></Cont>
-        </Section>
-        <Section>
-          <Cont></Cont>
-        </Section>
-        <Section>
-          <Cont></Cont>
-        </Section>
-        <Section>
-          <Cont></Cont>
-        </Section> */}
       </Main>
     </>
   );
@@ -48,6 +34,7 @@ export function MintUi({childRef}) {
   const [walletAddress, setWalletAddress] = useState("");
   const [showLoading, setShowLoading] = useState(true);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [showWalletNotConnected, setShowWalletNotConnected] = useState(false);
   const [timeoutHandle, setTimeoutHandle] = useState(undefined);
 
   const selectAll = () => {
@@ -61,21 +48,23 @@ export function MintUi({childRef}) {
 
   useEffect(() => {
     async function getNfts() {
-      const address = await getWalletAddress();
-      const vox = await getVOXs(address);
-      const nfts = mapPending(
-        vox.map((v) => ({
-          ...v,
-          selected: false,
-        }))
-      );
+      try {
+        const { address, nfts } = await getCollection();
 
-      console.log('nfts', nfts)
-      setNfts(nfts);
-      setWalletAddress(address);
-      setTimeoutHandle(setupPendingPolling(nfts, (nfts) => {
+        console.log('nfts', nfts)
         setNfts(nfts);
-      }))
+        setWalletAddress(address);
+        setTimeoutHandle(setupPendingPolling(nfts, (nfts) => {
+          setNfts(nfts);
+        }))
+      } catch (e) {
+        watchForWallet((nfts) => {
+          setShowWalletNotConnected(false);
+          setNfts(nfts);
+        });
+        setShowWalletNotConnected(true);
+        console.log(e)
+      }
       setShowLoading(false);
     }
 
@@ -93,62 +82,70 @@ export function MintUi({childRef}) {
         childRef={childRef}
         className="MintUi fixed top-0 left-0 w-full h-full py-2 pb-[5vh] pt-[15vh]"
       >
-        <Cont
-          className="h-full md:w-[90vw] bg-black text-white rounded-xl md:px-12 px-4 pb-12 text-center flex flex-col ">
-          {/* Body */}
-          <div className="flex flex-col justify-center items-center">
-            <div className="max-w-[55ch]">
-              <h2 className="font-display text-red md:text-5xl text-3xl mb-4">
-                Select the VOX you want to mint a Soul for.
-              </h2>
+        {!showWalletNotConnected ?
+          <Cont
+            className="h-full md:w-[90vw] bg-black text-white rounded-xl md:px-12 px-4 pb-12 text-center flex flex-col ">
+            {/* Body */}
+            <div className="flex flex-col justify-center items-center">
+              <div className="max-w-[55ch]">
+                <h2 className="font-display text-red md:text-5xl text-3xl mb-4">
+                  Select the VOX you want to mint a Soul for.
+                </h2>
+              </div>
             </div>
-          </div>
-          {/* DYNAMIC */}
-          <div className="flex flex-col justify-between grow">
-            <div className="flex justify-end border-b mt-2">
-              <button
-                className="text-xs uppercase p-4"
-                onClick={() => selectAll()}
-              >
-                Select All
-              </button>
-            </div>
+            {/* DYNAMIC */}
+            <div className="flex flex-col justify-between grow">
+              <div className="flex justify-end border-b mt-2">
+                <button
+                  className="text-xs uppercase p-4"
+                  onClick={() => selectAll()}
+                >
+                  Select All
+                </button>
+              </div>
 
-            <div
-              className="h-[40vh] overflow-y-scroll mb-8 p-4 flex flex-wrap w-full">
-              {nfts.map((it, i) => (
-                <SoulUi
-                  key={i}
-                  index={i}
-                  content={it}
-                  onSelectionChange={(selected) => {
-                    it.selected = !it.soul?.name && !it.pending && selected;
-                    setNfts(
-                      nfts.map((v) => ({
-                        ...v,
-                      }))
-                    );
+              <div
+                className="h-[40vh] overflow-y-scroll mb-8 p-4 flex flex-wrap w-full">
+                {nfts.map((it, i) => (
+                  <SoulUi
+                    key={i}
+                    index={i}
+                    content={it}
+                    onSelectionChange={(selected) => {
+                      it.selected = !it.soul?.name && !it.pending && selected;
+                      setNfts(
+                        nfts.map((v) => ({
+                          ...v,
+                        }))
+                      );
+                    }}
+                  />
+                ))}
+              </div>
+
+              <div>
+                <ConfirmMintButton
+                  text="Mint Selected"
+                  onClick={async () => {
+                    const selected = nfts.filter((n) => n.selected);
+                    await mint(selected, walletAddress);
+                    await setPending(selected, walletAddress);
+                    setShowConfirmDialog(true);
+                    setTimeoutHandle(setupPendingPolling(nfts, (nfts) => {
+                      setNfts(nfts);
+                    }));
                   }}
                 />
-              ))}
+              </div>
             </div>
+          </Cont>
+          :
+          <Cont
+            className="h-full md:w-[90vw] bg-black text-white rounded-xl md:px-12 px-4 pb-12 text-center flex flex-col grid justify-center place-content-center ">
+            <h1 className="text-5xl">Wallet not connected</h1>
+          </Cont>
+        }
 
-            <div>
-              <ConfirmMintButton
-                text="Mint Selected"
-                onClick={async () => {
-                  const selected = nfts.filter((n) => n.selected);
-                  await mint(selected, walletAddress);
-                  await setPending(selected, walletAddress);
-                  setShowConfirmDialog(true);
-                  setTimeoutHandle(setupPendingPolling(nfts, (nfts) => {
-                    setNfts(nfts);
-                  }));
-                }}
-              />
-            </div>
-          </div>
-        </Cont>
       </Section>
 
       {showLoading ? (
@@ -189,7 +186,7 @@ function SoulUi({content, onSelectionChange}) {
       onClick={() => {
         onSelectionChange(!content.selected);
       }}
-      className={`relative h-[250px] w-[220px] mb-8 ${
+      className={`relative h-[250px] w-[220px] mb-8 mx-2 ${
         content.selected || content.pending ? "bg-red" : ""
       } flex flex-col justify-between flex-row p-6`}
     >
@@ -202,12 +199,12 @@ function SoulUi({content, onSelectionChange}) {
           #{content.tokenId}
         </p>
       </div>
-      {content?.soul?.name ? (<div className="absolute top-12 left-8 grid grid-flow-col items-center">
+      {content?.soul?.name ? (<div className="absolute top-[40px] left-8 grid grid-flow-col items-center">
         <img className="h-12 w-12" src={content.soul.image} alt="" />
         <span className="text-black text-[.8em]">{content.soul.name}</span>
       </div>) : null}
       <div className="rounded-2xl overflow-hidden">
-      <img className="" src={content.image} alt="" />
+        <img className="" src={content.image} alt="" />
       </div>
       <div className="w-full">
         <p

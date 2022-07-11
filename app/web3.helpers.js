@@ -6,6 +6,7 @@ export async function getWalletAddress() {
   await ethereum?.request({method: 'eth_requestAccounts'});
   const provider = new providers.Web3Provider(ethereum);
   const [address] = await provider.listAccounts();
+  provider.getSigner(address);
   return address;
 }
 
@@ -249,8 +250,8 @@ function pollingTimer(updateFn) {
 export function watchForWallet(updateFn) {
   return setTimeout(async () => {
     try {
-      const {nfts} = await getCollection();
-      updateFn(nfts);
+      const {address, nfts} = await getCollection();
+      updateFn(address, nfts);
     } catch (e) {
       watchForWallet(updateFn);
     }

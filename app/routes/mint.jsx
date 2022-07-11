@@ -10,6 +10,7 @@ import {
   mint,
   setPending, setupPendingPolling, watchForWallet,
 } from "../web3.helpers";
+import metamaskLogo from "~/src/img/metamask_logo.png";
 
 export const links = () => [{rel: "stylesheet", href: indexcss}];
 
@@ -24,6 +25,14 @@ export default function Mint() {
       </Main>
     </>
   );
+}
+
+let dappPath = '';
+let mobileMetaMaskUrl = '';
+
+if (typeof window !== "undefined") {
+  dappPath = window.location.href.toString().replace(/(http[s]*:\/\/)/, "");
+  mobileMetaMaskUrl = `https://metamask.app.link/dapp/${dappPath}?mm=true`
 }
 
 /**
@@ -49,7 +58,7 @@ export function MintUi({childRef}) {
   useEffect(() => {
     async function getNfts() {
       try {
-        const { address, nfts } = await getCollection();
+        const {address, nfts} = await getCollection();
 
         console.log('nfts', nfts)
         setNfts(nfts);
@@ -58,8 +67,9 @@ export function MintUi({childRef}) {
           setNfts(nfts);
         }))
       } catch (e) {
-        watchForWallet((nfts) => {
+        watchForWallet((_address, nfts) => {
           setShowWalletNotConnected(false);
+          setWalletAddress(_address);
           setNfts(nfts);
         });
         setShowWalletNotConnected(true);
@@ -142,87 +152,106 @@ export function MintUi({childRef}) {
           :
           <Cont
             className="h-full md:w-[90vw] bg-black text-white rounded-xl md:px-12 px-4 pb-12 text-center flex flex-col grid justify-center place-content-center ">
-            <h1 className="text-5xl">Please Connect Your Wallet</h1>
+            { /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? <div className="container h-screen-3/4 flex items-center justify-center">
+              <div className="flex flex-col items-center text-center">
+                <h2 className="text-center">Welcome! Let's begin with your wallet</h2>
+                <p>
+                  Connect your wallet or create a new wallet.
+                </p>
+                <button onClick={() => {
+                  if (!window?.location?.href?.includes("mm=true") && mobileMetaMaskUrl) {
+                    window.open(mobileMetaMaskUrl, "_blank");
+                  }
+                }} className="my-8 border-4 border-red p-4 rounded-lg flex  ">
+                  <img
+                    className="w-8 h-8 mr-2"
+                    src={metamaskLogo}
+                    alt="Connect MetaMask"
+                  />
+                  Connect Metamask
+                </button>
+              </div>
+            </div> : <h1 className="text-5xl">Please Connect Your Wallet</h1> }
           </Cont>
-        }
+          }
 
-      </Section>
+          </Section>
 
-      {showLoading ? (
-        <div
+        {showLoading ? (
+          <div
           className="h-screen w-screen backdrop-brightness-50 fixed left-0 top-0 grid justify-center place-items-center">
           <div className="bg-white p-12 uppercase rounded-2xl font-display drop-shadow-md grid justify-center">
-            <h1 className="text-2xl">Loading...</h1>
+          <h1 className="text-2xl">Loading...</h1>
 
           </div>
-        </div>
-      ) : null}
+          </div>
+          ) : null}
 
-      {showConfirmDialog ? (
-        <div
+        {showConfirmDialog ? (
+          <div
           className="h-screen w-screen backdrop-brightness-50 fixed left-0 top-0 grid justify-center place-items-center">
           <div className="bg-white p-12 rounded-2xl drop-shadow-md grid justify-center max-w-xl">
-            <h1 className="text-2xl text-center font-display  uppercase">mint request successful</h1>
-            <h4 className="mt-4">
-              Pending indicators will only be visible in this browser. When minting is complete they will disappear.
-            </h4>
-            <button type="button"
-                    className="bg-red text-white pt-4 pb-3 md:px-14 mt-8 px-8 sm:px-2 rounded-lg tx-display uppercase font-display md:text-[1.2em] sm:text-[1em] text-[.8em] leading-[.8em]"
-                    onClick={() => setShowConfirmDialog(false)}
-            >
-              ok
-            </button>
+          <h1 className="text-2xl text-center font-display  uppercase">mint request successful</h1>
+          <h4 className="mt-4">
+          Pending indicators will only be visible in this browser. When minting is complete they will disappear.
+          </h4>
+          <button type="button"
+          className="bg-red text-white pt-4 pb-3 md:px-14 mt-8 px-8 sm:px-2 rounded-lg tx-display uppercase font-display md:text-[1.2em] sm:text-[1em] text-[.8em] leading-[.8em]"
+          onClick={() => setShowConfirmDialog(false)}
+          >
+          ok
+          </button>
           </div>
-        </div>
-      ) : null}
+          </div>
+          ) : null}
 
-    </>
-  );
-}
+          </>
+          );
+        }
 
-function SoulUi({content, onSelectionChange}) {
-  return (
-    <div
-      onClick={() => {
+        function SoulUi({content, onSelectionChange}) {
+        return (
+        <div
+        onClick={() => {
         onSelectionChange(!content.selected);
       }}
-      className={`relative h-[250px] w-[220px] mb-8 mx-2 ${
+        className={`relative h-[250px] w-[220px] mb-8 mx-2 ${
         content.selected || content.pending ? "bg-red" : ""
       } flex flex-col justify-between flex-row p-6`}
-    >
-      <div className="w-full">
-        <p
-          className={`text-xs mt-1 text-red ${
-            content.selected || content.pending ? "text-light" : ""
-          }`}
         >
-          #{content.tokenId}
+        <div className="w-full">
+        <p
+        className={`text-xs mt-1 text-red ${
+        content.selected || content.pending ? "text-light" : ""
+      }`}
+        >
+        #{content.tokenId}
         </p>
-      </div>
+        </div>
       {content?.soul?.name ? (<div className="absolute top-[40px] left-8 grid grid-flow-col items-center">
         <img className="h-12 w-12" src={content.soul.image} alt="" />
         <span className="text-black text-[.8em]">{content.soul.name}</span>
-      </div>) : null}
-      <div className="rounded-2xl overflow-hidden">
+        </div>) : null}
+        <div className="rounded-2xl overflow-hidden">
         <img className="" src={content.image} alt="" />
-      </div>
-      <div className="w-full">
+        </div>
+        <div className="w-full">
         <p
-          className={`text-xs mt-1 text-red ${
-            content.selected || content.pending ? "text-light" : ""
-          }`}
+        className={`text-xs mt-1 text-red ${
+        content.selected || content.pending ? "text-light" : ""
+      }`}
         >
-          {content.name}
+      {content.name}
         </p>
-        {content.pending ? (
-          <div className="absolute top-0 left-0 h-full w-full backdrop-brightness-50">
-            <div
-              className="absolute top-28 left-10 mx-4 bg-white text-black p-8 h-8 uppercase rounded-2xl font-display drop-shadow-md grid place-content-center">
-              pending
-            </div>
-          </div>
+      {content.pending ? (
+        <div className="absolute top-0 left-0 h-full w-full backdrop-brightness-50">
+        <div
+        className="absolute top-28 left-10 mx-4 bg-white text-black p-8 h-8 uppercase rounded-2xl font-display drop-shadow-md grid place-content-center">
+        pending
+        </div>
+        </div>
         ) : null}
-      </div>
-    </div>
-  );
-}
+        </div>
+        </div>
+        );
+      }

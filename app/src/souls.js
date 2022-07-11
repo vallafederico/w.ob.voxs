@@ -5,10 +5,11 @@ export const SLIDER_CONTENT = {
       tagline: "Sees and creates things that others cannot",
       content: `The passionate creativity of an Artisan Soul can rarely be contained. They wield a mastery of their craft, however strange or silly it may be. A voice deep inside The Artisan cries out, "Hey, you! Make something fabulous!" and they burst at the seams to comply. In The Artisan's hands, a pile of junk can be transformed into a work of art or a machine unlike anything VOX society has ever seen.`,
       stats: [
-        { title: "Smarts", value: "1" },
-        { title: "Wit", value: "3" },
-        { title: "Agility", value: "1" },
-        { title: "Swagger", value: "1" },
+        { title: "Smarts", value: "0.83%" },
+        { title: "Wit", value: "2.5%" },
+        { title: "Agility", value: "0.83%" },
+        { title: "Swagger", value: "0.84%" },
+        { title: "Gain", value: "2.5%" },
       ],
       adds: {
         // ++++++++ add ons
@@ -43,8 +44,8 @@ export const SLIDER_CONTENT = {
       content:
         "The Hermit Soul is capable, tough, and mysterious. They're most at home in the wilderness, priding themselves on being resilient and fiercely independent. All they need for an adventure is the clothes on their back and a good sense of direction. At the end of the day, they treasure the simple things in life: peace and quiet, their own company, strong coffee, and yelling at kids to get off their lawn.",
       stats: [
-        { title: "Endurance", value: "4" },
-        { title: "Agility", value: "2" },
+        { title: "Endurance", value: "3.33%" },
+        { title: "Agility", value: "1.67" },
       ],
       adds: {
         // ++++++++ add ons
@@ -78,9 +79,9 @@ export const SLIDER_CONTENT = {
       content:
         "The resolute and watchful Hunter Soul is always on its toes. Wild at heart, The Hunter trusts their strange instincts which allow them to react quickly to dangerous situations, like being attacked by a snake. Unfortunately, these reflexes also apply to more mundane situations, like avoiding the stream from a lawn sprinkler. The Hunter sees the clues that everyone else misses, allowing them to avoid dangers others may fall victim to… like mysterious packages from The Trickster.",
       stats: [
-        { title: "Might", value: "1" },
-        { title: "Endurance", value: "1" },
-        { title: "Agility", value: "4" },
+        { title: "Might", value: "0.83%" },
+        { title: "Endurance", value: "0.83%" },
+        { title: "Agility", value: "3.34%" },
       ],
       adds: {
         // ++++++++ add ons
@@ -114,9 +115,9 @@ export const SLIDER_CONTENT = {
       content:
         "The Leader Soul is confident and tenacious, one who seeks total mastery of both inner and outer strength. Known for taking situations by the reins and making things happen (often with extreme results), they have the respect of both friends and foes. Once they have a plan of action, chances are The Leader will have people following them and shouting (possibly with pitchforks and torches) within the hour.",
       stats: [
-        { title: "Wit", value: "1" },
-        { title: "Might", value: "3" },
-        { title: "Swagger", value: "2" },
+        { title: "Wit", value: "0.8%" },
+        { title: "Might", value: "2.5%" },
+        { title: "Swagger", value: "1.7%" },
       ],
       adds: {
         // ++++++++ add ons
@@ -152,8 +153,8 @@ export const SLIDER_CONTENT = {
       content:
         "Unafraid to stray from the beaten path, The Maverick Soul charts their own course. Their confidence and determination rallies The Maverick as they climb the greatest peaks and plunge to unfathomable depths in their quest to explore what lies beyond where others fear to tread. When faced with opposition, The Maverick raises their middle finger high and ventures on. Armed with cunning wit and stylish flair, no challenge… and no one can stand in their way.",
       stats: [
-        { title: "Wit", value: "1" },
-        { title: "Swagger", value: "5" },
+        { title: "Wit", value: "0.8%" },
+        { title: "Stamina", value: "4.2%" },
       ],
       adds: {
         // ++++++++ add ons
@@ -188,9 +189,9 @@ export const SLIDER_CONTENT = {
       content:
         "Wise beyond measure, The Sage Soul understands the world around them with a piercing perception. Although some might use this power for nefarious purposes, The Sage wields their knowledge and wisdom, not as a weapon, but as a tool to bring comfort to those who come across their path.   ",
       stats: [
-        { title: "Smarts", value: "1" },
-        { title: "Wit", value: "4" },
-        { title: "Agility", value: "1" },
+        { title: "Smarts", value: "0.84%" },
+        { title: "Wit", value: "3.33%" },
+        { title: "Agility", value: "0.83%" },
       ],
       adds: {
         // ++++++++ add ons
@@ -225,10 +226,10 @@ export const SLIDER_CONTENT = {
       content:
         "The Star Soul can walk into a room full of strangers and walk out with new best friends. They are admired, loved, and envied by pretty much everyone, which sometimes puts them in awkward situations. One time, The Star went out to slay a dragon, and it was so charmed that it wanted to be their friend instead of fight. So, The Star slayed it later when it wasn't looking.",
       stats: [
-        { title: "Smarts", value: "1" },
-        { title: "Wit", value: "1" },
-        { title: "Endurance", value: "1" },
-        { title: "Swagger", value: "3" },
+        { title: "Smarts", value: "0.83%" },
+        { title: "Wit", value: "0.84%" },
+        { title: "Endurance", value: "0.83%" },
+        { title: "Swagger", value: "2.5%" },
       ],
       adds: {
         // ++++++++ add ons
@@ -264,8 +265,8 @@ export const SLIDER_CONTENT = {
       content:
         "The Scholar Soul is the inquisitive bookworm with an uncanny ability to retain facts. Knowledge is their passion—after all, The Scholar just never knows when they might need to know the 17 uses of dragon scales. Or how to defeat a monster with saltwater taffy. Or whether Minotaurs really do sleep while standing.",
       stats: [
-        { title: "Smarts", value: "5" },
-        { title: "Wit", value: "5" },
+        { title: "Smarts", value: "4.17%" },
+        { title: "Wit", value: "0.83%" },
       ],
       adds: {
         // ++++++++ add ons
@@ -301,7 +302,11 @@ export const SLIDER_CONTENT = {
       tagline: "Sees the silver lining and opportunity in every problem",
       content:
         "The Trickster Soul can get out of the worst scraps and the stickiest situations with ease. Three things The Trickster always has up their sleeve: a well-timed joke, a bit of gossip, and another card to play. They're as sharp as a tack, competitive, and single-minded in going after what they want. After all, a new problem is merely an opportunity The Trickster hasn't seized yet!",
-      stats: [{ title: "All Stats", value: "1" }],
+      stats: [
+        { title: "Smarts", value: "0.84%" },
+        { title: "Wit", value: "0.84%" },
+        { title: "All other stats", value: "0.83%" },
+      ],
       adds: {
         // ++++++++ add ons
         symbol: "",
@@ -333,9 +338,9 @@ export const SLIDER_CONTENT = {
       content:
         "The tender Healer Soul yearns to collect broken and hurt things. They know they must help others, and that nothing is ever beyond repair. Curious at heart, The Healer checks in on others, ready to lend an ear if they can't mend a broken heart.",
       stats: [
-        { title: "Smarts", value: "2" },
-        { title: "Endurance", value: "2" },
-        { title: "Agility", value: "2" },
+        { title: "Smarts", value: "1.67%" },
+        { title: "Endurance", value: "1.67%" },
+        { title: "Agility", value: "1.66%" },
       ],
       adds: {
         // ++++++++ add ons
@@ -370,10 +375,10 @@ export const SLIDER_CONTENT = {
       content:
         "The Wanderer Soul is always curious about new experiences, eager for the next great adventure. To them, strangers are just new, temporary friendships waiting to happen before The Wanderer journeys on, never staying anywhere long. They may forget to look both ways before crossing the road because of sheer excitement to reach the other side. Because of this, The Wanderer is most likely to find treasure after tripping over it.",
       stats: [
-        { title: "Smarts", value: "1" },
-        { title: "Might", value: "2" },
-        { title: "Endurance", value: "2" },
-        { title: "Agility", value: "1" },
+        { title: "Smarts", value: "0.83%" },
+        { title: "Might", value: "1.67%" },
+        { title: "Endurance", value: "1.67%" },
+        { title: "Agility", value: "0.83%" },
       ],
       adds: {
         // ++++++++ add ons
@@ -408,8 +413,8 @@ export const SLIDER_CONTENT = {
       content:
         "The Warrior Soul lives by a sacred code of nobility, honor, and honorable nobility. Ever committed to the path before them, The Warrior lives and dies by their own iron will. The Warrior is instantly recognizable—headstrong, steadfast, and loyal. Whether defending the reputation of a friend or chasing away terrifying spiders for The Star, The Warrior is always ready to jump into action. ",
       stats: [
-        { title: "Might", value: "5" },
-        { title: "Endurance", value: "1" },
+        { title: "Might", value: "4.17%" },
+        { title: "Endurance", value: "0.83%" },
       ],
       adds: {
         // ++++++++ add ons

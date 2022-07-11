@@ -142,7 +142,7 @@ export function MintUi({childRef}) {
           :
           <Cont
             className="h-full md:w-[90vw] bg-black text-white rounded-xl md:px-12 px-4 pb-12 text-center flex flex-col grid justify-center place-content-center ">
-            <h1 className="text-5xl">Wallet not connected</h1>
+            <h1 className="text-5xl">Please Connect Your Wallet</h1>
           </Cont>
         }
 
